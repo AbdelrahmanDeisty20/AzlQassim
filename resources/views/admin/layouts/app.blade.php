@@ -91,13 +91,12 @@
         /* Responsive Rules for Tablet/Mobile */
         @media (max-width: 992px) {
             .asb {
-                right: 0 !important;
-                transform: translateX(-100%) !important;
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                right: -260px !important;
+                transform: none !important;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
             .asb.open {
                 right: 0 !important;
-                transform: translateX(0) !important;
             }
             .asb-backdrop.open {
                 display: block;
@@ -105,6 +104,9 @@
             .amn {
                 margin-right: 0 !important;
                 padding: 16px;
+                width: 100vw;
+                overflow-x: hidden;
+                box-sizing: border-box;
             }
             .a-toggle-btn {
                 display: flex;
@@ -119,7 +121,7 @@
         }
     </style>
 </head>
-<body style="background:var(--sl)">
+<body style="background:var(--sl); overflow-x: hidden; margin: 0; padding: 0;">
     <div class="asb-backdrop" id="ASB-Backdrop" onclick="toggleSidebar()"></div>
     <div class="adw active" id="AW">
         <!-- Admin Sidebar -->

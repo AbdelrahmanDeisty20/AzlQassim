@@ -1,40 +1,20 @@
-# ------------------------------------------------------------------------------
-# Hostinger Laravel Root .htaccess Configuration
-# ------------------------------------------------------------------------------
-# This file rewrites all incoming traffic from the root domain directly to the 
-# public directory. This is the most secure and clean way to host Laravel on
-# shared hosting without moving files or exposing core code.
-# ------------------------------------------------------------------------------
-
 <IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
 
-    # Optional: Force HTTPS (SSL)
-    # Uncomment the following lines if you want to redirect all HTTP traffic to HTTPS
-    # RewriteCond %{HTTPS} off
-    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Optional: Force WWW or non-WWW (uncomment only one of the sections below)
-    
-    # 1. Force www:
-    # RewriteCond %{HTTP_HOST} !^www\. [NC]
-    # RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
-    
-    # 2. Force non-www:
-    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    # RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
 
-    # Main Rewrite: Redirect all requests to the "public" folder
-    # This prevents infinite loops by checking if the request is already in public/
+    # Send Requests To Public Directory...
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
-
-# Disable directory browsing for security
-Options -Indexes
-
-# Protect sensitive Laravel files from direct access
-<FilesMatch "^\.env|composer\.json|package\.json|artisan$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>

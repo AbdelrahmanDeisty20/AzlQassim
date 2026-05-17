@@ -25,6 +25,7 @@ Route::post('/clicks', [ClickController::class, 'store']);
 Route::prefix('admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'index']);
     Route::get('/login', [\App\Http\Controllers\AdminController::class, 'login']);
+    Route::post('/login', [\App\Http\Controllers\AdminController::class, 'postLogin']);
     Route::get('/settings', [\App\Http\Controllers\AdminController::class, 'settings']);
     Route::get('/services', [\App\Http\Controllers\AdminController::class, 'services']);
     Route::get('/offers', [\App\Http\Controllers\AdminController::class, 'offers']);

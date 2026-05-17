@@ -2289,21 +2289,40 @@ async function tC(type, page) {
 
 // --- Admin Authentication & Access Logic ---
 function doLogin() {
-    const username = $('LU').value;
-    const password = $('LP').value;
-    const savePassword = localStorage.getItem('azq3_pass') || 'Admin@12345';
+    const username = $('LU').value.trim();
+    const password = $('LP').value.trim();
 
-    if (username === 'admin' && password === savePassword) {
-        sessionStorage.setItem('azq3_auth', '1');
-        $('LE').classList.remove('show');
-        sN('✅ تم تسجيل الدخول بنجاح');
-        setTimeout(() => {
-            window.location.href = '/admin';
-        }, 600);
-    } else {
+    if (!username || !password) {
         $('LE').classList.add('show');
-        $('LP').focus();
+        return;
     }
+
+    fetch('/admin/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCsrfToken()
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            sessionStorage.setItem('azq3_auth', '1');
+            $('LE').classList.remove('show');
+            sN('✅ تم تسجيل الدخول بنجاح');
+            setTimeout(() => {
+                window.location.href = '/admin';
+            }, 600);
+        } else {
+            $('LE').classList.add('show');
+            $('LP').focus();
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        $('LE').classList.add('show');
+    });
 }
 
 function doLogout() {

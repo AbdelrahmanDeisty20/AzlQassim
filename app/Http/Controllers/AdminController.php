@@ -53,6 +53,23 @@ class AdminController extends Controller
     }
 
     /**
+     * Handle Admin Login Request.
+     */
+    public function postLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (\Illuminate\Support\Facades\Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'بيانات خاطئة'], 401);
+    }
+
+    /**
      * Display the Settings Control Panel.
      */
     public function settings()

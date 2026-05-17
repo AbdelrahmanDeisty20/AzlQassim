@@ -13,13 +13,13 @@
         <div style="text-align:right;margin-bottom:12px">
             <div class="afg" style="margin:0">
                 <label>اسم المستخدم</label>
-                <input type="text" id="LU" value="admin">
+                <input type="text" id="LU" placeholder="اسم المستخدم">
             </div>
         </div>
         <div style="text-align:right;margin-bottom:18px">
             <div class="afg" style="margin:0">
                 <label>كلمة المرور</label>
-                <input type="password" id="LP" value="Admin@12345">
+                <input type="password" id="LP" placeholder="كلمة المرور">
             </div>
         </div>
         <button class="btn btn-nv" style="width:100%;justify-content:center" onclick="doLogin()">

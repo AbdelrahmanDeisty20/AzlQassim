@@ -26,17 +26,17 @@
                     </h2>
 
                     <!-- Licensing and Classification Badge -->
-                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                        <span style="background: rgba(82, 183, 136, 0.15); border: 1px solid rgba(82, 183, 136, 0.4); color: #85e3b2; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
-                            <i class="fas fa-check-circle" style="color: #52b788;"></i>
+                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                        <span style="background: rgba(82, 183, 136, 0.22); border: 1.5px solid rgba(82, 183, 136, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(82, 183, 136, 0.1);">
+                            <i class="fas fa-check-circle" style="color: #74c69d; font-size: 15px;"></i>
                             رخصة بلدية رقم: {{ $hdr['lic_no'] ?? '441212615580' }}
                         </span>
-                        <span style="background: rgba(78, 168, 222, 0.15); border: 1px solid rgba(78, 168, 222, 0.4); color: #bde0fe; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
-                            <i class="fas fa-id-card" style="color: #4ea8de;"></i>
+                        <span style="background: rgba(78, 168, 222, 0.22); border: 1.5px solid rgba(78, 168, 222, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(78, 168, 222, 0.1);">
+                            <i class="fas fa-id-card" style="color: #70d6ff; font-size: 15px;"></i>
                             عضوية هيئة المقاولين رقم: {{ $hdr['sca_no'] ?? '31109580340003' }}
                         </span>
-                        <span style="background: rgba(230, 57, 70, 0.15); border: 1px solid rgba(230, 57, 70, 0.4); color: #ffccd5; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
-                            <i class="fas fa-award" style="color: #e63946;"></i>
+                        <span style="background: rgba(230, 57, 70, 0.22); border: 1.5px solid rgba(230, 57, 70, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.1);">
+                            <i class="fas fa-award" style="color: #ff4d6d; font-size: 15px;"></i>
                             شهادة تصنيف رقم: {{ $hdr['cls_no'] ?? '2024005835' }} فئة ممتازة
                         </span>
                     </div>

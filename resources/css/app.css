@@ -2930,14 +2930,59 @@ table.at {
 }
 
 @media (max-width: 768px) {
+    .tb-desktop-brand {
+        display: none !important;
+    }
+    .tb-desktop-text {
+        display: none !important;
+    }
+    .tb-mobile-text {
+        display: block !important;
+    }
+    .topbar .con {
+        justify-content: center !important;
+    }
+    .hdr {
+        padding: 8px 12px !important;
+        gap: 6px !important;
+    }
+    .logo {
+        gap: 6px !important;
+    }
+    .logo-ic {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 15px !important;
+        border-radius: 8px !important;
+    }
+    .logo-nm {
+        font-size: 13.5px !important;
+    }
+    .logo-sb {
+        display: none !important;
+    }
+    .hdr-cta {
+        gap: 5px !important;
+    }
+    .hdr-cta .btn {
+        padding: 5px 9px !important;
+        font-size: 10.5px !important;
+        gap: 3px !important;
+        border-radius: 30px !important;
+    }
+    .hdr-cta .btn i {
+        font-size: 11px !important;
+    }
+    .mob-tog {
+        padding: 4px !important;
+        font-size: 18px !important;
+        margin-right: auto;
+    }
     nav {
         display: none;
     }
     .mob-tog {
         display: block;
-    }
-    .hdr-cta .btn:last-child {
-        display: none;
     }
     .hero {
         padding: 50px 0;

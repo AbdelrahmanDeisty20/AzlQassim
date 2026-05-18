@@ -82,14 +82,14 @@
                     </div>
 
                     <!-- Call & WhatsApp Action Buttons -->
-                    <div class="hacts" style="margin-bottom: 24px;">
-                        <a class="btn btn-am" onclick="openReq()">
-                            <i class="fas fa-calendar-check"></i>
-                            <span id="hC1">{{ $hero['c1'] ?? 'احصل على عرض مجاني' }}</span>
+                    <div class="hacts" style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <a class="btn" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','hero')" style="background: #10b981; color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(16,185,129,0.25); transition: all 0.3s ease;">
+                            <i class="fas fa-comment" style="font-size: 18px;"></i>
+                            <span>واتساب</span>
                         </a>
-                        <a class="btn btn-wh" id="hWaB" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','hero')">
-                            <i class="fab fa-whatsapp"></i>
-                            <span id="hC2">{{ $hero['c2'] ?? 'تواصل الآن' }}</span>
+                        <a class="btn" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','hero')" style="background: #1d3557; color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(29,53,87,0.25); transition: all 0.3s ease;">
+                            <i class="fas fa-phone-alt" style="font-size: 14px;"></i>
+                            <span>اتصل الآن</span>
                         </a>
                     </div>
                 </div>

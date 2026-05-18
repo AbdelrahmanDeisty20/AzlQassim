@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>@yield('title', 'عزل القصيم | أفضل شركة عزل أسطح بالقصيم وبريدة وحائل')</title>
     <meta name="description" content="@yield('description', 'عزل القصيم - أفضل شركة عزل أسطح بالقصيم وبريدة وحائل. عزل مائي وحراري وفوم. ضمان 10 سنوات.')">
     <meta name="keywords" content="@yield('keywords', 'افضل شركة عزل اسطح بالقصيم,عزل مائي بالقصيم,عزل فوم بالقصيم,عزل اسطح ببريدة,عزل فوم ببريدة,عزل اسطح بحائل,عزل مائي وحراري بالقصيم,افضل شركة عزل اسطح ببريدة,افضل شركة عزل اسطح بحائل')">

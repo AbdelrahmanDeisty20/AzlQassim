@@ -26,17 +26,17 @@
                     </h2>
 
                     <!-- Licensing and Classification Badge -->
-                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                        <span style="background: rgba(82, 183, 136, 0.22); border: 1.5px solid rgba(82, 183, 136, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(82, 183, 136, 0.1);">
-                            <i class="fas fa-check-circle" style="color: #74c69d; font-size: 15px;"></i>
+                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                        <span style="background: rgba(82, 183, 136, 0.15); border: 1px solid rgba(82, 183, 136, 0.4); color: #85e3b2; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-check-circle" style="color: #52b788;"></i>
                             رخصة بلدية رقم: {{ $hdr['lic_no'] ?? '441212615580' }}
                         </span>
-                        <span style="background: rgba(78, 168, 222, 0.22); border: 1.5px solid rgba(78, 168, 222, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(78, 168, 222, 0.1);">
-                            <i class="fas fa-id-card" style="color: #70d6ff; font-size: 15px;"></i>
+                        <span style="background: rgba(78, 168, 222, 0.15); border: 1px solid rgba(78, 168, 222, 0.4); color: #bde0fe; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-id-card" style="color: #4ea8de;"></i>
                             عضوية هيئة المقاولين رقم: {{ $hdr['sca_no'] ?? '31109580340003' }}
                         </span>
-                        <span style="background: rgba(230, 57, 70, 0.22); border: 1.5px solid rgba(230, 57, 70, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.1);">
-                            <i class="fas fa-award" style="color: #ff4d6d; font-size: 15px;"></i>
+                        <span style="background: rgba(230, 57, 70, 0.15); border: 1px solid rgba(230, 57, 70, 0.4); color: #ffccd5; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-award" style="color: #e63946;"></i>
                             شهادة تصنيف رقم: {{ $hdr['cls_no'] ?? '2024005835' }} فئة ممتازة
                         </span>
                     </div>
@@ -82,14 +82,14 @@
                     </div>
 
                     <!-- Call & WhatsApp Action Buttons -->
-                    <div class="hacts" style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 12px;">
-                        <a class="btn" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','hero')" style="background: #10b981; color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(16,185,129,0.25); transition: all 0.3s ease;">
-                            <i class="fab fa-whatsapp" style="font-size: 18px;"></i>
-                            <span>واتساب</span>
+                    <div class="hacts" style="margin-bottom: 24px;">
+                        <a class="btn btn-am" onclick="openReq()">
+                            <i class="fas fa-calendar-check"></i>
+                            <span id="hC1">{{ $hero['c1'] ?? 'احصل على عرض مجاني' }}</span>
                         </a>
-                        <a class="btn" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','hero')" style="background: #1d3557; color: #fff; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(29,53,87,0.25); transition: all 0.3s ease;">
-                            <i class="fas fa-phone-alt" style="font-size: 14px;"></i>
-                            <span>اتصل الآن</span>
+                        <a class="btn btn-wh" id="hWaB" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','hero')">
+                            <i class="fab fa-whatsapp"></i>
+                            <span id="hC2">{{ $hero['c2'] ?? 'تواصل الآن' }}</span>
                         </a>
                     </div>
                 </div>

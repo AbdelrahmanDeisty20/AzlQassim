@@ -40,7 +40,15 @@ body {
 }
 
 /* Global Text Contrast & Font Weight Booster */
-p, .st p, .why-txt p, .stc p, .tc p, .fqa p, .blc p, .gi-content p, .arc p {
+p,
+.st p,
+.why-txt p,
+.stc p,
+.tc p,
+.fqa p,
+.blc p,
+.gi-content p,
+.arc p {
     color: var(--nv) !important;
     font-weight: 700 !important;
 }
@@ -2922,56 +2930,14 @@ table.at {
 }
 
 @media (max-width: 768px) {
-    .tb-brand,
-    .tb-sep,
-    .tb-hours {
-        display: none !important;
-    }
-    .topbar .con {
-        justify-content: center !important;
-        gap: 16px !important;
-    }
-    .hdr {
-        padding: 8px 12px !important;
-        gap: 6px !important;
-    }
-    .logo {
-        gap: 6px !important;
-    }
-    .logo-ic {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 15px !important;
-        border-radius: 8px !important;
-    }
-    .logo-nm {
-        font-size: 13.5px !important;
-    }
-    .logo-sb {
-        display: none !important;
-    }
-    .hdr-cta {
-        gap: 5px !important;
-    }
-    .hdr-cta .btn {
-        padding: 5px 9px !important;
-        font-size: 10.5px !important;
-        gap: 3px !important;
-        border-radius: 30px !important;
-    }
-    .hdr-cta .btn i {
-        font-size: 11px !important;
-    }
-    .mob-tog {
-        padding: 4px !important;
-        font-size: 18px !important;
-        margin-right: auto;
-    }
     nav {
         display: none;
     }
     .mob-tog {
         display: block;
+    }
+    .hdr-cta .btn:last-child {
+        display: none;
     }
     .hero {
         padding: 50px 0;

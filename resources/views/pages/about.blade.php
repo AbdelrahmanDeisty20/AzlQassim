@@ -80,6 +80,62 @@
         </div>
     </section>
     
+    <!-- Vision, Mission and Experience Section -->
+    <section class="sec" style="background: #f8f9fa; padding: 60px 0; border-top: 1px solid rgba(15,36,65,0.06); border-bottom: 1px solid rgba(15,36,65,0.06);">
+        <div class="con">
+            <div class="why-g" style="margin-bottom: 52px;">
+                <div>
+                    <h2 style="font-size: clamp(20px, 3.5vw, 33px); font-weight: 900; color: var(--nv); margin-bottom: 18px; line-height: 1.4;">
+                        شركة <em style="color: var(--am); font-style: normal;">عزل القصيم</em><br>أكثر من 10 سنوات خبرة
+                    </h2>
+                    <p style="color: var(--cc); font-size: 15px; line-height: 2; margin-bottom: 14px;">
+                        {{ $about['text3'] ?? 'نقدم ضماناً حقيقياً موثقاً يصل إلى 10 سنوات مع متابعة مجانية طوال فترة الضمان.' }}
+                    </p>
+                    <p style="color: var(--cc); font-size: 15px; line-height: 2; margin-bottom: 14px;">
+                        نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.
+                    </p>
+                    <p style="color: var(--cc); font-size: 15px; line-height: 2;">
+                        تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 14px; margin-top: 26px;">
+                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                            <div style="font-size: 26px; font-weight: 900; color: var(--nv);">+800</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">مشروع منجز</div>
+                        </div>
+                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                            <div style="font-size: 26px; font-weight: 900; color: var(--am);">10</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">سنوات ضمان</div>
+                        </div>
+                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                            <div style="font-size: 26px; font-weight: 900; color: var(--gr);">3</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">مناطق خدمة</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:block">
+                    <div class="why-img" id="abtImg" style="{{ !empty($about['img']) ? 'background:none;border:none;padding:0;width:100%;height:100%;min-height:350px;' : '' }}">
+                        @if(!empty($about['img']))
+                            <img src="{{ $about['img'] }}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r);box-shadow:0 8px 32px rgba(15,36,65,0.15)">
+                        @else
+                            <i class="fas {{ $about['icon'] ?? 'fa-building' }}"></i>
+                            <span>فريق عزل القصيم</span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="vg">
+                <div class="vc" style="background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r2); padding: 24px; box-shadow: 0 6px 20px rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 19px; font-weight: 900; color: var(--nv); margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-eye" style="color: var(--am);"></i>رؤيتنا</h3>
+                    <p style="color: var(--cc); font-size: 14px; line-height: 1.8;">أن نكون الشركة الرائدة في خدمات العزل بمنطقة القصيم وبريدة وحائل، ونموذجاً يُحتذى به في الجودة والاحترافية.</p>
+                </div>
+                <div class="vc gr" style="background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r2); padding: 24px; box-shadow: 0 6px 20px rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 19px; font-weight: 900; color: var(--nv); margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-bullseye" style="color: var(--gr);"></i>رسالتنا</h3>
+                    <p style="color: var(--cc); font-size: 14px; line-height: 1.8;">تقديم خدمات عزل احترافية تتجاوز توقعات العملاء، باستخدام أحدث التقنيات ومواد معتمدة عالمياً، مع بناء علاقات ثقة طويلة الأمد.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Badges / Certifications Grid -->
     <section class="sec sec-alt">
         <div class="con">

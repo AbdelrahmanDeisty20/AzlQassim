@@ -1621,23 +1621,11 @@ function openVid(url) {
     
     if (!modal) {
         console.error("%c[Video Player] ERROR: HTML element with ID 'vidModal' was not found in the DOM!", "color: red; font-weight: bold;");
-        Swal.fire({
-            icon: 'error',
-            title: 'خطأ في تشغيل الفيديو',
-            text: 'عنصر modal غير موجود بالصفحة (vidModal)',
-            confirmButtonText: 'حسناً'
-        });
         return;
     }
     
     if (!body) {
         console.error("%c[Video Player] ERROR: HTML element with ID 'vidBody' was not found in the DOM!", "color: red; font-weight: bold;");
-        Swal.fire({
-            icon: 'error',
-            title: 'خطأ في تشغيل الفيديو',
-            text: 'عنصر body غير موجود بالصفحة (vidBody)',
-            confirmButtonText: 'حسناً'
-        });
         return;
     }
     
@@ -1729,15 +1717,6 @@ function openVid(url) {
                     }
                 }
                 console.error(`%c[Video Player] [Event: error] FAILED to play video: ${errMsg}`, "color: red; font-weight: bold; font-size: 12px;", err);
-                
-                // Show interactive alert for user indicating the failure
-                Swal.fire({
-                    icon: 'error',
-                    title: 'فشل تشغيل الفيديو',
-                    text: `لا يمكن تحميل ملف الفيديو. السبب: ${errMsg}`,
-                    footer: `<span style="font-size: 11px; direction: ltr; color: #888;">URL: ${finalUrl}</span>`,
-                    confirmButtonText: 'حسناً'
-                });
             });
 
             console.log("[Video Player] Requesting browser to play video...");

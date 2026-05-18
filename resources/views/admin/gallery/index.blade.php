@@ -3,7 +3,7 @@
 @section('title', 'معرض الصور والفيديوهات')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Gallery items grid -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -12,7 +12,13 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:14px">
             @foreach($gallery as $gal)
                 <div style="background:var(--sl); padding:8px; border-radius:var(--r); border:1px solid #e1e3e5; position:relative; text-align:center">
-                    <img src="{{ $gal->img }}" style="width:100%; height:90px; object-fit:cover; border-radius:var(--r); margin-bottom:5px">
+                    @if($gal->img)
+                        <img src="{{ $gal->img }}" style="width:100%; height:90px; object-fit:cover; border-radius:var(--r); margin-bottom:5px">
+                    @else
+                        <div style="width:100%; height:90px; background:#fff; border-radius:var(--r); margin-bottom:5px; display:flex; align-items:center; justify-content:center; color:var(--am); border:1px solid rgba(197,168,128,0.2)">
+                            <i class="fas {{ $gal->icon ?: 'fa-image' }}" style="font-size:24px"></i>
+                        </div>
+                    @endif
                     <span style="font-size:11px; background:#fff; border:1px solid #ddd; padding:2px 8px; border-radius:10px; font-weight:700">{{ $gal->cat }}</span>
                     
                     <!-- Delete button -->
@@ -47,11 +53,14 @@
 
             <div class="afg">
                 <label>رفع الصورة من جهازك</label>
-                <div style="display:flex; gap:12px; align-items:center; flex-direction:column">
+                <div style="display:flex; gap:12px; align-items:center; flex-direction:column; width:100%">
                     <input type="hidden" name="img" id="gal-img-val" required>
-                    <img id="gal-img-preview" src="/img/serv1.jpg" style="width:100%; height:140px; object-fit:cover; border-radius:var(--r); border:1px solid #ddd; display:none">
+                    <div style="width:100%; height:140px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="gal-img-preview" src="" style="width:100%; height:100%; object-fit:cover; display:none">
+                        <div id="gal-img-placeholder" style="font-size:36px; color:var(--cc)"><i class="fas fa-image"></i></div>
+                    </div>
                     
-                    <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#gal-img-val').val(url); $('#gal-img-preview').attr('src', url).show(); Swal.fire('تم رفع الصورة!', 'يمكنك الآن حفظ الملف إلى المعرض.', 'success'); })">
+                    <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#gal-img-val').val(url); $('#gal-img-preview').attr('src', url).show(); $('#gal-img-placeholder').hide(); Swal.fire('تم رفع الصورة!', 'يمكنك الآن حفظ الملف إلى المعرض.', 'success'); })">
                 </div>
             </div>
 

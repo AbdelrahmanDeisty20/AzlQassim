@@ -125,9 +125,12 @@
                 <label>صورة الخلفية للبانر الرئيسي (bg)</label>
                 <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap">
                     <input type="hidden" name="bg" id="hero-bg-val" value="{{ $hero['bg'] ?? '' }}">
-                    <img id="hero-bg-preview" src="{{ $hero['bg'] ?? '/img/hero.jpg' }}" style="width:120px; height:80px; object-fit:cover; border-radius:var(--r); border:1px solid #ddd">
+                    <div style="width:120px; height:80px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="hero-bg-preview" src="{{ !empty($hero['bg']) ? $hero['bg'] : '' }}" style="width:100%; height:100%; object-fit:cover; {{ empty($hero['bg']) ? 'display:none' : '' }}">
+                        <div id="hero-bg-placeholder" style="font-size:28px; color:var(--cc); {{ !empty($hero['bg']) ? 'display:none' : '' }}"><i class="fas fa-image"></i></div>
+                    </div>
                     <div>
-                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#hero-bg-val').val(url); $('#hero-bg-preview').attr('src', url); Swal.fire('تم الرفع!', 'تم رفع صورة الخلفية بنجاح.', 'success'); })">
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#hero-bg-val').val(url); $('#hero-bg-preview').attr('src', url).show(); $('#hero-bg-placeholder').hide(); Swal.fire('تم الرفع!', 'تم رفع صورة الخلفية بنجاح.', 'success'); })">
                         <div style="font-size:11px; color:var(--cc); margin-top:4px">صيغ مدعومة: PNG, JPG, WebP. الحجم الأقصى: 10MB</div>
                     </div>
                 </div>
@@ -169,9 +172,12 @@
                 <label>صورة الشركة الموحدة (تظهر في قسم لماذا تختارنا بالرئيسية وفي صفحة من نحن)</label>
                 <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap">
                     <input type="hidden" name="img" id="about-img-val" value="{{ $about['img'] ?? '' }}">
-                    <img id="about-img-preview" src="{{ $about['img'] ?? '/img/about.jpg' }}" style="width:120px; height:120px; object-fit:cover; border-radius:var(--r); border:1px solid #ddd">
+                    <div style="width:120px; height:120px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="about-img-preview" src="{{ !empty($about['img']) ? $about['img'] : '' }}" style="width:100%; height:100%; object-fit:cover; {{ empty($about['img']) ? 'display:none' : '' }}">
+                        <div id="about-img-placeholder" style="font-size:36px; color:var(--cc); {{ !empty($about['img']) ? 'display:none' : '' }}"><i class="fas fa-building"></i></div>
+                    </div>
                     <div>
-                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#about-img-val').val(url); $('#about-img-preview').attr('src', url); Swal.fire('تم رفع الصورة!', 'تم اختيار وتحديث الصورة بنجاح.', 'success'); })">
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#about-img-val').val(url); $('#about-img-preview').attr('src', url).show(); $('#about-img-placeholder').hide(); Swal.fire('تم رفع الصورة!', 'تم اختيار وتحديث الصورة بنجاح.', 'success'); })">
                         <div style="font-size:11px; color:var(--cc); margin-top:4px">اختر صورة حقيقية لعزل الأسطح ليتم استخدامها بدلاً من الأيقونة الافتراضية.</div>
                     </div>
                 </div>

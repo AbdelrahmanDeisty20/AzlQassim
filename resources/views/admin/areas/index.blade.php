@@ -3,7 +3,7 @@
 @section('title', 'مناطق التغطية والخدمة')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Areas list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -21,11 +21,11 @@
                 <tbody>
                     @foreach($areas as $ar)
                         <tr style="border-bottom:1px solid #eee">
-                            <td style="padding:10px"><strong>{{ $ar->name }}</strong></td>
-                            <td style="padding:10px">
+                            <td data-label="المنطقة / المدينة" style="padding:10px"><strong>{{ $ar->name }}</strong></td>
+                            <td data-label="حالة التغطية" style="padding:10px">
                                 <span class="atag" style="background:rgba(74,222,128,.15);color:var(--gr)">مغطاة بالكامل</span>
                             </td>
-                            <td style="padding:10px; text-align:center">
+                            <td data-label="العمليات" style="padding:10px; text-align:center">
                                 <button class="ab gn" onclick="editArea({{ json_encode($ar) }})"><i class="fas fa-edit"></i></button>
                                 <button class="ab rd" onclick="deleteArea({{ $ar->id }})"><i class="fas fa-trash"></i></button>
                             </td>

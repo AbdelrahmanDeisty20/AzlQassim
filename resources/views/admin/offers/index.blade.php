@@ -3,7 +3,7 @@
 @section('title', 'إدارة العروض والخصومات')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Offers list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -23,15 +23,15 @@
                 <tbody>
                     @foreach($offers as $off)
                         <tr style="border-bottom:1px solid #eee">
-                            <td style="padding:10px"><strong>{{ $off->name }}</strong></td>
-                            <td style="padding:10px; color:#ef9090; font-weight:700; text-decoration:line-through">{{ $off->oldP }} ر.س</td>
-                            <td style="padding:10px; color:var(--gr); font-weight:700">{{ $off->newP }} ر.س</td>
-                            <td style="padding:10px">
+                            <td data-label="باقة العرض" style="padding:10px"><strong>{{ $off->name }}</strong></td>
+                            <td data-label="السعر القديم" style="padding:10px; color:#ef9090; font-weight:700; text-decoration:line-through">{{ $off->oldP }} ر.س</td>
+                            <td data-label="السعر الحالي" style="padding:10px; color:var(--gr); font-weight:700">{{ $off->newP }} ر.س</td>
+                            <td data-label="حالة التميز" style="padding:10px">
                                 <span class="atag" style="background:{{ $off->feat ? 'rgba(197,168,128,.15);color:var(--am)' : 'rgba(0,0,0,.05);color:#777' }}">
                                     {{ $off->feat ? 'رئيسي المميز' : 'عادي' }}
                                 </span>
                             </td>
-                            <td style="padding:10px; text-align:center">
+                            <td data-label="العمليات" style="padding:10px; text-align:center">
                                 <button class="ab gn" onclick="editOffer({{ json_encode($off) }})"><i class="fas fa-edit"></i></button>
                                 <button class="ab rd" onclick="deleteOffer({{ $off->id }})"><i class="fas fa-trash"></i></button>
                             </td>

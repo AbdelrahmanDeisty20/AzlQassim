@@ -3,7 +3,7 @@
 @section('title', 'إدارة مقالات المدونة')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Blogs list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -22,16 +22,22 @@
                 <tbody>
                     @foreach($blogs as $blg)
                         <tr style="border-bottom:1px solid #eee">
-                            <td style="padding:10px; text-align:center">
-                                <img src="{{ $blg->img ?: '/img/serv1.jpg' }}" style="width:60px; height:40px; object-fit:cover; border-radius:var(--r)">
+                            <td data-label="الصورة" style="padding:10px; text-align:center">
+                                @if($blg->img)
+                                    <img src="{{ $blg->img }}" style="width:60px; height:40px; object-fit:cover; border-radius:var(--r)">
+                                @else
+                                    <div style="width:60px; height:40px; background:var(--sl); border-radius:var(--r); display:inline-flex; align-items:center; justify-content:center; color:var(--am); border:1px solid rgba(197,168,128,0.3)">
+                                        <i class="fas fa-newspaper" style="font-size:18px"></i>
+                                    </div>
+                                @endif
                             </td>
-                            <td style="padding:10px"><strong>{{ $blg->title }}</strong></td>
-                            <td style="padding:10px">
+                            <td data-label="العنوان" style="padding:10px"><strong>{{ $blg->title }}</strong></td>
+                            <td data-label="الحالة" style="padding:10px">
                                 <span class="atag" style="background:{{ $blg->status === 'published' ? 'rgba(74,222,128,.15);color:var(--gr)' : 'rgba(239,144,144,.15);color:#ef9090' }}">
                                     {{ $blg->status === 'published' ? 'منشور' : 'مسودة معلقة' }}
                                 </span>
                             </td>
-                            <td style="padding:10px; text-align:center">
+                            <td data-label="العمليات" style="padding:10px; text-align:center">
                                 <button class="ab gn" onclick="editBlog({{ json_encode($blg) }})"><i class="fas fa-edit"></i></button>
                                 <button class="ab rd" onclick="deleteBlog({{ $blg->id }})"><i class="fas fa-trash"></i></button>
                             </td>
@@ -76,9 +82,12 @@
                 <label>صورة المقال</label>
                 <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
                     <input type="hidden" name="img" id="blg-img-val">
-                    <img id="blg-img-preview" src="/img/serv1.jpg" style="width:100px; height:65px; object-fit:cover; border-radius:var(--r); border:1px solid #ddd">
+                    <div style="width:100px; height:65px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="blg-img-preview" src="" style="width:100%; height:100%; object-fit:cover; display:none">
+                        <div id="blg-img-placeholder" style="font-size:24px; color:var(--cc)"><i class="fas fa-image"></i></div>
+                    </div>
                     <div>
-                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#blg-img-val').val(url); $('#blg-img-preview').attr('src', url); })">
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#blg-img-val').val(url); $('#blg-img-preview').attr('src', url).show(); $('#blg-img-placeholder').hide(); })">
                     </div>
                 </div>
             </div>
@@ -140,8 +149,14 @@
         $('#blg-sb').val(blg.summary);
         $('#blg-d').val(blg.content);
         $('#blg-status').val(blg.status || 'published');
-        $('#blg-img-val').val(blg.img);
-        $('#blg-img-preview').attr('src', blg.img || '/img/serv1.jpg');
+        $('#blg-img-val').val(blg.img || '');
+        if (blg.img) {
+            $('#blg-img-preview').attr('src', blg.img).show();
+            $('#blg-img-placeholder').hide();
+        } else {
+            $('#blg-img-preview').hide();
+            $('#blg-img-placeholder').show();
+        }
         
         $('#btn-cancel').show();
     }
@@ -155,7 +170,8 @@
         $('#blg-d').val('');
         $('#blg-status').val('published');
         $('#blg-img-val').val('');
-        $('#blg-img-preview').attr('src', '/img/serv1.jpg');
+        $('#blg-img-preview').hide().attr('src', '');
+        $('#blg-img-placeholder').show();
         
         $('#btn-cancel').hide();
     }

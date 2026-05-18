@@ -49,6 +49,9 @@ class AdminController extends Controller
      */
     public function login()
     {
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            return redirect('/admin');
+        }
         return view('admin.login');
     }
 
@@ -62,11 +65,26 @@ class AdminController extends Controller
             'password' => 'required'
         ]);
 
-        if (\Illuminate\Support\Facades\Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
+        $username = $credentials['username'];
+        $field = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+        if (\Illuminate\Support\Facades\Auth::attempt([$field => $username, 'password' => $credentials['password']])) {
+            $request->session()->regenerate();
             return response()->json(['success' => true]);
         }
 
         return response()->json(['success' => false, 'message' => 'بيانات خاطئة'], 401);
+    }
+
+    /**
+     * Handle Admin Logout.
+     */
+    public function logout(Request $request)
+    {
+        \Illuminate\Support\Facades\Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/admin/login');
     }
 
     /**

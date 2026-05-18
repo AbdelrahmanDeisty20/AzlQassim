@@ -17,7 +17,7 @@
     --r: 10px;
     --r2: 18px;
     --tr: all 0.3s ease;
-    --f: 'Tajawal', sans-serif;
+    --f: "Tajawal", sans-serif;
 }
 
 /* Global Reset & Base Styles */
@@ -271,7 +271,8 @@ nav a {
     cursor: pointer;
 }
 
-nav a:hover, nav a.act {
+nav a:hover,
+nav a.act {
     color: var(--nv);
     background: var(--sl);
 }
@@ -337,7 +338,12 @@ nav a:hover, nav a.act {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(140deg, var(--dk) 0%, var(--nv) 50%, #1e3d78 100%);
+    background: linear-gradient(
+        140deg,
+        var(--dk) 0%,
+        var(--nv) 50%,
+        #1e3d78 100%
+    );
     color: #fff;
     padding: 80px 0 60px;
     position: relative;
@@ -348,20 +354,25 @@ nav a:hover, nav a.act {
 }
 
 .hero::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(224, 123, 15, 0.04) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(224, 123, 15, 0.04) 1px, transparent 1px);
+    background-image:
+        linear-gradient(rgba(224, 123, 15, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 123, 15, 0.04) 1px, transparent 1px);
     background-size: 55px 55px;
 }
 
 .hero::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(224, 123, 15, 0.13) 0%, transparent 65%);
+    background: radial-gradient(
+        circle,
+        rgba(224, 123, 15, 0.13) 0%,
+        transparent 65%
+    );
     border-radius: 50%;
     bottom: -200px;
     left: -150px;
@@ -603,7 +614,7 @@ nav a:hover, nav a.act {
 }
 
 .svc-c::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -865,7 +876,7 @@ nav a:hover, nav a.act {
 }
 
 .steps-g::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 32px;
     right: 10%;
@@ -1100,7 +1111,8 @@ nav a:hover, nav a.act {
     transition: var(--tr);
 }
 
-.gf.act, .gf:hover {
+.gf.act,
+.gf:hover {
     border-color: var(--am);
     color: var(--am);
     background: rgba(224, 123, 15, 0.06);
@@ -1357,7 +1369,9 @@ nav a:hover, nav a.act {
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition:
+        max-height 0.3s ease,
+        padding 0.3s ease;
 }
 
 .fqi.open .fqa {
@@ -1493,7 +1507,8 @@ nav a:hover, nav a.act {
     margin-bottom: 2px;
 }
 
-.cti .info a, .cti .info p {
+.cti .info a,
+.cti .info p {
     font-size: 13.5px;
     color: var(--cc);
     text-decoration: none;
@@ -1529,7 +1544,9 @@ nav a:hover, nav a.act {
     margin-bottom: 6px;
 }
 
-.fg input, .fg select, .fg textarea {
+.fg input,
+.fg select,
+.fg textarea {
     width: 100%;
     padding: 11px 14px;
     border: 2px solid var(--sl2);
@@ -1541,7 +1558,9 @@ nav a:hover, nav a.act {
     background: var(--sl);
 }
 
-.fg input:focus, .fg select:focus, .fg textarea:focus {
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
     outline: none;
     border-color: var(--am);
     background: #fff;
@@ -1569,11 +1588,12 @@ nav a:hover, nav a.act {
 }
 
 .cta-ban::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(224, 123, 15, 0.04) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(224, 123, 15, 0.04) 1px, transparent 1px);
+    background-image:
+        linear-gradient(rgba(224, 123, 15, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 123, 15, 0.04) 1px, transparent 1px);
     background-size: 55px 55px;
 }
 
@@ -2189,7 +2209,11 @@ footer {
 }
 
 .rnote {
-    background: linear-gradient(135deg, rgba(224, 123, 15, 0.08), rgba(224, 123, 15, 0.03));
+    background: linear-gradient(
+        135deg,
+        rgba(224, 123, 15, 0.08),
+        rgba(224, 123, 15, 0.03)
+    );
     border: 1px solid rgba(224, 123, 15, 0.2);
     border-radius: var(--r);
     padding: 12px 16px;
@@ -2212,7 +2236,11 @@ footer {
     align-items: center;
     gap: 8px;
     padding: 12px 16px;
-    background: linear-gradient(135deg, rgba(26, 122, 69, 0.08), rgba(26, 122, 69, 0.03));
+    background: linear-gradient(
+        135deg,
+        rgba(26, 122, 69, 0.08),
+        rgba(26, 122, 69, 0.03)
+    );
     border: 1px solid rgba(26, 122, 69, 0.2);
     border-radius: var(--r);
     font-size: 12.5px;
@@ -2407,7 +2435,8 @@ footer {
     border-right: 3px solid transparent;
 }
 
-.anv a:hover, .anv a.act {
+.anv a:hover,
+.anv a.act {
     color: #fff;
     background: rgba(255, 255, 255, 0.06);
     border-right-color: var(--am);
@@ -2808,7 +2837,9 @@ table.at {
     margin-bottom: 5px;
 }
 
-.afg input, .afg select, .afg textarea {
+.afg input,
+.afg select,
+.afg textarea {
     width: 100%;
     padding: 9px 12px;
     border: 1.5px solid var(--sl2);
@@ -2819,7 +2850,9 @@ table.at {
     transition: var(--tr);
 }
 
-.afg input:focus, .afg select:focus, .afg textarea:focus {
+.afg input:focus,
+.afg select:focus,
+.afg textarea:focus {
     outline: none;
     border-color: var(--am);
 }
@@ -2841,7 +2874,7 @@ table.at {
     gap: 9px;
 }
 
-.cpick input[type=color] {
+.cpick input[type="color"] {
     width: 42px;
     height: 34px;
     border: none;
@@ -2852,10 +2885,13 @@ table.at {
 
 /* Media Queries & Responsive Layouts */
 @media (max-width: 1100px) {
-    .hg, .why-g, .ct-g {
+    .hg,
+    .why-g,
+    .ct-g {
         grid-template-columns: 1fr;
     }
-    .hvis, .why-vis {
+    .hvis,
+    .why-vis {
         display: none;
     }
     .ft-g {
@@ -2864,7 +2900,8 @@ table.at {
     .sr {
         grid-template-columns: 1fr 1fr;
     }
-    .cg, .offers-g {
+    .cg,
+    .offers-g {
         grid-template-columns: 1fr 1fr;
     }
     .svc-lay {
@@ -2895,7 +2932,9 @@ table.at {
     .sec {
         padding: 50px 0;
     }
-    .tests-g, .blog-g, .offers-g {
+    .tests-g,
+    .blog-g,
+    .offers-g {
         grid-template-columns: 1fr;
     }
     .vg {

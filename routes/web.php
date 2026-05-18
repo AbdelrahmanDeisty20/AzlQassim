@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RequestController;
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ClickController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\RequestController;
+use Illuminate\Support\Facades\Route;
 
 // --- Frontend Multi-Page Routes ---
 Route::get('/', [HomeController::class, 'index'])->name('home');

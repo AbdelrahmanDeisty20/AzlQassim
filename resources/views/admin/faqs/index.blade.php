@@ -3,7 +3,7 @@
 @section('title', 'الأسئلة الشائعة')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: FAQs list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">

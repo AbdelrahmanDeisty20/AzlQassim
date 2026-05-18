@@ -3,7 +3,7 @@
 @section('title', 'إدارة الخدمات')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Services list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -23,17 +23,23 @@
                 <tbody>
                     @foreach($services as $svc)
                         <tr style="border-bottom:1px solid #eee">
-                            <td style="padding:10px; text-align:center">
-                                <img src="{{ $svc->img ?: '/img/serv1.jpg' }}" style="width:60px; height:40px; object-fit:cover; border-radius:var(--r)">
+                            <td data-label="الصورة" style="padding:10px; text-align:center">
+                                @if($svc->img)
+                                    <img src="{{ $svc->img }}" style="width:60px; height:40px; object-fit:cover; border-radius:var(--r)">
+                                @else
+                                    <div style="width:60px; height:40px; background:var(--sl); border-radius:var(--r); display:inline-flex; align-items:center; justify-content:center; color:var(--am); border:1px solid rgba(197,168,128,0.3)">
+                                        <i class="fas {{ $svc->icon ?: 'fa-tools' }}" style="font-size:18px"></i>
+                                    </div>
+                                @endif
                             </td>
-                            <td style="padding:10px"><strong>{{ $svc->name }}</strong></td>
-                            <td style="padding:10px; font-size:12px; color:var(--cc)">{{ Str::limit($svc->short, 60) }}</td>
-                            <td style="padding:10px">
+                            <td data-label="الاسم" style="padding:10px"><strong>{{ $svc->name }}</strong></td>
+                            <td data-label="الوصف المختصر" style="padding:10px; font-size:12px; color:var(--cc)">{{ Str::limit($svc->short, 60) }}</td>
+                            <td data-label="حالة النشر" style="padding:10px">
                                 <span class="atag" style="background:{{ $svc->status === 'active' ? 'rgba(74,222,128,.15);color:var(--gr)' : 'rgba(239,144,144,.15);color:#ef9090' }}">
                                     {{ $svc->status === 'active' ? 'نشط' : 'مسودة' }}
                                 </span>
                             </td>
-                            <td style="padding:10px; text-align:center">
+                            <td data-label="العمليات" style="padding:10px; text-align:center">
                                 <button class="ab gn" onclick="editService({{ json_encode($svc) }})"><i class="fas fa-edit"></i></button>
                                 <button class="ab rd" onclick="deleteService({{ $svc->id }})"><i class="fas fa-trash"></i></button>
                             </td>
@@ -84,9 +90,12 @@
                 <label>صورة الخدمة</label>
                 <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
                     <input type="hidden" name="img" id="svc-img-val">
-                    <img id="svc-img-preview" src="/img/serv1.jpg" style="width:100px; height:65px; object-fit:cover; border-radius:var(--r); border:1px solid #ddd">
+                    <div style="width:100px; height:65px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="svc-img-preview" src="" style="width:100%; height:100%; object-fit:cover; display:none">
+                        <div id="svc-img-placeholder" style="font-size:24px; color:var(--cc)"><i class="fas fa-image"></i></div>
+                    </div>
                     <div>
-                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#svc-img-val').val(url); $('#svc-img-preview').attr('src', url); })">
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#svc-img-val').val(url); $('#svc-img-preview').attr('src', url).show(); $('#svc-img-placeholder').hide(); })">
                     </div>
                 </div>
             </div>
@@ -155,8 +164,14 @@
         $('#svc-d').val(svc.desc);
         $('#svc-icon').val(svc.icon || 'fa-shield-alt');
         $('#svc-status').val(svc.status || 'active');
-        $('#svc-img-val').val(svc.img);
-        $('#svc-img-preview').attr('src', svc.img || '/img/serv1.jpg');
+        $('#svc-img-val').val(svc.img || '');
+        if (svc.img) {
+            $('#svc-img-preview').attr('src', svc.img).show();
+            $('#svc-img-placeholder').hide();
+        } else {
+            $('#svc-img-preview').hide();
+            $('#svc-img-placeholder').show();
+        }
         
         $('#btn-cancel').show();
     }
@@ -171,7 +186,8 @@
         $('#svc-icon').val('fa-shield-alt');
         $('#svc-status').val('active');
         $('#svc-img-val').val('');
-        $('#svc-img-preview').attr('src', '/img/serv1.jpg');
+        $('#svc-img-preview').hide().attr('src', '');
+        $('#svc-img-placeholder').show();
         
         $('#btn-cancel').hide();
     }

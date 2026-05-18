@@ -3,7 +3,7 @@
 @section('title', 'آراء وتقييمات العملاء')
 
 @section('content')
-<div class="admin-grid-cols" style="display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items: flex-start">
+<div class="admin-grid-cols">
     
     <!-- Left Column: Testimonials list table -->
     <div style="background:#fff; border-radius:var(--r2); padding: 20px; box-shadow: 0 10px 40px rgba(15,36,65,0.06); border: 1px solid rgba(197,168,128,0.15)">
@@ -24,18 +24,24 @@
                 <tbody>
                     @foreach($testimonials as $tst)
                         <tr style="border-bottom:1px solid #eee">
-                            <td style="padding:10px; text-align:center">
-                                <img src="{{ $tst->img ?: '/img/avatar.png' }}" style="width:40px; height:40px; object-fit:cover; border-radius:50%">
+                            <td data-label="الصورة" style="padding:10px; text-align:center">
+                                @if($tst->img)
+                                    <img src="{{ $tst->img }}" style="width:40px; height:40px; object-fit:cover; border-radius:50%">
+                                @else
+                                    <div style="width:40px; height:40px; background:var(--sl); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:var(--am); border:1px solid rgba(197,168,128,0.3)">
+                                        <i class="fas fa-user" style="font-size:16px"></i>
+                                    </div>
+                                @endif
                             </td>
-                            <td style="padding:10px"><strong>{{ $tst->name }}</strong></td>
-                            <td style="padding:10px">{{ $tst->city }}</td>
-                            <td style="padding:10px; color:#ffc107; font-weight:700">
+                            <td data-label="اسم العميل" style="padding:10px"><strong>{{ $tst->name }}</strong></td>
+                            <td data-label="المدينة" style="padding:10px">{{ $tst->city }}</td>
+                            <td data-label="التقييم" style="padding:10px; color:#ffc107; font-weight:700">
                                 @for($i = 0; $i < ($tst->rating ?: 5); $i++)
                                     <i class="fas fa-star"></i>
                                 @endfor
                             </td>
-                            <td style="padding:10px; font-size:12px; color:#555; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $tst->text }}</td>
-                            <td style="padding:10px; text-align:center">
+                            <td data-label="التعليق" style="padding:10px; font-size:12px; color:#555; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $tst->text }}</td>
+                            <td data-label="العمليات" style="padding:10px; text-align:center">
                                 <button class="ab gn" onclick="editTestimonial({{ json_encode($tst) }})"><i class="fas fa-edit"></i></button>
                                 <button class="ab rd" onclick="deleteTestimonial({{ $tst->id }})"><i class="fas fa-trash"></i></button>
                             </td>
@@ -82,9 +88,12 @@
                 <label>صورة العميل (اختياري)</label>
                 <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
                     <input type="hidden" name="img" id="tst-img-val">
-                    <img id="tst-img-preview" src="/img/avatar.png" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:1px solid #ddd">
+                    <div style="width:60px; height:60px; border-radius:50%; border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="tst-img-preview" src="" style="width:100%; height:100%; object-fit:cover; display:none">
+                        <div id="tst-img-placeholder" style="font-size:24px; color:var(--cc)"><i class="fas fa-user"></i></div>
+                    </div>
                     <div>
-                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#tst-img-val').val(url); $('#tst-img-preview').attr('src', url); })">
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#tst-img-val').val(url); $('#tst-img-preview').attr('src', url).show(); $('#tst-img-placeholder').hide(); })">
                     </div>
                 </div>
             </div>
@@ -147,8 +156,14 @@
         $('#tst-c').val(tst.city);
         $('#tst-r').val(tst.rating || 5);
         $('#tst-t').val(tst.text);
-        $('#tst-img-val').val(tst.img);
-        $('#tst-img-preview').attr('src', tst.img || '/img/avatar.png');
+        $('#tst-img-val').val(tst.img || '');
+        if (tst.img) {
+            $('#tst-img-preview').attr('src', tst.img).show();
+            $('#tst-img-placeholder').hide();
+        } else {
+            $('#tst-img-preview').hide();
+            $('#tst-img-placeholder').show();
+        }
         
         $('#btn-cancel').show();
     }
@@ -162,7 +177,8 @@
         $('#tst-r').val('5');
         $('#tst-t').val('');
         $('#tst-img-val').val('');
-        $('#tst-img-preview').attr('src', '/img/avatar.png');
+        $('#tst-img-preview').hide().attr('src', '');
+        $('#tst-img-placeholder').show();
         
         $('#btn-cancel').hide();
     }

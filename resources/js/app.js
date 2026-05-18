@@ -2486,27 +2486,18 @@ async function loadLogs() {
     }
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
     initDB();
 
-    // Fetch and sync complete site state from Laravel SQLite database
-    try {
-        const res = await fetch('/admin/state');
-        if (res.ok) {
-            const state = await res.json();
-            Object.keys(state).forEach(key => {
-                localStorage.setItem('azq3_' + key, JSON.stringify(state[key]));
-            });
-        }
-    } catch (e) {
-        console.error("Failed to load initial state from database", e);
-    }
-
-    // Route Protection and Redirection Checks
     const path = window.location.pathname;
+    const isAdmin = path === '/admin' || path === '/admin/' || path.startsWith('/admin/');
     const isAuth = sessionStorage.getItem('azq3_auth') === '1';
 
-    if (path === '/admin' || path === '/admin/' || path.startsWith('/admin/')) {
+    // 1. Immediately render UI from cached localStorage for zero-latency load times
+    rAll();
+
+    // 2. Client-side Route Protection & Redirection
+    if (isAdmin) {
         if (path !== '/admin/login' && !isAuth) {
             window.location.href = '/admin/login';
             return;
@@ -2515,13 +2506,42 @@ window.addEventListener('DOMContentLoaded', async () => {
             window.location.href = '/admin';
             return;
         }
-        if (isAuth) {
-            await loadLogs();
-            ldAdm();
-        }
     }
 
-    rAll();
+    // 3. Asynchronously fetch and synchronize database state in the background
+    // Only perform the fetch if the user is authenticated or visiting the admin dashboard
+    if (isAuth || isAdmin) {
+        fetch('/admin/state')
+            .then(res => {
+                if (res.ok) return res.json();
+                throw new Error('Unauthenticated');
+            })
+            .then(state => {
+                // Sync settings and dynamic items quietly in localStorage
+                Object.keys(state).forEach(key => {
+                    localStorage.setItem('azq3_' + key, JSON.stringify(state[key]));
+                });
+                
+                // Re-render UI panels seamlessly in the background with updated data
+                rAll();
+
+                // Hydrate dashboard and logs if logged in as admin
+                if (isAdmin && isAuth) {
+                    loadLogs().then(() => {
+                        ldAdm();
+                    });
+                }
+            })
+            .catch(e => {
+                console.warn("State synchronization bypassed:", e.message);
+                if (e.message === 'Unauthenticated') {
+                    sessionStorage.removeItem('azq3_auth');
+                    if (isAdmin && path !== '/admin/login') {
+                        window.location.href = '/admin/login';
+                    }
+                }
+            });
+    }
 
     window.addEventListener('scroll', () => {
         const header = $('HDR');

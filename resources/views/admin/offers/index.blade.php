@@ -24,8 +24,8 @@
                     @foreach($offers as $off)
                         <tr style="border-bottom:1px solid #eee">
                             <td data-label="باقة العرض" style="padding:10px"><strong>{{ $off->name }}</strong></td>
-                            <td data-label="السعر القديم" style="padding:10px; color:#ef9090; font-weight:700; text-decoration:line-through">{{ $off->oldP }} ر.س</td>
-                            <td data-label="السعر الحالي" style="padding:10px; color:var(--gr); font-weight:700">{{ $off->newP }} ر.س</td>
+                            <td data-label="السعر القديم" style="padding:10px; color:#ef9090; font-weight:700; text-decoration:line-through">{{ $off->oldP ? $off->oldP . ' ر.س' : '---' }}</td>
+                            <td data-label="السعر الحالي" style="padding:10px; color:var(--gr); font-weight:700">{{ $off->newP ? $off->newP . ' ر.س' : '---' }}</td>
                             <td data-label="حالة التميز" style="padding:10px">
                                 <span class="atag" style="background:{{ $off->feat ? 'rgba(197,168,128,.15);color:var(--am)' : 'rgba(0,0,0,.05);color:#777' }}">
                                     {{ $off->feat ? 'رئيسي المميز' : 'عادي' }}
@@ -61,11 +61,11 @@
 
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
                 <div class="afg">
-                    <label>السعر الجديد بعد الخصم (ر.س)</label>
-                    <input type="number" name="pr" id="off-pr" required placeholder="مثال: 2299">
+                    <label>السعر الجديد بعد الخصم (اختياري)</label>
+                    <input type="number" name="pr" id="off-pr" placeholder="مثال: 2299">
                 </div>
                 <div class="afg">
-                    <label>السعر القديم قبل الخصم (ر.س)</label>
+                    <label>السعر القديم قبل الخصم (اختياري)</label>
                     <input type="number" name="off" id="off-off" placeholder="مثال: 3500">
                 </div>
             </div>

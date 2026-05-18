@@ -293,13 +293,6 @@
                         <div class="ofhd">
                             <h3>{{ $off->name }}</h3>
                             <div class="sub">ضمان حتى {{ $hero['s2'] ?? '10' }} {{ $hero['s2l'] ?? 'سنوات' }}</div>
-                            <div class="ofpr">
-                                @if(!empty($off->oldP))
-                                    <span class="old">{{ $off->oldP }} ر.س</span>
-                                @endif
-                                <span class="nw">{{ $off->newP }}</span>
-                                <span class="u">ر.س</span>
-                            </div>
                         </div>
                         <div class="ofbd">
                             <ul class="offl">

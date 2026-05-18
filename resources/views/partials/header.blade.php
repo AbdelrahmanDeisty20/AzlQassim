@@ -16,14 +16,14 @@
                 <a href="{{ $url }}" class="{{ $isAct ? 'act' : '' }}">{{ $m->name }}</a>
             @endforeach
         </nav>
-        <div class="hdr-cta">
-            <a class="btn btn-wa" id="hWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','header')">
-                <i class="fab fa-whatsapp"></i>
+        <div class="hdr-cta" style="display: flex; gap: 8px; align-items: center;">
+            <a class="btn" id="hWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','header')" style="background: #10b981; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fab fa-whatsapp" style="font-size: 14px;"></i>
                 <span id="hWaT">{{ $hdr['wa'] ?? 'واتساب' }}</span>
             </a>
-            <a class="btn btn-am" onclick="openReq()">
-                <i class="fas fa-calendar-check"></i>
-                <span id="hCTA">{{ $hdr['cta'] ?? 'احصل على عرض' }}</span>
+            <a class="btn" id="hPh" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')" style="background: #1d3557; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fas fa-phone-alt" style="font-size: 11px;"></i>
+                <span>اتصال</span>
             </a>
         </div>
         <button class="mob-tog" onclick="togMob()"><i class="fas fa-bars"></i></button>

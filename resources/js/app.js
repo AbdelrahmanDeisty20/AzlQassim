@@ -1663,6 +1663,9 @@ function closeVid() {
 
 window.openVid = openVid;
 window.closeVid = closeVid;
+// Signal that the real implementations are ready
+document.dispatchEvent(new Event('app:ready'));
+
 
 function fTest(type, btn) {
     CT = type;

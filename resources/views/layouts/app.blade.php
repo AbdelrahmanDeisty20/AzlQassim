@@ -17,6 +17,14 @@
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- Pre-define openVid/closeVid stubs so inline onclick never throws ReferenceError -->
+    <script>
+        window.openVid = function(url) {
+            document.addEventListener('app:ready', function() { window.openVid(url); }, { once: true });
+        };
+        window.closeVid = function() {};
+    </script>
+
     <!-- Laravel Vite Styles and Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @if(isset($colors))

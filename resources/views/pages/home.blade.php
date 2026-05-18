@@ -9,16 +9,80 @@
         <div class="con hw">
             <div class="hg">
                 <div>
-                    <div class="hkw">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="hKW">{{ $hero['kw'] ?? 'القصيم • بريدة • عنيزة • الرس • حائل' }}</span>
+                    <!-- Keywords / Location -->
+                    <div class="hkw" style="margin-bottom: 12px; background: rgba(255,255,255,0.08); padding: 6px 14px; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #fff;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--am);"></i>
+                        <span id="hKW">القصيم وكل مدن المملكة</span>
                     </div>
-                    <h1>
-                        <span id="hH1">{{ $hero['h1'] ?? 'أفضل شركة' }}</span>
-                        <span id="hSpn">{{ $hero['sp'] ?? 'عزل أسطح بالقصيم' }}</span>
+                    
+                    <!-- Main Title -->
+                    <h1 style="font-size: clamp(26px, 5.5vw, 44px); font-weight: 900; line-height: 1.25; color: #fff; margin-bottom: 8px;">
+                        أفضل شركة عزل فوم أسطح بالقصيم
                     </h1>
-                    <p class="hdesc" id="hDsc">{{ $hero['d'] ?? 'متخصصون في عزل الأسطح مائياً وحرارياً باستخدام أحدث تقنيات الفوم البولي يوريثان. نحمي منزلك من التسربات والحرارة بضمان حقيقي يصل إلى 10 سنوات.' }}</p>
-                    <div class="hacts">
+                    
+                    <!-- Subtitle -->
+                    <h2 style="font-size: clamp(18px, 4vw, 28px); font-weight: 800; color: var(--am); margin-bottom: 18px;">
+                        رونق قلب الخليج للعزل الأمريكي
+                    </h2>
+
+                    <!-- Licensing and Classification Badge -->
+                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                        <span style="background: rgba(82, 183, 136, 0.15); border: 1px solid rgba(82, 183, 136, 0.4); color: #85e3b2; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-check-circle" style="color: #52b788;"></i>
+                            رخصة بلدية رقم: {{ $hdr['lic_no'] ?? '441212615580' }}
+                        </span>
+                        <span style="background: rgba(78, 168, 222, 0.15); border: 1px solid rgba(78, 168, 222, 0.4); color: #bde0fe; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-id-card" style="color: #4ea8de;"></i>
+                            عضوية هيئة المقاولين رقم: {{ $hdr['sca_no'] ?? '31109580340003' }}
+                        </span>
+                        <span style="background: rgba(230, 57, 70, 0.15); border: 1px solid rgba(230, 57, 70, 0.4); color: #ffccd5; padding: 6px 14px; border-radius: var(--r); font-weight: 800; font-size: clamp(11px, 3vw, 13px); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-award" style="color: #e63946;"></i>
+                            شهادة تصنيف رقم: {{ $hdr['cls_no'] ?? '2024005835' }} فئة ممتازة
+                        </span>
+                    </div>
+
+                    <!-- Organized Bullet List (filling page layout) -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 18px; border-radius: var(--r); backdrop-filter: blur(8px);">
+                        
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-flag-usa" style="color: #e63946;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل فوم أمريكي أصلي من مصنع هانتسمان</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-globe" style="color: #4ea8de;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل مائي وحراري متكامل طبقاً للمواصفات العالمية</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; border: 1px solid #ffd700;">
+                                <i class="fas fa-shield-alt" style="color: #ffd700;"></i>
+                            </div>
+                            <span style="color: #ffd700; font-weight: 800; font-size: clamp(13px, 3.5vw, 15px);">ضمان ذهبي معتمد موثق لمدة 15 عام</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-building" style="color: #52b788;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">اعتماد شركات الكهرباء والمياه والغاز</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center; grid-column: 1 / -1;">
+                            <div style="background: #e63946; color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; box-shadow: 0 0 12px rgba(230, 57, 70, 0.5);">
+                                <i class="fas fa-star" style="color: #fff;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 800; font-size: clamp(13.5px, 3.8vw, 15.5px);">اطلب الخبير للمعاينة المجانية حالاً</span>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Call & WhatsApp Action Buttons -->
+                    <div class="hacts" style="margin-bottom: 24px;">
                         <a class="btn btn-am" onclick="openReq()">
                             <i class="fas fa-calendar-check"></i>
                             <span id="hC1">{{ $hero['c1'] ?? 'احصل على عرض مجاني' }}</span>
@@ -28,26 +92,79 @@
                             <span id="hC2">{{ $hero['c2'] ?? 'تواصل الآن' }}</span>
                         </a>
                     </div>
-                    <div class="hpills">
-                        <span class="pill"><i class="fas fa-shield-alt"></i>ضمان 10 سنوات</span>
-                        <span class="pill"><i class="fas fa-certificate"></i>مرخصون رسمياً</span>
-                        <span class="pill"><i class="fas fa-clock"></i>خدمة 24 ساعة</span>
-                        <span class="pill"><i class="fas fa-tools"></i>فريق متخصص</span>
-                    </div>
                 </div>
                 
                 <div class="h-card">
                     <div class="h-stat-n">
-                        <div class="num" id="hS1">{{ $hero['s1'] ?? '+800' }}</div>
-                        <div class="lbl" id="hS1L">{{ $hero['s1l'] ?? 'مشروع ناجح' }}</div>
+                        <div class="num" id="hS1">1200+</div>
+                        <div class="lbl" id="hS1L">مشروع عزل ناجح بالقصيم</div>
                     </div>
                     <div class="h-stat-n">
-                        <div class="num" id="hS2">{{ $hero['s2'] ?? '10' }}</div>
-                        <div class="lbl" id="hS2L">{{ $hero['s2l'] ?? 'سنوات ضمان' }}</div>
+                        <div class="num" id="hS2">9000+</div>
+                        <div class="lbl" id="hS2L">مشروع عزل ناجح بكل مدن المملكة</div>
                     </div>
                     <div class="h-stat-n">
-                        <div class="num" id="hS3">{{ $hero['s3'] ?? '100%' }}</div>
-                        <div class="lbl" id="hS3L">{{ $hero['s3l'] ?? 'رضا العملاء' }}</div>
+                        <div class="num" id="hS3">15</div>
+                        <div class="lbl" id="hS3L">سنة ضمان ذهبي معتمد</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Dedicated SEO & Feature Rich Text Section -->
+    <section class="sec" style="background: #ffffff; padding: 60px 0; border-bottom: 1px solid rgba(15,36,65,0.06);">
+        <div class="con">
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                
+                <h2 style="font-size: clamp(22px, 5.5vw, 36px); font-weight: 900; color: #0f2441; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 12px; justify-content: center; width: 100%;">
+                    <i class="fas fa-layer-group" style="color: var(--am);"></i>
+                    {{ $about['title'] ?? 'أفضل شركة عزل أسطح بالقصيم' }}
+                </h2>
+                
+                <div style="background: #ffffff; border: 2px solid rgba(15, 36, 65, 0.1); border-radius: var(--r2); padding: clamp(20px, 5vw, 36px); box-shadow: 0 15px 40px rgba(15,36,65,0.05); text-align: justify; line-height: 2.1; direction: rtl;">
+                    
+                    <p style="font-size: clamp(15.5px, 3.8vw, 19.5px); font-weight: 800; color: #0f2441; margin-bottom: 24px; text-indent: 20px;">
+                        {{ $about['text1'] ?? 'نحن لا نقدم مجرد عزل بل نقدم حماية تدوم لأجيال عديدة وذلك باستخدام أحدث تقنيات العزل الأمريكي المزدوج المائي والحراري وذلك بتنفيذ احترافي بفريق عمل متخصص ومدرب علي تنفيذ العزل الأمريكي لضمان دقة الرش والكثافة وضمان التغطية الشاملة لسطح المبني بلا فراغات والوصول لأدق الزوايا والشقوق ليخلق طبقة واحدة متصلة تمنع تماما دخول الحرارة وتوفر ٤٠٪ من فاتورة الكهرباء وتمنع تسرب المياة والأمطار وتمنع دخول الحشرات وتطيل العمر الافتراضي للمبني.' }}
+                    </p>
+                    
+                    <p style="font-size: clamp(15.5px, 3.8vw, 19.5px); font-weight: 800; color: #0f2441; margin-bottom: 28px; padding-right: 14px; border-right: 4px solid var(--am);">
+                        {{ $about['text2'] ?? 'وشركتنا مرخصة ومعتمدة لدي شركة الكهرباء والمياة الوطنية مما يضمن لك مطابقة العمل للمواصفات القياسية السعودية بأعلى معايير الجودة وطبقاً للمواصفات العالمية ونمنحك شهادة ضمان موثقة ومعتمدة لدي شركات الكهرباء والمياة الوطنية لمدة ١٥ عام.' }}
+                    </p>
+                    
+                    <!-- Government & SCA Official Badges Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 30px;">
+                        
+                        <div style="background: rgba(82, 183, 136, 0.08); border: 2px solid rgba(82, 183, 136, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #52b788; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(82, 183, 136, 0.2);">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #52b788; font-weight: 800; margin-bottom: 4px;">رخصة البلدية الرسمية</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">{{ $hdr['lic_no'] ?? '٤٤١٢١٢٦١٥٥٨٠' }}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(78, 168, 222, 0.08); border: 2px solid rgba(78, 168, 222, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #4ea8de; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(78, 168, 222, 0.2);">
+                                <i class="fas fa-id-badge"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #4ea8de; font-weight: 800; margin-bottom: 4px;">عضوية الهيئة السعودية للمقاولين</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">{{ $hdr['sca_no'] ?? '٣١١٠٩٥٨٠٣٤٠٠٠٠٣' }}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(230, 57, 70, 0.08); border: 2px solid rgba(230, 57, 70, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #e63946; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #e63946; font-weight: 800; margin-bottom: 4px;">شهادة تصنيف المقاولين</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">فئة ممتازة - {{ $hdr['cls_no'] ?? '٢٠٢٤٠٠٥٨٣٥' }}</div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -59,6 +176,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-tools"></i>خدماتنا</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>خدمات <em>العزل الاحترافية</em></h2>
                 <p>أشمل حلول العزل للمنازل والفلل والمباني في القصيم وبريدة وحائل</p>
             </div>
@@ -84,6 +202,7 @@
             <div class="why-g">
                 <div class="why-txt">
                     <div class="tag"><i class="fas fa-award"></i>لماذا نحن</div>
+                    <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                     <h2>لماذا تختار <em>عزل القصيم؟</em></h2>
                     <p id="whyDsc">نحن الخيار الأول لأهالي القصيم وبريدة وحائل. نجمع بين الخبرة الطويلة والتقنيات الحديثة لنضمن لك منزلاً محمياً من التسربات والحرارة.</p>
                     <div class="why-list" id="whyL">
@@ -114,8 +233,8 @@
                         @endif
                     </div>
                     <div class="wcert">
-                        <span class="n">10</span>
-                        <span class="l">سنوات ضمان</span>
+                        <span class="n">{{ $hero['s2'] ?? '10' }}</span>
+                        <span class="l">{{ $hero['s2l'] ?? 'سنوات ضمان' }}</span>
                     </div>
                     <div class="wcert2">
                         <div class="ic"><i class="fas fa-shield-alt"></i></div>
@@ -134,6 +253,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-list-ol"></i>آلية العمل</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>كيف <em>نعمل؟</em></h2>
                 <p>خطوات واضحة وشفافة للحصول على خدمة عزل احترافية</p>
             </div>
@@ -160,6 +280,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-percent"></i>عروضنا</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>باقات <em>مميزة</em></h2>
                 <p>اختر الباقة الأنسب واحصل على أفضل خدمة عزل بأفضل سعر</p>
             </div>
@@ -171,7 +292,7 @@
                         @endif
                         <div class="ofhd">
                             <h3>{{ $off->name }}</h3>
-                            <div class="sub">ضمان حتى 10 سنوات</div>
+                            <div class="sub">ضمان حتى {{ $hero['s2'] ?? '10' }} {{ $hero['s2l'] ?? 'سنوات' }}</div>
                             <div class="ofpr">
                                 @if(!empty($off->oldP))
                                     <span class="old">{{ $off->oldP }} ر.س</span>
@@ -203,6 +324,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-images"></i>معرض الأعمال</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>أعمالنا <em>تتحدث عنا</em></h2>
                 <p>صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل</p>
             </div>
@@ -246,6 +368,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-map-marker-alt"></i>مناطق الخدمة</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>نخدم <em>كل المنطقة</em></h2>
                 <p>نغطي القصيم وبريدة وحائل وكل المناطق المجاورة</p>
             </div>
@@ -267,6 +390,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-comments"></i>آراء العملاء</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>ماذا يقول <em>عملاؤنا</em></h2>
                 <p>أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل</p>
             </div>
@@ -293,6 +417,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-question-circle"></i>الأسئلة الشائعة</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>أسئلة <em>يسألها عملاؤنا</em></h2>
             </div>
             <div class="faq-w" id="faqEl">
@@ -314,6 +439,7 @@
         <div class="con">
             <div class="st">
                 <div class="tag"><i class="fas fa-blog"></i>المقالات</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>نصائح ومعلومات <em>مفيدة</em></h2>
             </div>
             <div class="blog-g" id="blEl">
@@ -343,7 +469,7 @@
     <!-- Call To Action Bottom Banner -->
     <div class="cta-ban">
         <div class="con cta-in">
-            <div class="gar"><i class="fas fa-shield-alt" style="color:var(--am2)"></i>ضمان حقيقي يصل إلى 10 سنوات</div>
+            <div class="gar"><i class="fas fa-shield-alt" style="color:var(--am2)"></i>ضمان حقيقي يصل إلى {{ $hero['s2'] ?? '10' }} {{ $hero['s2l'] ?? 'سنوات' }}</div>
             <h2 id="ctaT">{{ $hero['ct'] ?? 'هل تعاني من تسربات المياه أو الحرارة الشديدة؟' }}</h2>
             <p id="ctaD">{{ $hero['cd'] ?? 'تواصل معنا الآن واحصل على معاينة مجانية وعرض سعر غير ملزم' }}</p>
             <div class="cta-acts">

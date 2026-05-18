@@ -16,7 +16,7 @@
                         <div class="logo-sb" style="color:var(--am2)">{{ $ftr['sb'] ?? 'أفضل شركة عزل أسطح' }}</div>
                     </div>
                 </div>
-                <p id="ftDs">{{ $ftr['d'] ?? 'شركة متخصصة في عزل الأسطح مائياً وحرارياً في القصيم وبريدة وحائل. ضمان حقيقي حتى 10 سنوات.' }}</p>
+                <p id="ftDs">{{ $ftr['d'] ?? 'شركة متخصصة في عزل الأسطح مائياً وحرارياً في القصيم وبريدة وحائل. ضمان حقيقي حتى 15 سنة.' }}</p>
                 <div class="sls">
                     @if(!empty($ftr['sn'])) <a href="{{ $ftr['sn'] }}" class="sl-a" id="ftSn" target="_blank"><i class="fab fa-snapchat"></i></a> @endif
                     @if(!empty($ftr['ig'])) <a href="{{ $ftr['ig'] }}" class="sl-a" id="ftIg" target="_blank"><i class="fab fa-instagram"></i></a> @endif

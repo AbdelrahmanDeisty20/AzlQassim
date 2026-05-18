@@ -14,6 +14,7 @@
                 <i class="fas fa-chevron-left"></i>
                 <span id="svcBr">{{ $service->name }}</span>
             </div>
+            <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 8px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
             <h2 id="svcTt">{{ $service->name }}</h2>
             <p id="svcSh">{{ $service->short }}</p>
         </div>

@@ -23,36 +23,39 @@ Route::post('/clicks', [ClickController::class, 'store']);
 
 // --- Admin Interface & AJAX Operations ---
 Route::prefix('admin')->group(function () {
-    Route::get('/', [\App\Http\Controllers\AdminController::class, 'index']);
-    Route::get('/login', [\App\Http\Controllers\AdminController::class, 'login']);
+    Route::get('/login', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
     Route::post('/login', [\App\Http\Controllers\AdminController::class, 'postLogin']);
-    Route::get('/logout', [\App\Http\Controllers\AdminController::class, 'logout']);
-    Route::get('/settings', [\App\Http\Controllers\AdminController::class, 'settings']);
-    Route::get('/services', [\App\Http\Controllers\AdminController::class, 'services']);
-    Route::get('/offers', [\App\Http\Controllers\AdminController::class, 'offers']);
-    Route::get('/areas', [\App\Http\Controllers\AdminController::class, 'areas']);
-    Route::get('/testimonials', [\App\Http\Controllers\AdminController::class, 'testimonials']);
-    Route::get('/faqs', [\App\Http\Controllers\AdminController::class, 'faqs']);
-    Route::get('/gallery', [\App\Http\Controllers\AdminController::class, 'gallery']);
-    Route::get('/blogs', [\App\Http\Controllers\AdminController::class, 'blogs']);
-    Route::get('/requests', [\App\Http\Controllers\AdminController::class, 'requests']);
-    Route::get('/messages', [\App\Http\Controllers\AdminController::class, 'messages']);
 
-    // Admin Customization & Settings APIs
-    Route::post('/settings/{key}', [\App\Http\Controllers\AdminController::class, 'saveSetting']);
-    Route::post('/content/{type}', [\App\Http\Controllers\AdminController::class, 'saveContent']);
-    Route::delete('/content/{type}/{id}', [\App\Http\Controllers\AdminController::class, 'deleteContent']);
-    Route::post('/menu/reorder', [\App\Http\Controllers\AdminController::class, 'reorderMenu']);
+    Route::middleware('auth')->group(function () {
+        Route::get('/', [\App\Http\Controllers\AdminController::class, 'index']);
+        Route::get('/logout', [\App\Http\Controllers\AdminController::class, 'logout']);
+        Route::get('/settings', [\App\Http\Controllers\AdminController::class, 'settings']);
+        Route::get('/services', [\App\Http\Controllers\AdminController::class, 'services']);
+        Route::get('/offers', [\App\Http\Controllers\AdminController::class, 'offers']);
+        Route::get('/areas', [\App\Http\Controllers\AdminController::class, 'areas']);
+        Route::get('/testimonials', [\App\Http\Controllers\AdminController::class, 'testimonials']);
+        Route::get('/faqs', [\App\Http\Controllers\AdminController::class, 'faqs']);
+        Route::get('/gallery', [\App\Http\Controllers\AdminController::class, 'gallery']);
+        Route::get('/blogs', [\App\Http\Controllers\AdminController::class, 'blogs']);
+        Route::get('/requests', [\App\Http\Controllers\AdminController::class, 'requests']);
+        Route::get('/messages', [\App\Http\Controllers\AdminController::class, 'messages']);
 
-    Route::post('/requests/{id}/status', [\App\Http\Controllers\AdminController::class, 'updateRequestStatus']);
-    Route::delete('/requests/{id}', [\App\Http\Controllers\AdminController::class, 'deleteRequest']);
+        // Admin Customization & Settings APIs
+        Route::post('/settings/{key}', [\App\Http\Controllers\AdminController::class, 'saveSetting']);
+        Route::post('/content/{type}', [\App\Http\Controllers\AdminController::class, 'saveContent']);
+        Route::delete('/content/{type}/{id}', [\App\Http\Controllers\AdminController::class, 'deleteContent']);
+        Route::post('/menu/reorder', [\App\Http\Controllers\AdminController::class, 'reorderMenu']);
 
-    Route::post('/messages/{id}/reply', [\App\Http\Controllers\AdminController::class, 'updateMessageReply']);
-    Route::delete('/messages/{id}', [\App\Http\Controllers\AdminController::class, 'deleteMessage']);
+        Route::post('/requests/{id}/status', [\App\Http\Controllers\AdminController::class, 'updateRequestStatus']);
+        Route::delete('/requests/{id}', [\App\Http\Controllers\AdminController::class, 'deleteRequest']);
 
-    Route::post('/upload', [\App\Http\Controllers\AdminController::class, 'uploadImage']);
-    Route::get('/logs', [\App\Http\Controllers\AdminController::class, 'getLogs']);
-    Route::get('/state', [\App\Http\Controllers\AdminController::class, 'getState']);
+        Route::post('/messages/{id}/reply', [\App\Http\Controllers\AdminController::class, 'updateMessageReply']);
+        Route::delete('/messages/{id}', [\App\Http\Controllers\AdminController::class, 'deleteMessage']);
+
+        Route::post('/upload', [\App\Http\Controllers\AdminController::class, 'uploadImage']);
+        Route::get('/logs', [\App\Http\Controllers\AdminController::class, 'getLogs']);
+        Route::get('/state', [\App\Http\Controllers\AdminController::class, 'getState']);
+    });
 });
 
 // --- Fallback Route for non-existent pages ---

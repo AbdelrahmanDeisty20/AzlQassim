@@ -7,7 +7,7 @@
     --am3: #ffc55a;
     --sl: #f3f5f9;
     --sl2: #e5e9f2;
-    --cc: #6b7a99;
+    --cc: #0f2441;
     --dk: #080f1e;
     --gr: #1a7a45;
     --gr2: #22a05a;
@@ -37,6 +37,12 @@ body {
     color: var(--dk);
     direction: rtl;
     overflow-x: hidden;
+}
+
+/* Global Text Contrast & Font Weight Booster */
+p, .st p, .why-txt p, .stc p, .tc p, .fqa p, .blc p, .gi-content p, .arc p {
+    color: var(--nv) !important;
+    font-weight: 700 !important;
 }
 
 /* Custom Scrollbar */

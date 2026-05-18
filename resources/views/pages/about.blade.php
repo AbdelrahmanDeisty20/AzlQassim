@@ -14,57 +14,67 @@
             </div>
             <h2>من نحن</h2>
             <p>شركة عزل القصيم - الرائدة في حلول العزل المائي والحراري</p>
+            <div style="font-weight: 800; color: #fff; font-size: clamp(13px, 3.5vw, 16px); margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: var(--r);">
+                <i class="fas fa-layer-group" style="color: var(--am); font-size: 15px;"></i>
+                <span>عزل فوم أمريكي أصلي من مصنع هانتسمان الأمريكي بضمان معتمد 15 عام</span>
+            </div>
         </div>
     </div>
     
     <!-- Introduction Section -->
-    <section class="sec">
+    <section class="sec" style="background: #ffffff; padding: 60px 0;">
         <div class="con">
-            <div class="why-g" style="margin-bottom:52px">
-                <div>
-                    <h2 style="font-size:clamp(20px,3vw,33px);font-weight:900;color:var(--nv);margin-bottom:14px">
-                        شركة <em style="color:var(--am);font-style:normal">عزل القصيم</em>
-                        <br>أكثر من 10 سنوات خبرة
-                    </h2>
-                    <p style="color:var(--cc);font-size:14px;line-height:2;margin-bottom:12px">{{ $about['text1'] ?? 'تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.' }}</p>
-                    <p style="color:var(--cc);font-size:14px;line-height:2;margin-bottom:12px">{{ $about['text2'] ?? 'نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.' }}</p>
-                    <p style="color:var(--cc);font-size:14px;line-height:2">{{ $about['text3'] ?? 'نقدم ضماناً حقيقياً موثقاً يصل إلى 10 سنوات مع متابعة مجانية طوال فترة الضمان.' }}</p>
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px">
-                        <div style="text-align:center;background:var(--sl);border-radius:var(--r);padding:16px 10px">
-                            <div style="font-size:26px;font-weight:900;color:var(--nv)">+800</div>
-                            <div style="font-size:12px;color:var(--cc)">مشروع منجز</div>
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                
+                <h2 style="font-size: clamp(24px, 5.5vw, 38px); font-weight: 900; color: #0f2441; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 12px; justify-content: center; width: 100%;">
+                    <i class="fas fa-layer-group" style="color: var(--am);"></i>
+                    {{ $about['title'] ?? 'أفضل شركة عزل أسطح بالقصيم' }}
+                </h2>
+                
+                <div style="background: #ffffff; border: 2px solid rgba(15, 36, 65, 0.1); border-radius: var(--r2); padding: clamp(24px, 5vw, 42px); box-shadow: 0 15px 40px rgba(15,36,65,0.05); text-align: justify; line-height: 2.2; direction: rtl;">
+                    
+                    <p style="font-size: clamp(16.5px, 3.8vw, 21.5px); font-weight: 800; color: #0f2441; margin-bottom: 24px; text-indent: 20px;">
+                        {{ $about['text1'] ?? 'نحن لا نقدم مجرد عزل بل نقدم حماية تدوم لأجيال عديدة وذلك باستخدام أحدث تقنيات العزل الأمريكي المزدوج المائي والحراري وذلك بتنفيذ احترافي بفريق عمل متخصص ومدرب علي تنفيذ العزل الأمريكي لضمان دقة الرش والكثافة وضمان التغطية الشاملة لسطح المبني بلا فراغات والوصول لأدق الزوايا والشقوق ليخلق طبقة واحدة متصلة تمنع تماما دخول الحرارة وتوفر ٤٠٪ من فاتورة الكهرباء وتمنع تسرب المياة والأمطار وتمنع دخول الحشرات وتطيل العمر الافتراضي للمبني.' }}
+                    </p>
+                    
+                    <p style="font-size: clamp(16.5px, 3.8vw, 21.5px); font-weight: 800; color: #0f2441; margin-bottom: 28px; padding-right: 14px; border-right: 4px solid var(--am);">
+                        {{ $about['text2'] ?? 'وشركتنا مرخصة ومعتمدة لدي شركة الكهرباء والمياة الوطنية مما يضمن لك مطابقة العمل للمواصفات القياسية السعودية بأعلى معايير الجودة وطبقاً للمواصفات العالمية ونمنحك شهادة ضمان موثقة ومعتمدة لدي شركات الكهرباء والمياة الوطنية لمدة ١٥ عام.' }}
+                    </p>
+                    
+                    <!-- Government & SCA Official Badges Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 30px;">
+                        
+                        <div style="background: rgba(82, 183, 136, 0.08); border: 2px solid rgba(82, 183, 136, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #52b788; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(82, 183, 136, 0.2);">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #52b788; font-weight: 800; margin-bottom: 4px;">رخصة البلدية الرسمية</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">{{ $hdr['lic_no'] ?? '٤٤١٢١٢٦١٥٥٨٠' }}</div>
+                            </div>
                         </div>
-                        <div style="text-align:center;background:var(--sl);border-radius:var(--r);padding:16px 10px">
-                            <div style="font-size:26px;font-weight:900;color:var(--am)">10</div>
-                            <div style="font-size:12px;color:var(--cc)">سنوات ضمان</div>
+                        
+                        <div style="background: rgba(78, 168, 222, 0.08); border: 2px solid rgba(78, 168, 222, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #4ea8de; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(78, 168, 222, 0.2);">
+                                <i class="fas fa-id-badge"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #4ea8de; font-weight: 800; margin-bottom: 4px;">عضوية الهيئة السعودية للمقاولين</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">{{ $hdr['sca_no'] ?? '٣١١٠٩٥٨٠٣٤٠٠٠٠٣' }}</div>
+                            </div>
                         </div>
-                        <div style="text-align:center;background:var(--sl);border-radius:var(--r);padding:16px 10px">
-                            <div style="font-size:26px;font-weight:900;color:var(--gr)">3</div>
-                            <div style="font-size:12px;color:var(--cc)">مناطق خدمة</div>
+                        
+                        <div style="background: rgba(230, 57, 70, 0.08); border: 2px solid rgba(230, 57, 70, 0.3); border-radius: var(--r); padding: 18px; display: flex; align-items: center; gap: 14px; text-align: right;">
+                            <div style="background: #e63946; color: #fff; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 13.5px; color: #e63946; font-weight: 800; margin-bottom: 4px;">شهادة تصنيف المقاولين</div>
+                                <div style="font-size: 17.5px; color: #0f2441; font-weight: 900; letter-spacing: 0.5px;">فئة ممتازة - {{ $hdr['cls_no'] ?? '٢٠٢٤٠٠٥٨٣٥' }}</div>
+                            </div>
                         </div>
+                        
                     </div>
-                </div>
-                <div style="display:block">
-                    <div class="why-img" id="abtImg" style="{{ !empty($about['img']) ? 'background:none;border:none;padding:0;width:100%;height:100%;min-height:350px;' : '' }}">
-                        @if(!empty($about['img']))
-                            <img src="{{ $about['img'] }}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r);box-shadow:0 8px 32px rgba(15,36,65,0.15)">
-                        @else
-                            <i class="fas {{ $about['icon'] ?? 'fa-building' }}"></i>
-                            <span>{{ $about['title'] ?? 'فريق عزل القصيم' }}</span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vision & Mission -->
-            <div class="vg">
-                <div class="vc">
-                    <h3><i class="fas fa-eye"></i>رؤيتنا</h3>
-                    <p>أن نكون الشركة الرائدة في خدمات العزل بمنطقة القصيم وبريدة وحائل، ونموذجاً يُحتذى به في الجودة والاحترافية.</p>
-                </div>
-                <div class="vc gr">
-                    <h3><i class="fas fa-bullseye"></i>رسالتنا</h3>
-                    <p>تقديم خدمات عزل احترافية تتجاوز توقعات العملاء، باستخدام أحدث التقنيات ومواد معتمدة عالمياً، مع بناء علاقات ثقة طويلة الأمد.</p>
                 </div>
             </div>
         </div>
@@ -77,11 +87,27 @@
                 <div class="tag">شهاداتنا وضماناتنا</div>
                 <h2>لماذا نحن <em>الأفضل؟</em></h2>
             </div>
-            <div class="cg">
-                <div class="cc2"><div class="cc2-ic"><i class="fas fa-certificate"></i></div><h4>ترخيص رسمي</h4><p>معتمدون من وزارة الشؤون البلدية والقروية</p></div>
-                <div class="cc2"><div class="cc2-ic"><i class="fas fa-shield-alt"></i></div><h4>ضمان 10 سنوات</h4><p>ضمان حقيقي موثق على جميع أعمال العزل</p></div>
-                <div class="cc2"><div class="cc2-ic"><i class="fas fa-tools"></i></div><h4>فريق متخصص</h4><p>مهندسون وفنيون مدربون بأعلى المعايير</p></div>
-                <div class="cc2"><div class="cc2-ic"><i class="fas fa-leaf"></i></div><h4>مواد عالمية</h4><p>نستخدم مواد عزل عالمية آمنة ومعتمدة</p></div>
+            <div class="cg" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+                <div class="cc2">
+                    <div class="cc2-ic"><i class="fas fa-certificate" style="color: #52b788;"></i></div>
+                    <h4>رخصة بلدية معتمدة</h4>
+                    <p style="font-weight: 700; color: var(--nv);">رقم: {{ $hdr['lic_no'] ?? '441212615580' }}</p>
+                </div>
+                <div class="cc2">
+                    <div class="cc2-ic"><i class="fas fa-id-card" style="color: #4ea8de;"></i></div>
+                    <h4>هيئة المقاولين السعودية</h4>
+                    <p style="font-weight: 700; color: var(--nv);">عضوية رقم: {{ $hdr['sca_no'] ?? '31109580340003' }}</p>
+                </div>
+                <div class="cc2">
+                    <div class="cc2-ic"><i class="fas fa-award" style="color: #e63946;"></i></div>
+                    <h4>شهادة تصنيف معتمدة</h4>
+                    <p style="font-weight: 700; color: var(--nv);">رقم: {{ $hdr['cls_no'] ?? '2024005835' }} (فئة ممتازة)</p>
+                </div>
+                <div class="cc2">
+                    <div class="cc2-ic"><i class="fas fa-shield-alt" style="color: #ffd700;"></i></div>
+                    <h4>ضمان ذهبي معتمد</h4>
+                    <p style="font-weight: 700; color: var(--nv);">ضمان حقيقي موثق لمدة 15 سنة</p>
+                </div>
             </div>
         </div>
     </section>

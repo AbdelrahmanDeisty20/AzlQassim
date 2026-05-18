@@ -38,7 +38,24 @@
                     <input type="text" name="wa" value="{{ $hdr['wa'] ?? 'واتساب' }}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ إعدادات الهوية</button>
+            
+            <h4 style="margin:22px 0 12px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:6px; font-weight:700;"><i class="fas fa-certificate" style="color:var(--am)"></i> التراخيص والشهادات المعتمدة</h4>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>رقم رخصة البلدية</label>
+                    <input type="text" name="lic_no" value="{{ $hdr['lic_no'] ?? '441212615580' }}" placeholder="441212615580">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>عضوية الهيئة السعودية للمقاولين</label>
+                    <input type="text" name="sca_no" value="{{ $hdr['sca_no'] ?? '31109580340003' }}" placeholder="31109580340003">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>رقم شهادة التصنيف (فئة ممتازة)</label>
+                    <input type="text" name="cls_no" value="{{ $hdr['cls_no'] ?? '2024005835' }}" placeholder="2024005835">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ إعدادات الهوية والتراخيص</button>
         </form>
     </div>
 
@@ -85,15 +102,15 @@
                 <div class="afg" style="margin:0">
                     <label>الإحصائية الأولى (قيمة + اسم)</label>
                     <div style="display:flex; gap:8px">
-                        <input type="text" name="s1" value="{{ $hero['s1'] ?? '+800' }}" placeholder="القيمة" style="width:100px">
-                        <input type="text" name="s1l" value="{{ $hero['s1l'] ?? 'مشروع ناجح' }}" placeholder="الاسم" style="flex:1">
+                        <input type="text" name="s1" value="{{ $hero['s1'] ?? '1200+' }}" placeholder="القيمة" style="width:100px">
+                        <input type="text" name="s1l" value="{{ $hero['s1l'] ?? 'مشروع عزل ناجح بالقصيم' }}" placeholder="الاسم" style="flex:1">
                     </div>
                 </div>
                 <div class="afg" style="margin:0">
                     <label>الإحصائية الثانية (قيمة + اسم)</label>
                     <div style="display:flex; gap:8px">
-                        <input type="text" name="s2" value="{{ $hero['s2'] ?? '10' }}" placeholder="القيمة" style="width:100px">
-                        <input type="text" name="s2l" value="{{ $hero['s2l'] ?? 'سنوات ضمان' }}" placeholder="الاسم" style="flex:1">
+                        <input type="text" name="s2" value="{{ $hero['s2'] ?? '9000+' }}" placeholder="القيمة" style="width:100px">
+                        <input type="text" name="s2l" value="{{ $hero['s2l'] ?? 'مشروع عزل ناجح بكل مدن المملكة' }}" placeholder="الاسم" style="flex:1">
                     </div>
                 </div>
             </div>
@@ -102,8 +119,8 @@
                 <div class="afg" style="margin:0">
                     <label>الإحصائية الثالثة (قيمة + اسم)</label>
                     <div style="display:flex; gap:8px">
-                        <input type="text" name="s3" value="{{ $hero['s3'] ?? '100%' }}" placeholder="القيمة" style="width:100px">
-                        <input type="text" name="s3l" value="{{ $hero['s3l'] ?? 'رضا العملاء' }}" placeholder="الاسم" style="flex:1">
+                        <input type="text" name="s3" value="{{ $hero['s3'] ?? '15' }}" placeholder="القيمة" style="width:100px">
+                        <input type="text" name="s3l" value="{{ $hero['s3l'] ?? 'سنة ضمان ذهبي معتمد' }}" placeholder="الاسم" style="flex:1">
                     </div>
                 </div>
             </div>

@@ -2329,7 +2329,7 @@ function doLogout() {
     sessionStorage.removeItem('azq3_auth');
     sN('تم تسجيل الخروج');
     setTimeout(() => {
-        window.location.href = '/admin/login';
+        window.location.href = '/admin/logout';
     }, 600);
 }
 

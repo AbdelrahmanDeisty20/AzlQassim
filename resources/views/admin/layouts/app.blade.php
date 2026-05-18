@@ -207,7 +207,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     sessionStorage.removeItem('azq3_auth');
-                    window.location.href = '/admin/login';
+                    window.location.href = '/admin/logout';
                 }
             });
         });

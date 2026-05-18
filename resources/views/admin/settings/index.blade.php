@@ -213,7 +213,7 @@
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>أوقات العمل</label>
-                    <input type="text" name="hrs" value="{{ $contact['hrs'] ?? 'مفتوح على مدار 24 ساعة' }}">
+                    <input type="text" name="hr" value="{{ $contact['hr'] ?? 'السبت - الخميس: 7ص - 10م' }}">
                 </div>
                 <div class="afg" style="margin:0">
                     <label>رابط جوجل ماب (Google Map Embed URL)</label>

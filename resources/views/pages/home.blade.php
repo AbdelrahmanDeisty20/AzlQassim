@@ -351,13 +351,15 @@
                                 }
                             }
                             $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
+                            // Encode path segments to handle spaces in filenames (Apache compatibility)
+                            $encodedVideoUrl = $ytId ? $videoUrl : '/' . implode('/', array_map('rawurlencode', explode('/', ltrim($videoUrl, '/'))));
                         @endphp
                         <div class="gi video-card home-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:none;">
                             <div class="gi-img-wrap" style="background:#080f1e; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
                                 @if($ytId)
                                     <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover;">
                                 @else
-                                    <video src="{{ $videoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>
+                                    <video src="{{ $encodedVideoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>
                                 @endif
                                 <div style="position:absolute; inset:0; background:rgba(15,36,65,0.4); display:flex; align-items:center; justify-content:center;">
                                     <div class="play-btn-pulse" style="width:60px; height:60px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; box-shadow:0 0 20px var(--am); transition:all 0.3s;">
@@ -476,13 +478,15 @@
                                 }
                             }
                             $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
+                            // Encode path segments for Apache compatibility
+                            $encodedVideoUrl = $ytId ? $videoUrl : '/' . implode('/', array_map('rawurlencode', explode('/', ltrim($videoUrl, '/'))));
                         @endphp
                         {{-- Video-only card: no text, no rating, no name --}}
                         <div class="tc home-test-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:none; padding:0; overflow:hidden; position:relative; min-height:220px; background:#080f1e; border-radius:var(--r2); box-shadow:var(--sh);">
                             @if($ytId)
                                 <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
                             @else
-                                <video src="{{ $videoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; pointer-events:none;"></video>
+                                <video src="{{ $encodedVideoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; pointer-events:none;"></video>
                             @endif
                             <div style="position:absolute; inset:0; background:rgba(8,15,30,0.2); display:flex; align-items:center; justify-content:center;">
                                 <div style="width:64px; height:64px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 0 30px rgba(224,123,15,0.7); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">

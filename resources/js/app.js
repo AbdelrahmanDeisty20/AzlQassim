@@ -1633,8 +1633,13 @@ function openVid(url) {
         body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&controls=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
     } else {
         let finalUrl = url;
-        // Only route through /video-stream on local dev (localhost/127.0.0.1)
-        // On production, Apache/Nginx serve files directly with proper range support
+        // Encode path segments to handle spaces and special chars in filenames
+        if (!url.startsWith('http')) {
+            finalUrl = url.split('/').map(function(seg) {
+                return seg ? encodeURIComponent(seg) : seg;
+            }).join('/');
+        }
+        // On local dev, route through /video-stream for HTTP range (seek) support
         const isLocalDev = window.location.hostname === 'localhost'
                         || window.location.hostname === '127.0.0.1'
                         || window.location.hostname.startsWith('192.168.');

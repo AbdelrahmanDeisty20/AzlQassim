@@ -1,7 +1,11 @@
 <header id="HDR">
     <div class="hdr">
-        <a class="logo" href="/" style="text-decoration:none;color:inherit;cursor:pointer">
-            <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
+        <a class="logo" href="/" style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:12px">
+            @if(!empty($hdr['logo']))
+                <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img" style="max-height: 48px; max-width: 180px; object-fit: contain; display: block;">
+            @else
+                <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
+            @endif
             <div>
                 <div class="logo-nm" id="sNm">{{ $hdr['nm'] ?? 'عزل القصيم' }}</div>
                 <div class="logo-sb" id="sSb">{{ $hdr['sb'] ?? 'أفضل شركة عزل أسطح بالقصيم' }}</div>

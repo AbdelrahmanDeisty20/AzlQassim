@@ -9,11 +9,15 @@
         <div class="ft-g">
             <!-- Brand Identity -->
             <div class="ft-brand">
-                <div class="logo" style="margin-bottom:11px">
-                    <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
+                <div class="logo" style="margin-bottom:11px; display:flex; align-items:center; gap:10px">
+                    @if(!empty($hdr['logo']))
+                        <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img" style="max-height: 40px; max-width: 150px; object-fit: contain; display: block;">
+                    @else
+                        <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
+                    @endif
                     <div>
                         <div class="logo-nm" id="ftNm">{{ $ftr['nm'] ?? 'عزل القصيم' }}</div>
-                        <div class="logo-sb" style="color:var(--am2)">{{ $ftr['sb'] ?? 'أفضل شركة عزل أسطح' }}</div>
+                        <div class="logo-sb" style="color:var(--am2); font-size:11px">{{ $ftr['sb'] ?? 'أفضل شركة عزل أسطح' }}</div>
                     </div>
                 </div>
                 <p id="ftDs">{{ $ftr['d'] ?? 'شركة متخصصة في عزل الأسطح مائياً وحرارياً في القصيم وبريدة وحائل. ضمان حقيقي حتى 15 سنة.' }}</p>

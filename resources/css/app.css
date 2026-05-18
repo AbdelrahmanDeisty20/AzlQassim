@@ -3057,3 +3057,14 @@ table.at {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.logo-img {
+    transition: var(--tr);
+}
+@media (max-width: 768px) {
+    .logo-img {
+        max-height: 34px !important;
+        max-width: 120px !important;
+    }
+}
+

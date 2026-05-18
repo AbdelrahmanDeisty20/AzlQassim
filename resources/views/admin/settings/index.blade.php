@@ -28,6 +28,21 @@
                     <input type="text" name="sb" value="{{ $hdr['sb'] ?? 'أفضل شركة عزل أسطح بالقصيم' }}" required>
                 </div>
             </div>
+            
+            <div class="afg" style="margin-bottom:22px">
+                <label style="font-weight:700">شعار الموقع المصور (Logo Image) - اختياري (سيحل محل الشعار النصي بالأعلى والأسفل عند رفعه)</label>
+                <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:8px">
+                    <input type="hidden" name="logo" id="hdr-logo-val" value="{{ $hdr['logo'] ?? '' }}">
+                    <div style="width:120px; height:80px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="hdr-logo-preview" src="{{ !empty($hdr['logo']) ? $hdr['logo'] : '' }}" style="width:100%; height:100%; object-fit:contain; {{ empty($hdr['logo']) ? 'display:none' : '' }}">
+                        <div id="hdr-logo-placeholder" style="font-size:28px; color:var(--cc); {{ !empty($hdr['logo']) ? 'display:none' : '' }}"><i class="fas fa-layer-group"></i></div>
+                    </div>
+                    <div>
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#hdr-logo-val').val(url); $('#hdr-logo-preview').attr('src', url).show(); $('#hdr-logo-placeholder').hide(); Swal.fire('تم رفع الشعار!', 'تم رفع وتحديد الشعار المصور بنجاح. تذكر النقر على حفظ في الأسفل لتأكيد الحفظ.', 'success'); })">
+                        <div style="font-size:11px; color:var(--cc); margin-top:4px">صيغ مدعومة: PNG, JPG, WebP, SVG. الحجم الأقصى: 5MB</div>
+                    </div>
+                </div>
+            </div>
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>نص زر طلب الخدمة (cta)</label>

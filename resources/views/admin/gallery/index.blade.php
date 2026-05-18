@@ -121,9 +121,20 @@
             </div>
 
             <!-- Video URL Group (Only visible if video selected) -->
-            <div class="afg" id="video-group" style="display:none">
-                <label>رابط الفيديو (يوتيوب أو رابط ملف فيديو محلي)</label>
-                <input type="text" id="gal-video" placeholder="مثال: https://www.youtube.com/watch?v=... أو /videos/vid.mp4" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">
+            <div class="afg" id="video-group" style="display:none; border:1px dashed rgba(197,168,128,0.35); padding:14px; border-radius:var(--r); background:#fcfbfa; margin-bottom:18px">
+                <label style="font-weight:700">رابط الفيديو (يوتيوب)</label>
+                <input type="text" id="gal-video" placeholder="مثال: https://www.youtube.com/watch?v=..." style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit; margin-bottom:10px">
+                
+                <div style="text-align:center; font-size:11px; font-weight:700; color:var(--cc); margin:10px 0; position:relative;">
+                    <span style="background:#fcfbfa; padding:0 8px; position:relative; z-index:2">أو قم برفع ملف فيديو محلي</span>
+                    <hr style="border:none; border-top:1px solid #eee; position:absolute; top:50%; left:0; right:0; margin:0; z-index:1">
+                </div>
+                
+                <label style="font-weight:700">رفع ملف فيديو محلي (.mp4, .webm)</label>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <input type="file" id="video-file-input" accept="video/mp4,video/webm,video/quicktime" onchange="uploadVideoInput(this)">
+                    <div id="video-upload-status" style="font-size:11px; color:var(--cc)">صيغ مدعومة: MP4, WebM. الحد الأقصى للحجم: 50MB</div>
+                </div>
             </div>
 
             <div class="afg">
@@ -151,6 +162,40 @@
 
 @section('scripts')
 <script>
+    // Upload local video helper
+    function uploadVideoInput(inputEl) {
+        const file = inputEl.files[0];
+        if (!file) return;
+
+        // Display a nice progress status
+        $('#video-upload-status').html('<i class="fas fa-spinner fa-spin" style="color:var(--am)"></i> جاري رفع وتجهيز مقطع الفيديو... يرجى الانتظار');
+
+        const formData = new FormData();
+        formData.append('video', file);
+
+        $.ajax({
+            url: '/admin/upload-video',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                if (res.success) {
+                    $('#gal-video').val(res.url);
+                    $('#video-upload-status').html('<span style="color:var(--gr); font-weight:700;"><i class="fas fa-check-circle"></i> تم رفع الفيديو بنجاح: ' + res.url + '</span>');
+                    Swal.fire('تم رفع الفيديو!', 'تم رفع ملف الفيديو بنجاح وتعبئة الرابط تلقائياً.', 'success');
+                } else {
+                    $('#video-upload-status').html('<span style="color:#ef9090; font-weight:700;"><i class="fas fa-exclamation-circle"></i> فشل الرفع: ' + (res.message || 'خطأ غير معروف') + '</span>');
+                    Swal.fire('خطأ!', res.message || 'فشل رفع الفيديو', 'error');
+                }
+            },
+            error: function(err) {
+                $('#video-upload-status').html('<span style="color:#ef9090; font-weight:700;"><i class="fas fa-exclamation-circle"></i> حدث خطأ أثناء الرفع</span>');
+                Swal.fire('خطأ!', 'فشل رفع الفيديو، تأكد من أن الحجم أقل من 50 ميجابايت والصيغة مدعومة.', 'error');
+            }
+        });
+    }
+
     // Toggle video fields depending on selection
     function toggleTypeFields() {
         const type = $('#gal-type').val();
@@ -198,6 +243,13 @@
             $('#video-group').hide();
         }
 
+        $('#video-file-input').val('');
+        if (item.video && !item.video.includes('youtube.com') && !item.video.includes('youtu.be')) {
+            $('#video-upload-status').html('<span style="color:var(--gr); font-weight:700;"><i class="fas fa-check-circle"></i> فيديو محلي مرفوع: ' + item.video + '</span>');
+        } else {
+            $('#video-upload-status').html('صيغ مدعومة: MP4, WebM. الحد الأقصى للحجم: 50MB');
+        }
+
         $('#btn-cancel-gal').show();
         
         // Scroll form into view gently
@@ -216,6 +268,9 @@
         $('#gal-type').val('image');
         $('#gal-video').val('');
         $('#video-group').hide();
+
+        $('#video-file-input').val('');
+        $('#video-upload-status').html('صيغ مدعومة: MP4, WebM. الحد الأقصى للحجم: 50MB');
 
         $('#btn-cancel-gal').hide();
     }

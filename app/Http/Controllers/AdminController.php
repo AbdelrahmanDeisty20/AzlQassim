@@ -282,6 +282,23 @@ class AdminController extends Controller
     }
 
     /**
+     * Upload a video from the client device to the server uploads folder.
+     */
+    public function uploadVideo(Request $request)
+    {
+        $request->validate([
+            'video' => 'required|file|mimes:mp4,mov,ogg,qt,webm|max:51200',
+        ]);
+
+        if ($request->hasFile('video')) {
+            $url = $this->adminService->uploadImage($request->file('video'));
+            return response()->json(['success' => true, 'url' => $url]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'No file uploaded'], 400);
+    }
+
+    /**
      * Fetch the requests, messages, and click logs report.
      */
     public function getLogs()

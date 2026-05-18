@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/messages/{id}', [\App\Http\Controllers\AdminController::class, 'deleteMessage']);
 
         Route::post('/upload', [\App\Http\Controllers\AdminController::class, 'uploadImage']);
+        Route::post('/upload-video', [\App\Http\Controllers\AdminController::class, 'uploadVideo']);
         Route::get('/logs', [\App\Http\Controllers\AdminController::class, 'getLogs']);
         Route::get('/state', [\App\Http\Controllers\AdminController::class, 'getState']);
     });

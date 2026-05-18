@@ -293,6 +293,19 @@
                         <div class="ofhd">
                             <h3>{{ $off->name }}</h3>
                             <div class="sub">ضمان حتى {{ $hero['s2'] ?? '10' }} {{ $hero['s2l'] ?? 'سنوات' }}</div>
+                            @if(!empty($off->newP))
+                                <div class="ofpr">
+                                    @if(!empty($off->oldP))
+                                        <span class="old">{{ $off->oldP }} ر.س</span>
+                                    @endif
+                                    <span class="nw">{{ $off->newP }}</span>
+                                    <span class="u">ر.س</span>
+                                </div>
+                            @else
+                                <div class="ofpr" style="margin-top:6px;">
+                                    <span class="nw" style="font-size:15px; color:var(--am3); background:rgba(255,255,255,0.08); padding:4px 10px; border-radius:50px; display:inline-block; font-weight:700;"><i class="fas fa-tags" style="font-size:12px; margin-left:4px;"></i> سعر خاص عند التواصل</span>
+                                </div>
+                            @endif
                         </div>
                         <div class="ofbd">
                             <ul class="offl">

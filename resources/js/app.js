@@ -1516,9 +1516,13 @@ function renderOffers() {
                 <h3>${x.name}</h3>
                 <div class="sub">ضمان حتى 10 سنوات</div>
                 <div class="ofpr">
-                    ${x.oldP ? `<span class="old">${x.oldP} ر.س</span>` : ''}
-                    <span class="nw">${x.newP}</span>
-                    <span class="u">ر.س</span>
+                    ${x.newP ? `
+                        ${x.oldP ? `<span class="old">${x.oldP} ر.س</span>` : ''}
+                        <span class="nw">${x.newP}</span>
+                        <span class="u">ر.س</span>
+                    ` : `
+                        <span class="nw" style="font-size:15px; color:var(--am3); background:rgba(255,255,255,0.08); padding:4px 10px; border-radius:50px; display:inline-block; font-weight:700;"><i class="fas fa-tags" style="font-size:11px; margin-left:4px;"></i> سعر خاص عند التواصل</span>
+                    `}
                 </div>
             </div>
             <div class="ofbd">

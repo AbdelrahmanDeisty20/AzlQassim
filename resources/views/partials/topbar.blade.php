@@ -1,26 +1,38 @@
-<div class="topbar">
-    <div class="con">
-        <div style="display:flex;gap:16px;align-items:center">
-            <a href="tel:{{ $contact['ph'] ?? '966500000000' }}" id="tPh" onclick="tC('phone','topbar')" style="text-decoration:none;color:inherit">
-                <i class="fas fa-phone"></i>
-                <span id="tPhT">{{ $contact['ph'] ?? '0550000000' }}</span>
-            </a>
-            <a href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" id="tWa" target="_blank" onclick="tC('whatsapp','topbar')" style="text-decoration:none;color:inherit">
-                <i class="fab fa-whatsapp"></i> واتساب
-            </a>
-            <span style="color:rgba(255,255,255,.35)">|</span>
-            <span style="font-size:11px;color:rgba(255,255,255,.55)">
-                <i class="fas fa-clock"></i> 
-                <span id="tHr">{{ $contact['hr'] ?? 'السبت-الخميس: 7ص-10م' }}</span>
-            </span>
+<div class="topbar" style="background: var(--nv); border-bottom: 2px solid var(--am); padding: 10px 0;">
+    <div class="con" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <!-- Right side: Logo & Brand Name -->
+        <div style="display: flex; gap: 8px; align-items: center; color: #fff;">
+            <i class="fas fa-layer-group" style="color: var(--am); font-size: 16px;"></i>
+            <span style="font-size: clamp(12.5px, 3.8vw, 15px); font-weight: 800; color: #fff; letter-spacing: 0.5px;">رونق قلب الخليج للعزل الفوم الأمريكي</span>
         </div>
-        <div class="tb-r">
-            @if(!empty($ftr['sn'])) <a href="{{ $ftr['sn'] }}" id="tSn" target="_blank"><i class="fab fa-snapchat"></i></a> @endif
-            @if(!empty($ftr['ig'])) <a href="{{ $ftr['ig'] }}" id="tIg" target="_blank"><i class="fab fa-instagram"></i></a> @endif
-            @if(!empty($ftr['tw'])) <a href="{{ $ftr['tw'] }}" id="tTw" target="_blank"><i class="fab fa-twitter"></i></a> @endif
-            @if(!empty($ftr['yt'])) <a href="{{ $ftr['yt'] }}" id="tYt" target="_blank"><i class="fab fa-youtube"></i></a> @endif
-            <span style="color:rgba(255,255,255,.3)">|</span>
-            <a href="/admin" style="font-size:11px;opacity:.5"><i class="fas fa-lock"></i></a>
+
+        <!-- Left side: Phone Number, WhatsApp, Working Hours, & Lock Link -->
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+            <!-- Phone -->
+            <a href="tel:{{ $contact['ph'] ?? '0550000000' }}" id="tPh" onclick="tC('phone','topbar')" style="text-decoration: none; color: #fff !important; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: var(--tr);">
+                <i class="fas fa-phone" style="color: var(--am); font-size: 12px;"></i>
+                <span id="tPhT" style="color: #fff !important; font-weight: 700;">{{ $contact['ph'] ?? '0550000000' }}</span>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" id="tWa" target="_blank" onclick="tC('whatsapp','topbar')" style="text-decoration: none; color: #fff !important; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: var(--tr);">
+                <i class="fab fa-whatsapp" style="color: #25d366; font-size: 14px;"></i> 
+                <span style="color: #fff !important; font-weight: 700;">واتساب</span>
+            </a>
+            
+            <span style="color: rgba(255,255,255,.2)">|</span>
+            
+            <!-- Working Hours -->
+            <span style="font-size: 12px; color: #fff; display: inline-flex; align-items: center; gap: 6px;">
+                <i class="fas fa-clock" style="color: var(--am); font-size: 12px;"></i> 
+                <span id="tHr" style="font-weight: 700; color: #fff;">{{ $contact['hr'] ?? 'كل أيام الأسبوع 24 ساعة اتصل في أي وقت' }}</span>
+            </span>
+            
+            <span style="color: rgba(255,255,255,.2)">|</span>
+            
+            <!-- Lock Icon -->
+            <a href="/admin" style="font-size: 11px; opacity: .5; color: #fff !important; display: inline-flex; align-items: center; transition: var(--tr);"><i class="fas fa-lock"></i></a>
         </div>
     </div>
 </div>
+

@@ -184,10 +184,7 @@
             $('#ASB-Backdrop').toggleClass('open');
         }
 
-        // Route protection client-side check
-        if (sessionStorage.getItem('azq3_auth') !== '1') {
-            window.location.href = '/admin/login';
-        }
+
 
         // Set CSRF token for all jQuery AJAX requests
         $.ajaxSetup({

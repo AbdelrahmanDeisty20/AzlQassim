@@ -2496,17 +2496,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // 1. Immediately render UI from cached localStorage for zero-latency load times
     rAll();
 
-    // 2. Client-side Route Protection & Redirection
-    if (isAdmin) {
-        if (path !== '/admin/login' && !isAuth) {
-            window.location.href = '/admin/login';
-            return;
-        }
-        if (path === '/admin/login' && isAuth) {
-            window.location.href = '/admin';
-            return;
-        }
-    }
+
 
     // 3. Asynchronously fetch and synchronize database state in the background
     // Only perform the fetch if the user is authenticated or visiting the admin dashboard

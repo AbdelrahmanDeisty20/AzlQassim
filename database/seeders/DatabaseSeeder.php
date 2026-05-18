@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Menu;
-use App\Models\Service;
-use App\Models\Offer;
-use App\Models\Testimonial;
-use App\Models\Gallery;
-use App\Models\Faq;
-use App\Models\WhyItem;
-use App\Models\Step;
 use App\Models\Area;
 use App\Models\Blog;
+use App\Models\Faq;
+use App\Models\Gallery;
+use App\Models\Menu;
+use App\Models\Offer;
+use App\Models\Service;
 use App\Models\Setting;
+use App\Models\Step;
+use App\Models\Testimonial;
+use App\Models\WhyItem;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -229,7 +229,8 @@ class DatabaseSeeder extends Seeder
             Offer::updateOrCreate(['id' => $o['id']], $o);
         }
 
-        // 5. Seed Testimonials
+        // 5. Seed Testimonials (text only - IDs 1,2,3)
+        // Video testimonials are handled separately in ReviewVideoSeeder (IDs 4,5,6)
         $testimonials = [
             [
                 'id' => 1,
@@ -238,6 +239,7 @@ class DatabaseSeeder extends Seeder
                 'rating' => 5,
                 'svc' => 'عزل سطح فيلا',
                 'text' => 'خدمة ممتازة جداً، حلوا مشكلة التسربات التي عانيت منها لسنوات في يوم واحد. الفريق محترف والنتيجة رائعة. أنصح بهم بشدة.',
+                'video' => null,
                 'status' => 'active'
             ],
             [
@@ -247,6 +249,7 @@ class DatabaseSeeder extends Seeder
                 'rating' => 5,
                 'svc' => 'عزل فوم',
                 'text' => 'قلت فاتورة الكهرباء أكثر من 35% بعد العزل الحراري. الفريق سريع ومحترف في التنفيذ. أنصح كل أهل القصيم بعزل القصيم.',
+                'video' => null,
                 'status' => 'active'
             ],
             [
@@ -256,24 +259,7 @@ class DatabaseSeeder extends Seeder
                 'rating' => 5,
                 'svc' => 'كشف تسربات',
                 'text' => 'كشفوا التسرب بدقة بدون هدم. تعاملت مع شركات أخرى لم تحل المشكلة لكن عزل القصيم حلوها من أول مرة وبضمان.',
-                'status' => 'active'
-            ],
-            [
-                'id' => 4,
-                'name' => 'محمد الحربي',
-                'city' => 'الرس',
-                'rating' => 5,
-                'svc' => 'video',
-                'text' => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                'status' => 'active'
-            ],
-            [
-                'id' => 5,
-                'name' => 'خالد اليوسف',
-                'city' => 'بريدة',
-                'rating' => 5,
-                'svc' => 'video',
-                'text' => '/assets/video-demo.mp4',
+                'video' => null,
                 'status' => 'active'
             ]
         ];
@@ -291,8 +277,8 @@ class DatabaseSeeder extends Seeder
             ['id' => 6, 'title' => 'سطح بعد العزل', 'cat' => 'روف', 'type' => 'after', 'icon' => 'fa-check-circle', 'img' => '', 'color' => '#1a7a45'],
             ['id' => 7, 'title' => 'عزل فوم حراري - حائل', 'cat' => 'فوم', 'type' => 'after', 'icon' => 'fa-thermometer-half', 'img' => '', 'color' => '#e07b0f'],
             ['id' => 8, 'title' => 'كشف تسرب بالأجهزة', 'cat' => 'روف', 'type' => 'before', 'icon' => 'fa-search', 'img' => '', 'color' => '#1d4ed8'],
-            ['id' => 9, 'title' => 'فيديو عملية الرش بالفوم الأمريكي', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => '/assets/video-demo.mp4', 'color' => '#0f2441'],
-            ['id' => 10, 'title' => 'فيديو اختبار عزل المياه للسطح', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => '/assets/video-demo.mp4', 'color' => '#0f2441']
+            ['id' => 9, 'title' => 'فيديو عملية الرش بالفوم الأمريكي', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'color' => '#0f2441'],
+            ['id' => 10, 'title' => 'فيديو اختبار عزل المياه للسطح', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'color' => '#0f2441']
         ];
         foreach ($gallery as $g) {
             Gallery::updateOrCreate(['id' => $g['id']], $g);
@@ -434,5 +420,11 @@ class DatabaseSeeder extends Seeder
         foreach ($blogs as $b) {
             Blog::updateOrCreate(['id' => $b['id']], $b);
         }
+
+        // Call dedicated standalone VideoSeeder and ReviewVideoSeeder
+        $this->call([
+            VideoSeeder::class,
+            ReviewVideoSeeder::class,
+        ]);
     }
 }

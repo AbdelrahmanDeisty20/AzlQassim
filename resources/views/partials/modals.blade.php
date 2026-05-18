@@ -135,10 +135,10 @@
 
 <!-- Global Video Lightbox Modal -->
 <div id="vidModal" style="display:none; position:fixed; inset:0; background:rgba(8,15,30,0.92); z-index:99999; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(10px); transition: opacity 0.3s ease;" onclick="if(event.target===this)closeVid()">
-    <div class="vmod-in" style="position:relative; width:100%; max-width:850px; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.1);">
+    <div class="vmod-in" style="position:relative; width:100%; max-width:850px; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.1);" onclick="event.stopPropagation()">
         <button onclick="closeVid()" style="position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:18px; width:38px; height:38px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:100; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='scale(1)';">
             <i class="fas fa-times"></i>
         </button>
-        <div id="vidBody" style="width:100%; height:100%;"></div>
+        <div id="vidBody" style="width:100%; height:100%;" onclick="event.stopPropagation()"></div>
     </div>
 </div>

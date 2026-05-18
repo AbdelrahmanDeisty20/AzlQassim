@@ -203,7 +203,7 @@ const INIT = {
             city: 'الرس',
             rating: 5,
             svc: 'video',
-            text: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            text: '/assets/WhatsApp Video 2026-05-18 at 1.53.40 PM.mp4',
             status: 'active'
         },
         {
@@ -212,7 +212,7 @@ const INIT = {
             city: 'بريدة',
             rating: 5,
             svc: 'video',
-            text: '/assets/video-demo.mp4',
+            text: '/assets/WhatsApp Video 2026-05-18 at 1.53.41 PM (1).mp4',
             status: 'active'
         }
     ],
@@ -225,8 +225,23 @@ const INIT = {
         { id: 6, title: 'سطح بعد العزل', cat: 'روف', type: 'after', icon: 'fa-check-circle', img: '', color: '#1a7a45' },
         { id: 7, title: 'عزل فوم حراري - حائل', cat: 'فوم', type: 'after', icon: 'fa-thermometer-half', img: '', color: '#e07b0f' },
         { id: 8, title: 'كشف تسرب بالأجهزة', cat: 'روف', type: 'before', icon: 'fa-search', img: '', color: '#1d4ed8' },
-        { id: 9, title: 'فيديو عملية الرش بالفوم الأمريكي', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/video-demo.mp4', color: '#0f2441' },
-        { id: 10, title: 'فيديو اختبار عزل المياه للسطح', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/video-demo.mp4', color: '#0f2441' }
+        { id: 9, title: 'فيديو عملية الرش بالفوم الأمريكي - حي الريان', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.41 PM.mp4', color: '#0f2441' },
+        { id: 10, title: 'فيديو اختبار عزل المياه للسطح - حي الصفراء', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.42 PM (1).mp4', color: '#0f2441' },
+        { id: 11, title: 'فيديو عزل خزان مياه أرضي خرساني', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.42 PM (2).mp4', color: '#0f2441' },
+        { id: 12, title: 'فيديو كشف تسربات المياه بجهاز الذبذبات', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.42 PM.mp4', color: '#0f2441' },
+        { id: 13, title: 'خطوات تطبيق عزل الفوم الحراري والمائي', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.43 PM (1).mp4', color: '#0f2441' },
+        { id: 14, title: 'فيديو عزل فوم لأسطح هناجر ومستودعات', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.43 PM (2).mp4', color: '#0f2441' },
+        { id: 15, title: 'عزل مائي شينكو فوم أمريكي ببريدة', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.43 PM.mp4', color: '#0f2441' },
+        { id: 16, title: 'فيديو معالجة تشققات الأسطح قبل العزل', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.44 PM.mp4', color: '#0f2441' },
+        { id: 17, title: 'فيديو اختبار ضغط شبكة المياه وكشف التسرب', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.45 PM.mp4', color: '#0f2441' },
+        { id: 18, title: 'تطبيق العازل الأسمنتي للخزانات والحمامات', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.46 PM (1).mp4', color: '#0f2441' },
+        { id: 19, title: 'فيديو عزل أسطح شينكو فوم مائي حراري', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.46 PM (2).mp4', color: '#0f2441' },
+        { id: 20, title: 'رش البولي يوريثان فوم لحماية السطح', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.46 PM.mp4', color: '#0f2441' },
+        { id: 21, title: 'فيديو اختبار عزل الأسطح بعد سقوط الأمطار', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.47 PM (1).mp4', color: '#0f2441' },
+        { id: 22, title: 'فيديو كشف تسربات وعزل حمامات الفلل', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.47 PM (2).mp4', color: '#0f2441' },
+        { id: 23, title: 'عزل فوم حراري للأسطح الخرسانية بعنيزة', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.47 PM.mp4', color: '#0f2441' },
+        { id: 24, title: 'كشف تسربات المياه بأحدث أجهزة الصوت', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.48 PM (1).mp4', color: '#0f2441' },
+        { id: 25, title: 'عزل مائي متكامل لأسطح الفلل السكنية بالرس', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/WhatsApp Video 2026-05-18 at 1.53.48 PM.mp4', color: '#0f2441' }
     ],
     faqs: [
         { id: 1, q: 'كم تستغرق عملية عزل السطح؟', a: 'من يوم إلى ثلاثة أيام حسب المساحة ونوع العزل. عزل الفوم أسرع في التطبيق.' },
@@ -388,10 +403,10 @@ const INIT = {
 // Initialize local storage database with seed values if empty
 function initDB() {
     // Force clear older cached tables to load the new video seed entries
-    if (DB.g('db_ver_v4') === null) {
+    if (DB.g('db_ver_v7') === null) {
         localStorage.removeItem('azq3_gallery');
         localStorage.removeItem('azq3_testimonials');
-        DB.s('db_ver_v4', true);
+        DB.s('db_ver_v7', true);
     }
     
     Object.keys(INIT).forEach(key => {
@@ -1615,9 +1630,28 @@ function openVid(url) {
     }
     
     if (ytId) {
-        body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
+        body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&controls=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
     } else {
-        body.innerHTML = `<video src="${url}" autoplay controls style="width:100%; height:100%; object-fit:contain;"></video>`;
+        let finalUrl = url;
+        // If it's a local video path, route it through our range-supporting /video-stream endpoint
+        if (!url.startsWith('http') || url.includes('127.0.0.1') || url.includes('localhost')) {
+            let path = url;
+            if (url.startsWith('http')) {
+                try {
+                    path = new URL(url).pathname;
+                } catch(e) {}
+            }
+            path = path.replace(/^\/+/, '');
+            finalUrl = `/video-stream?path=${encodeURIComponent(path)}`;
+        }
+        
+        body.innerHTML = `<video src="${finalUrl}" controls playsinline style="width:100%; height:100%; object-fit:contain;" onclick="event.stopPropagation()"></video>`;
+        const videoEl = body.querySelector('video');
+        if (videoEl) {
+            videoEl.play().catch(err => {
+                console.log("Autoplay with sound was blocked by strict browser policy. User can click play manually.", err);
+            });
+        }
     }
     modal.style.display = 'flex';
 }

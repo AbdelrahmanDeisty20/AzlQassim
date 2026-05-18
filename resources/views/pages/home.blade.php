@@ -329,19 +329,51 @@
                 <p>صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل</p>
             </div>
             <div class="gal-f">
-                <button class="gf act" onclick="fGal('photos',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">معرض الصور</button>
-                <button class="gf" onclick="fGal('videos',this)">فيديوهات</button>
+                <button class="gf act" onclick="filterHomeGallery('photos', this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">معرض الصور</button>
+                <button class="gf" onclick="filterHomeGallery('videos', this)">فيديوهات</button>
             </div>
             <div class="gal-g" id="galEl">
                 @foreach($gallery as $gal)
                     @php
-                        $isVideo = $gal->cat === 'فيديو' || $gal->cat === 'video' || (!empty($gal->img) && (Str::endsWith($gal->img, '.mp4') || Str::contains($gal->img, 'youtube.com') || Str::contains($gal->img, 'youtu.be')));
+                        $isVideo = !empty($gal->video) || $gal->cat === 'فيديو' || $gal->cat === 'video';
                     @endphp
-                    @if(!$isVideo)
+                    @if($isVideo)
+                        @php
+                            $videoUrl = $gal->video;
+                            $ytId = '';
+                            if (Str::contains($videoUrl, 'youtube.com') || Str::contains($videoUrl, 'youtu.be')) {
+                                if (Str::contains($videoUrl, 'embed/')) {
+                                    $ytId = explode('?', explode('embed/', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'watch?v=')) {
+                                    $ytId = explode('&', explode('watch?v=', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'youtu.be/')) {
+                                    $ytId = explode('?', explode('youtu.be/', $videoUrl)[1])[0];
+                                }
+                            }
+                            $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
+                        @endphp
+                        <div class="gi video-card home-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:none;">
+                            <div class="gi-img-wrap" style="background:#080f1e; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+                                @if($ytId)
+                                    <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover;">
+                                @else
+                                    <video src="{{ $videoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>
+                                @endif
+                                <div style="position:absolute; inset:0; background:rgba(15,36,65,0.4); display:flex; align-items:center; justify-content:center;">
+                                    <div class="play-btn-pulse" style="width:60px; height:60px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; box-shadow:0 0 20px var(--am); transition:all 0.3s;">
+                                        <i class="fas fa-play" style="margin-left:-3px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gi-content">
+                                <h3 class="gi-title">{{ $gal->title }}</h3>
+                            </div>
+                        </div>
+                    @else
                         @php
                             $hasImg = !empty($gal->img);
                         @endphp
-                        <div class="gi">
+                        <div class="gi home-photo-item-el" style="display:block;">
                             <div class="gi-img-wrap" style="{{ $hasImg ? '' : 'background:' . ($gal->color ?? '#0f2441') }}">
                                 @if($hasImg)
                                     <img src="{{ $gal->img }}" onerror="this.style.display='none'">
@@ -364,6 +396,31 @@
             </div>
         </div>
     </section>
+
+    <script>
+    function filterHomeGallery(type, btn) {
+        document.querySelectorAll('.gal-f .gf').forEach(b => {
+            b.classList.remove('act');
+            b.style.background = '#fff';
+            b.style.color = 'var(--cc)';
+            b.style.borderColor = 'var(--sl2)';
+        });
+        if (btn) {
+            btn.classList.add('act');
+            btn.style.background = 'rgba(224, 123, 15, 0.06)';
+            btn.style.color = 'var(--am)';
+            btn.style.borderColor = 'var(--am)';
+        }
+
+        if (type === 'photos') {
+            document.querySelectorAll('.home-photo-item-el').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.home-video-item-el').forEach(el => el.style.display = 'none');
+        } else {
+            document.querySelectorAll('.home-photo-item-el').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.home-video-item-el').forEach(el => el.style.display = 'block');
+        }
+    }
+    </script>
     
     <!-- Service Locations Grid -->
     <section class="sec sec-alt">
@@ -397,16 +454,44 @@
                 <p>أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل</p>
             </div>
             <div class="test-f" style="display:flex; justify-content:center; gap:8px; margin-bottom:28px;">
-                <button class="tf gf act" onclick="fTest('text',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">تقييمات</button>
-                <button class="tf gf" onclick="fTest('video',this)">فيديوهات</button>
+                <button class="tf gf act" onclick="filterHomeTestimonials('text',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">تقييمات</button>
+                <button class="tf gf" onclick="filterHomeTestimonials('video',this)">فيديوهات</button>
             </div>
             <div class="tests-g" id="tstEl">
                 @foreach($testimonials as $tst)
                     @php
-                        $isVideo = $tst->svc === 'video' || $tst->svc === 'فيديو' || (!empty($tst->text) && (Str::contains($tst->text, 'youtube.com') || Str::contains($tst->text, 'youtu.be') || Str::endsWith($tst->text, '.mp4')));
+                        $isVideo = !empty($tst->video) || $tst->svc === 'video' || $tst->svc === 'فيديو';
                     @endphp
-                    @if(!$isVideo)
-                        <div class="tc">
+                    @if($isVideo)
+                        @php
+                            $videoUrl = $tst->video;
+                            $ytId = '';
+                            if (Str::contains($videoUrl, 'youtube.com') || Str::contains($videoUrl, 'youtu.be')) {
+                                if (Str::contains($videoUrl, 'embed/')) {
+                                    $ytId = explode('?', explode('embed/', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'watch?v=')) {
+                                    $ytId = explode('&', explode('watch?v=', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'youtu.be/')) {
+                                    $ytId = explode('?', explode('youtu.be/', $videoUrl)[1])[0];
+                                }
+                            }
+                            $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
+                        @endphp
+                        {{-- Video-only card: no text, no rating, no name --}}
+                        <div class="tc home-test-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:none; padding:0; overflow:hidden; position:relative; min-height:220px; background:#080f1e; border-radius:var(--r2); box-shadow:var(--sh);">
+                            @if($ytId)
+                                <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+                            @else
+                                <video src="{{ $videoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; pointer-events:none;"></video>
+                            @endif
+                            <div style="position:absolute; inset:0; background:rgba(8,15,30,0.2); display:flex; align-items:center; justify-content:center;">
+                                <div style="width:64px; height:64px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 0 30px rgba(224,123,15,0.7); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fas fa-play" style="margin-left:-3px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="tc home-test-text-item-el" style="display:block;">
                             <div class="tc-st">{{ str_repeat('⭐', $tst->rating ?? 5) }}</div>
                             <p>{{ $tst->text }}</p>
                             <div class="tc-auth">
@@ -422,6 +507,31 @@
             </div>
         </div>
     </section>
+
+    <script>
+    function filterHomeTestimonials(type, btn) {
+        document.querySelectorAll('.test-f .gf').forEach(b => {
+            b.classList.remove('act');
+            b.style.background = '#fff';
+            b.style.color = 'var(--cc)';
+            b.style.borderColor = 'var(--sl2)';
+        });
+        if (btn) {
+            btn.classList.add('act');
+            btn.style.background = 'rgba(224, 123, 15, 0.06)';
+            btn.style.color = 'var(--am)';
+            btn.style.borderColor = 'var(--am)';
+        }
+
+        if (type === 'text') {
+            document.querySelectorAll('.home-test-text-item-el').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.home-test-video-item-el').forEach(el => el.style.display = 'none');
+        } else {
+            document.querySelectorAll('.home-test-text-item-el').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.home-test-video-item-el').forEach(el => el.style.display = 'block');
+        }
+    }
+    </script>
     
     <!-- FAQs Wrapper -->
     <section class="sec sec-alt">

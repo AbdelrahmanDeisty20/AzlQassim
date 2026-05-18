@@ -15,6 +15,7 @@ Route::get('/areas', [HomeController::class, 'areas'])->name('areas');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/video-stream', [HomeController::class, 'streamVideo']);
 
 // --- Guest AJAX submissions ---
 Route::post('/requests', [RequestController::class, 'store']);

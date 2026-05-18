@@ -128,4 +128,22 @@ class HomeController extends Controller
         $common = $this->getCommonData();
         return view('pages.contact', $common);
     }
+
+    public function streamVideo(Request $request)
+    {
+        $path = $request->query('path');
+        // Sanitize path to prevent directory traversal
+        $path = str_replace(['..', '\\'], ['', '/'], $path);
+        $path = ltrim($path, '/');
+        
+        $fullPath = public_path($path);
+        
+        if (empty($path) || !file_exists($fullPath) || is_dir($fullPath)) {
+            abort(404);
+        }
+        
+        $response = new \Symfony\Component\HttpFoundation\BinaryFileResponse($fullPath);
+        \Symfony\Component\HttpFoundation\BinaryFileResponse::trustXSendfileTypeHeader();
+        return $response;
+    }
 }

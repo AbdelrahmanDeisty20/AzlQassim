@@ -1633,15 +1633,13 @@ function openVid(url) {
         body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&controls=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
     } else {
         let finalUrl = url;
-        // If it's a local video path, route it through our range-supporting /video-stream endpoint
-        if (!url.startsWith('http') || url.includes('127.0.0.1') || url.includes('localhost')) {
-            let path = url;
-            if (url.startsWith('http')) {
-                try {
-                    path = new URL(url).pathname;
-                } catch(e) {}
-            }
-            path = path.replace(/^\/+/, '');
+        // Only route through /video-stream on local dev (localhost/127.0.0.1)
+        // On production, Apache/Nginx serve files directly with proper range support
+        const isLocalDev = window.location.hostname === 'localhost'
+                        || window.location.hostname === '127.0.0.1'
+                        || window.location.hostname.startsWith('192.168.');
+        if (isLocalDev && !url.startsWith('http')) {
+            let path = url.replace(/^\/+/, '');
             finalUrl = `/video-stream?path=${encodeURIComponent(path)}`;
         }
         

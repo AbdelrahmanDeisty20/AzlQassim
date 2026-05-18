@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
             ['id' => 2, 'name' => 'من نحن', 'page' => 'about', 'v' => true, 'order' => 2],
             ['id' => 3, 'name' => 'خدماتنا', 'page' => 'services', 'v' => true, 'order' => 3],
             ['id' => 4, 'name' => 'مناطق الخدمة', 'page' => 'areas', 'v' => true, 'order' => 4],
-            ['id' => 5, 'name' => 'معرض الأعمال', 'page' => 'gallery', 'v' => true, 'order' => 5],
+            ['id' => 5, 'name' => 'أعمالنا', 'page' => 'gallery', 'v' => true, 'order' => 5],
             ['id' => 6, 'name' => 'المقالات', 'page' => 'blog', 'v' => true, 'order' => 6],
             ['id' => 7, 'name' => 'تواصل معنا', 'page' => 'contact', 'v' => true, 'order' => 7]
         ];
@@ -257,6 +257,24 @@ class DatabaseSeeder extends Seeder
                 'svc' => 'كشف تسربات',
                 'text' => 'كشفوا التسرب بدقة بدون هدم. تعاملت مع شركات أخرى لم تحل المشكلة لكن عزل القصيم حلوها من أول مرة وبضمان.',
                 'status' => 'active'
+            ],
+            [
+                'id' => 4,
+                'name' => 'محمد الحربي',
+                'city' => 'الرس',
+                'rating' => 5,
+                'svc' => 'video',
+                'text' => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                'status' => 'active'
+            ],
+            [
+                'id' => 5,
+                'name' => 'خالد اليوسف',
+                'city' => 'بريدة',
+                'rating' => 5,
+                'svc' => 'video',
+                'text' => '/assets/video-demo.mp4',
+                'status' => 'active'
             ]
         ];
         foreach ($testimonials as $t) {
@@ -272,7 +290,9 @@ class DatabaseSeeder extends Seeder
             ['id' => 5, 'title' => 'سطح قبل العزل', 'cat' => 'روف', 'type' => 'before', 'icon' => 'fa-exclamation-triangle', 'img' => '', 'color' => '#dc2626'],
             ['id' => 6, 'title' => 'سطح بعد العزل', 'cat' => 'روف', 'type' => 'after', 'icon' => 'fa-check-circle', 'img' => '', 'color' => '#1a7a45'],
             ['id' => 7, 'title' => 'عزل فوم حراري - حائل', 'cat' => 'فوم', 'type' => 'after', 'icon' => 'fa-thermometer-half', 'img' => '', 'color' => '#e07b0f'],
-            ['id' => 8, 'title' => 'كشف تسرب بالأجهزة', 'cat' => 'روف', 'type' => 'before', 'icon' => 'fa-search', 'img' => '', 'color' => '#1d4ed8']
+            ['id' => 8, 'title' => 'كشف تسرب بالأجهزة', 'cat' => 'روف', 'type' => 'before', 'icon' => 'fa-search', 'img' => '', 'color' => '#1d4ed8'],
+            ['id' => 9, 'title' => 'فيديو عملية الرش بالفوم الأمريكي', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => '/assets/video-demo.mp4', 'color' => '#0f2441'],
+            ['id' => 10, 'title' => 'فيديو اختبار عزل المياه للسطح', 'cat' => 'فيديو', 'type' => 'after', 'icon' => 'fa-video', 'img' => '/assets/video-demo.mp4', 'color' => '#0f2441']
         ];
         foreach ($gallery as $g) {
             Gallery::updateOrCreate(['id' => $g['id']], $g);

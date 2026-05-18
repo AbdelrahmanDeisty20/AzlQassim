@@ -196,6 +196,24 @@ const INIT = {
             svc: 'كشف تسربات',
             text: 'كشفوا التسرب بدقة بدون هدم. تعاملت مع شركات أخرى لم تحل المشكلة لكن عزل القصيم حلوها من أول مرة وبضمان.',
             status: 'active'
+        },
+        {
+            id: 4,
+            name: 'محمد الحربي',
+            city: 'الرس',
+            rating: 5,
+            svc: 'video',
+            text: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            status: 'active'
+        },
+        {
+            id: 5,
+            name: 'خالد اليوسف',
+            city: 'بريدة',
+            rating: 5,
+            svc: 'video',
+            text: '/assets/video-demo.mp4',
+            status: 'active'
         }
     ],
     gallery: [
@@ -206,7 +224,9 @@ const INIT = {
         { id: 5, title: 'سطح قبل العزل', cat: 'روف', type: 'before', icon: 'fa-exclamation-triangle', img: '', color: '#dc2626' },
         { id: 6, title: 'سطح بعد العزل', cat: 'روف', type: 'after', icon: 'fa-check-circle', img: '', color: '#1a7a45' },
         { id: 7, title: 'عزل فوم حراري - حائل', cat: 'فوم', type: 'after', icon: 'fa-thermometer-half', img: '', color: '#e07b0f' },
-        { id: 8, title: 'كشف تسرب بالأجهزة', cat: 'روف', type: 'before', icon: 'fa-search', img: '', color: '#1d4ed8' }
+        { id: 8, title: 'كشف تسرب بالأجهزة', cat: 'روف', type: 'before', icon: 'fa-search', img: '', color: '#1d4ed8' },
+        { id: 9, title: 'فيديو عملية الرش بالفوم الأمريكي', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/video-demo.mp4', color: '#0f2441' },
+        { id: 10, title: 'فيديو اختبار عزل المياه للسطح', cat: 'فيديو', type: 'after', icon: 'fa-video', img: '/assets/video-demo.mp4', color: '#0f2441' }
     ],
     faqs: [
         { id: 1, q: 'كم تستغرق عملية عزل السطح؟', a: 'من يوم إلى ثلاثة أيام حسب المساحة ونوع العزل. عزل الفوم أسرع في التطبيق.' },
@@ -367,6 +387,13 @@ const INIT = {
 
 // Initialize local storage database with seed values if empty
 function initDB() {
+    // Force clear older cached tables to load the new video seed entries
+    if (DB.g('db_ver_v4') === null) {
+        localStorage.removeItem('azq3_gallery');
+        localStorage.removeItem('azq3_testimonials');
+        DB.s('db_ver_v4', true);
+    }
+    
     Object.keys(INIT).forEach(key => {
         if (DB.g(key) === null) {
             DB.s(key, INIT[key]);
@@ -1378,7 +1405,7 @@ function ldCls() {
 }
 
 // --- Front-end Page Renders ---
-let CF = 'all';
+let CF = 'photos';
 let CP = 'home';
 
 function renderNav() {
@@ -1491,25 +1518,138 @@ function renderOffers() {
     `).join('');
 }
 
+let CT = 'text'; // Default testimonial filter: 'text' (written) or 'video'
+
 function renderTests() {
     const list = (DB.g('testimonials') || []).filter(x => x.status === 'active');
     const el = $('tstEl');
     if (!el) return;
 
-    el.innerHTML = list.map(x => `
-        <div class="tc">
-            <div class="tc-st">${'⭐'.repeat(x.rating || 5)}</div>
-            <p>${x.text}</p>
-            <div class="tc-auth">
-                <div class="tc-av">${(x.name || '?').charAt(0)}</div>
-                <div class="tc-info">
-                    <strong>${x.name}</strong>
-                    <span>${x.city || ''} · ${x.svc || ''}</span>
-                </div>
+    const filtered = list.filter(x => {
+        const isVideo = x.svc === 'video' || x.svc === 'فيديو' || (x.text && (x.text.includes('youtube.com') || x.text.includes('youtu.be') || x.text.endsWith('.mp4')));
+        if (CT === 'video') {
+            return isVideo;
+        } else {
+            return !isVideo;
+        }
+    });
+
+    if (filtered.length === 0) {
+        el.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(15, 36, 65, 0.02); border: 2px dashed rgba(15, 36, 65, 0.1); border-radius: var(--r2); color: var(--nv); font-weight: 700; margin-top: 10px;">
+                <i class="fas fa-comments-slash" style="font-size: 38px; color: var(--am); margin-bottom: 15px; display: block; filter: drop-shadow(0 4px 6px rgba(224,123,15,0.2));"></i>
+                <span style="font-size: 15px; display: block; margin-bottom: 6px;">لا توجد تقييمات فيديو حالياً.</span>
+                <span style="font-size: 13px; color: var(--cc); font-weight: 500;">نقوم حالياً بتوثيق آراء عملائنا الكرام بالفيديو وسنقوم بنشرها قريباً!</span>
             </div>
-        </div>
-    `).join('');
+        `;
+    } else {
+        el.innerHTML = filtered.map(x => {
+            const isVideo = x.svc === 'video' || x.svc === 'فيديو' || (x.text && (x.text.includes('youtube.com') || x.text.includes('youtu.be') || x.text.endsWith('.mp4')));
+            if (isVideo) {
+                let thumb = '';
+                let ytId = '';
+                if (x.text.includes('youtube.com') || x.text.includes('youtu.be')) {
+                    if (x.text.includes('youtube.com/embed/')) {
+                        ytId = x.text.split('embed/')[1].split('?')[0];
+                    } else if (x.text.includes('youtube.com/watch?v=')) {
+                        ytId = x.text.split('watch?v=')[1].split('&')[0];
+                    } else if (x.text.includes('youtu.be/')) {
+                        ytId = x.text.split('youtu.be/')[1].split('?')[0];
+                    }
+                    if (ytId) {
+                        thumb = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                    }
+                }
+                return `
+                    <div class="tc video-test-card" onclick="openVid('${x.text}')" style="cursor:pointer; background:#080f1e; border: 2px solid rgba(15, 36, 65, 0.1); border-radius: var(--r2); padding: 12px; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: space-between; border-bottom: 3px solid var(--am);">
+                        <div class="video-container" style="border-radius: var(--r); overflow: hidden; position: relative; height: 200px; background:#000; display:flex; align-items:center; justify-content:center;">
+                            ${ytId ? `<img src="${thumb}" style="width:100%; height:100%; object-fit:cover;">` : `<video src="${x.text}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>`}
+                            <div style="position:absolute; inset:0; background:rgba(15,36,65,0.4); display:flex; align-items:center; justify-content:center;">
+                                <div class="play-btn-pulse" style="width:50px; height:50px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; box-shadow:0 0 15px var(--am); transition:all 0.3s;">
+                                    <i class="fas fa-play" style="margin-left:-3px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tc-auth" style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px;">
+                            <div class="tc-av" style="background: var(--am); color: #fff;">${(x.name || '?').charAt(0)}</div>
+                            <div class="tc-info">
+                                <strong style="color: #fff; display:block; font-size:13px; font-weight:700;">${x.name}</strong>
+                                <span style="color: rgba(255,255,255,0.7); font-size:11px;">${x.city || ''} · رأي بالفيديو</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="tc">
+                    <div class="tc-st">${'⭐'.repeat(x.rating || 5)}</div>
+                    <p>${x.text}</p>
+                    <div class="tc-auth">
+                        <div class="tc-av">${(x.name || '?').charAt(0)}</div>
+                        <div class="tc-info">
+                            <strong>${x.name}</strong>
+                            <span>${x.city || ''} · ${x.svc || ''}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
 }
+
+function openVid(url) {
+    const modal = $('vidModal');
+    const body = $('vidBody');
+    if (!modal || !body) return;
+    
+    let ytId = '';
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        if (url.includes('youtube.com/embed/')) {
+            ytId = url.split('embed/')[1].split('?')[0];
+        } else if (url.includes('youtube.com/watch?v=')) {
+            ytId = url.split('watch?v=')[1].split('&')[0];
+        } else if (url.includes('youtu.be/')) {
+            ytId = url.split('youtu.be/')[1].split('?')[0];
+        }
+    }
+    
+    if (ytId) {
+        body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
+    } else {
+        body.innerHTML = `<video src="${url}" autoplay controls style="width:100%; height:100%; object-fit:contain;"></video>`;
+    }
+    modal.style.display = 'flex';
+}
+
+function closeVid() {
+    const modal = $('vidModal');
+    const body = $('vidBody');
+    if (modal) modal.style.display = 'none';
+    if (body) body.innerHTML = '';
+}
+
+window.openVid = openVid;
+window.closeVid = closeVid;
+
+function fTest(type, btn) {
+    CT = type;
+    document.querySelectorAll('.test-f .tf').forEach(b => {
+        b.classList.remove('act');
+        b.style.background = 'transparent';
+        b.style.color = 'var(--nv)';
+        b.style.borderColor = 'var(--sl2)';
+    });
+    if (btn) {
+        btn.classList.add('act');
+        btn.style.background = 'rgba(224, 123, 15, 0.06)';
+        btn.style.color = 'var(--am)';
+        btn.style.borderColor = 'var(--am)';
+    }
+    renderTests();
+}
+
+window.fTest = fTest;
 
 function renderFaqs(id = 'faqEl') {
     const list = DB.g('faqs') || [];
@@ -1557,16 +1697,57 @@ function renderBlog() {
     });
 }
 
+// default gallery filter is initialized globally above
+
 function galItem(g) {
     const hasImg = g.img && g.img.startsWith('http');
+    const isVideo = g.cat === 'فيديو' || g.cat === 'video' || (g.img && (g.img.endsWith('.mp4') || g.img.includes('youtube.com') || g.img.includes('youtu.be')));
+    
+    if (isVideo) {
+        let thumb = g.img;
+        let ytId = '';
+        if (g.img && (g.img.includes('youtube.com') || g.img.includes('youtu.be'))) {
+            if (g.img.includes('youtube.com/embed/')) {
+                ytId = g.img.split('embed/')[1].split('?')[0];
+            } else if (g.img.includes('youtube.com/watch?v=')) {
+                ytId = g.img.split('watch?v=')[1].split('&')[0];
+            } else if (g.img.includes('youtu.be/')) {
+                ytId = g.img.split('youtu.be/')[1].split('?')[0];
+            }
+            if (ytId) {
+                thumb = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+            }
+        }
+        
+        return `
+            <div class="gi video-card" onclick="openVid('${g.img}')" style="cursor:pointer;">
+                <div class="gi-img-wrap" style="background:#080f1e; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+                    ${ytId ? `<img src="${thumb}" style="width:100%; height:100%; object-fit:cover;">` : `<video src="${g.img}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>`}
+                    <div style="position:absolute; inset:0; background:rgba(15,36,65,0.4); display:flex; align-items:center; justify-content:center;">
+                        <div class="play-btn-pulse" style="width:60px; height:60px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; box-shadow:0 0 20px var(--am); transition:all 0.3s;">
+                            <i class="fas fa-play" style="margin-left:-3px;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gi-content">
+                    <h3 class="gi-title">${g.title}</h3>
+                </div>
+            </div>
+        `;
+    }
+    
     return `
-        <div class="gi" style="${hasImg ? '' : `background:${g.color || '#0f2441'}`}">
-            ${hasImg ? `<img src="${g.img}" onerror="this.style.display='none'">` : ''}
-            ${!hasImg ? `<div class="gi-ph"><i class="fas ${g.icon || 'fa-image'}"></i><span>${g.title}</span></div>` : ''}
-            <span class="gtype ${g.type === 'before' ? 'bf' : 'af'}">${g.type === 'before' ? 'قبل' : 'بعد'}</span>
-            <div class="gi-ov">
-                <i class="fas fa-search-plus"></i>
-                <div class="gi-lb">${g.title}</div>
+        <div class="gi">
+            <div class="gi-img-wrap" style="${hasImg ? '' : `background:${g.color || '#0f2441'}`}">
+                ${hasImg ? `<img src="${g.img}" onerror="this.style.display='none'">` : ''}
+                ${!hasImg ? `<div class="gi-ph"><i class="fas ${g.icon || 'fa-image'}"></i></div>` : ''}
+                <span class="gtype ${g.type === 'before' ? 'bf' : 'af'}">${g.type === 'before' ? 'قبل' : 'بعد'}</span>
+                <div class="gi-ov">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+            <div class="gi-content">
+                <h3 class="gi-title">${g.title}</h3>
             </div>
         </div>
     `;
@@ -1574,23 +1755,65 @@ function galItem(g) {
 
 function renderGal() {
     const list = DB.g('gallery') || [];
-    const filtered = CF === 'all' ? list : list.filter(x => x.cat === CF);
+    const filtered = list.filter(x => {
+        const isVideo = x.cat === 'فيديو' || x.cat === 'video' || (x.img && (x.img.endsWith('.mp4') || x.img.includes('youtube.com') || x.img.includes('youtu.be')));
+        if (CF === 'videos') {
+            return isVideo;
+        } else {
+            return !isVideo;
+        }
+    });
 
-    const el = $('galEl'); if (el) el.innerHTML = filtered.map(x => galItem(x)).join('');
-    const ep = $('galPg'); if (ep) ep.innerHTML = filtered.map(x => galItem(x)).join('');
+    const el = $('galEl');
+    const ep = $('galPg');
+    
+    if (filtered.length === 0) {
+        const placeholderHtml = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(15, 36, 65, 0.02); border: 2px dashed rgba(15, 36, 65, 0.1); border-radius: var(--r2); color: var(--nv); font-weight: 700; margin-top: 10px; width: 100%;">
+                <i class="fas fa-video-slash" style="font-size: 38px; color: var(--am); margin-bottom: 15px; display: block; filter: drop-shadow(0 4px 6px rgba(224,123,15,0.2));"></i>
+                <span style="font-size: 15px; display: block; margin-bottom: 6px;">لا توجد فيديوهات حالياً في هذا القسم.</span>
+                <span style="font-size: 13px; color: var(--cc); font-weight: 500;">نعمل حالياً على تصوير وتجهيز مشاريع جديدة وسنعرضها هنا قريباً!</span>
+            </div>
+        `;
+        if (el) el.innerHTML = placeholderHtml;
+        if (ep) ep.innerHTML = placeholderHtml;
+    } else {
+        if (el) el.innerHTML = filtered.map(x => galItem(x)).join('');
+        if (ep) ep.innerHTML = filtered.map(x => galItem(x)).join('');
+    }
 }
 
 function fGal(cat, btn) {
     CF = cat;
-    document.querySelectorAll('.gal-f .gf').forEach(b => b.classList.remove('act'));
-    if (btn) btn.classList.add('act');
+    document.querySelectorAll('.gal-f .gf').forEach(b => {
+        b.classList.remove('act');
+        b.style.background = '#fff';
+        b.style.color = 'var(--cc)';
+        b.style.borderColor = 'var(--sl2)';
+    });
+    if (btn) {
+        btn.classList.add('act');
+        btn.style.background = 'rgba(224, 123, 15, 0.06)';
+        btn.style.color = 'var(--am)';
+        btn.style.borderColor = 'var(--am)';
+    }
     renderGal();
 }
 
 function fGal2(cat, btn) {
     CF = cat;
-    document.querySelectorAll('#galF2 .gf').forEach(b => b.classList.remove('act'));
-    if (btn) btn.classList.add('act');
+    document.querySelectorAll('#galF2 .gf').forEach(b => {
+        b.classList.remove('act');
+        b.style.background = '#fff';
+        b.style.color = 'var(--cc)';
+        b.style.borderColor = 'var(--sl2)';
+    });
+    if (btn) {
+        btn.classList.add('act');
+        btn.style.background = 'rgba(224, 123, 15, 0.06)';
+        btn.style.color = 'var(--am)';
+        btn.style.borderColor = 'var(--am)';
+    }
     renderGal();
 }
 

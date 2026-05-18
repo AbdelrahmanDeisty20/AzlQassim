@@ -323,41 +323,43 @@
     <section class="sec">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-images"></i>معرض الأعمال</div>
+                <div class="tag"><i class="fas fa-images"></i>أعمالنا</div>
                 <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
                 <h2>أعمالنا <em>تتحدث عنا</em></h2>
                 <p>صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل</p>
             </div>
             <div class="gal-f">
-                <button class="gf act" onclick="fGal('all',this)">الكل</button>
-                <button class="gf" onclick="fGal('روف',this)">عزل أسطح</button>
-                <button class="gf" onclick="fGal('فوم',this)">عزل فوم</button>
-                <button class="gf" onclick="fGal('خزان',this)">خزانات</button>
-                <button class="gf" onclick="fGal('حمام',this)">حمامات</button>
+                <button class="gf act" onclick="fGal('photos',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">معرض الصور</button>
+                <button class="gf" onclick="fGal('videos',this)">فيديوهات</button>
             </div>
             <div class="gal-g" id="galEl">
                 @foreach($gallery as $gal)
                     @php
-                        $hasImg = !empty($gal->img);
+                        $isVideo = $gal->cat === 'فيديو' || $gal->cat === 'video' || (!empty($gal->img) && (Str::endsWith($gal->img, '.mp4') || Str::contains($gal->img, 'youtube.com') || Str::contains($gal->img, 'youtu.be')));
                     @endphp
-                    <div class="gi">
-                        <div class="gi-img-wrap" style="{{ $hasImg ? '' : 'background:' . ($gal->color ?? '#0f2441') }}">
-                            @if($hasImg)
-                                <img src="{{ $gal->img }}" onerror="this.style.display='none'">
-                            @else
-                                <div class="gi-ph">
-                                    <i class="fas {{ $gal->icon ?? 'fa-image' }}"></i>
+                    @if(!$isVideo)
+                        @php
+                            $hasImg = !empty($gal->img);
+                        @endphp
+                        <div class="gi">
+                            <div class="gi-img-wrap" style="{{ $hasImg ? '' : 'background:' . ($gal->color ?? '#0f2441') }}">
+                                @if($hasImg)
+                                    <img src="{{ $gal->img }}" onerror="this.style.display='none'">
+                                @else
+                                    <div class="gi-ph">
+                                        <i class="fas {{ $gal->icon ?? 'fa-image' }}"></i>
+                                    </div>
+                                @endif
+                                <span class="gtype {{ $gal->type === 'before' ? 'bf' : 'af' }}">{{ $gal->type === 'before' ? 'قبل' : 'بعد' }}</span>
+                                <div class="gi-ov">
+                                    <i class="fas fa-search-plus"></i>
                                 </div>
-                            @endif
-                            <span class="gtype {{ $gal->type === 'before' ? 'bf' : 'af' }}">{{ $gal->type === 'before' ? 'قبل' : 'بعد' }}</span>
-                            <div class="gi-ov">
-                                <i class="fas fa-search-plus"></i>
+                            </div>
+                            <div class="gi-content">
+                                <h3 class="gi-title">{{ $gal->title }}</h3>
                             </div>
                         </div>
-                        <div class="gi-content">
-                            <h3 class="gi-title">{{ $gal->title }}</h3>
-                        </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -394,19 +396,28 @@
                 <h2>ماذا يقول <em>عملاؤنا</em></h2>
                 <p>أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل</p>
             </div>
+            <div class="test-f" style="display:flex; justify-content:center; gap:8px; margin-bottom:28px;">
+                <button class="tf gf act" onclick="fTest('text',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">تقييمات</button>
+                <button class="tf gf" onclick="fTest('video',this)">فيديوهات</button>
+            </div>
             <div class="tests-g" id="tstEl">
                 @foreach($testimonials as $tst)
-                    <div class="tc">
-                        <div class="tc-st">{{ str_repeat('⭐', $tst->rating ?? 5) }}</div>
-                        <p>{{ $tst->text }}</p>
-                        <div class="tc-auth">
-                            <div class="tc-av">{{ mb_substr($tst->name ?? '?', 0, 1) }}</div>
-                            <div class="tc-info">
-                                <strong>{{ $tst->name }}</strong>
-                                <span>{{ $tst->city }} · {{ $tst->svc }}</span>
+                    @php
+                        $isVideo = $tst->svc === 'video' || $tst->svc === 'فيديو' || (!empty($tst->text) && (Str::contains($tst->text, 'youtube.com') || Str::contains($tst->text, 'youtu.be') || Str::endsWith($tst->text, '.mp4')));
+                    @endphp
+                    @if(!$isVideo)
+                        <div class="tc">
+                            <div class="tc-st">{{ str_repeat('⭐', $tst->rating ?? 5) }}</div>
+                            <p>{{ $tst->text }}</p>
+                            <div class="tc-auth">
+                                <div class="tc-av">{{ mb_substr($tst->name ?? '?', 0, 1) }}</div>
+                                <div class="tc-info">
+                                    <strong>{{ $tst->name }}</strong>
+                                    <span>{{ $tst->city }} · {{ $tst->svc }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

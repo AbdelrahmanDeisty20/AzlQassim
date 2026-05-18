@@ -1614,9 +1614,34 @@ function renderTests() {
 }
 
 function openVid(url) {
+    console.log(`%c[Video Player] openVid triggered for URL: "${url}"`, "color: #e07b0f; font-weight: bold; font-size: 13px;");
+    
     const modal = $('vidModal');
     const body = $('vidBody');
-    if (!modal || !body) return;
+    
+    if (!modal) {
+        console.error("%c[Video Player] ERROR: HTML element with ID 'vidModal' was not found in the DOM!", "color: red; font-weight: bold;");
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ في تشغيل الفيديو',
+            text: 'عنصر modal غير موجود بالصفحة (vidModal)',
+            confirmButtonText: 'حسناً'
+        });
+        return;
+    }
+    
+    if (!body) {
+        console.error("%c[Video Player] ERROR: HTML element with ID 'vidBody' was not found in the DOM!", "color: red; font-weight: bold;");
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ في تشغيل الفيديو',
+            text: 'عنصر body غير موجود بالصفحة (vidBody)',
+            confirmButtonText: 'حسناً'
+        });
+        return;
+    }
+    
+    console.log("[Video Player] vidModal and vidBody successfully located.");
     
     let ytId = '';
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
@@ -1630,15 +1655,25 @@ function openVid(url) {
     }
     
     if (ytId) {
+        console.log(`%c[Video Player] YouTube Video detected. ID: ${ytId}`, "color: #ff0000; font-weight: bold;");
         body.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&controls=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
+        
+        // Listen to iframe load
+        const iframe = body.querySelector('iframe');
+        iframe.onload = function() {
+            console.log("%c[Video Player] YouTube IFrame loaded successfully.", "color: green; font-weight: bold;");
+        };
     } else {
+        console.log("[Video Player] Native MP4/WebM video detected.");
         let finalUrl = url;
         // Encode path segments to handle spaces and special chars in filenames
         if (!url.startsWith('http')) {
             finalUrl = url.split('/').map(function(seg) {
                 return seg ? encodeURIComponent(seg) : seg;
             }).join('/');
+            console.log(`[Video Player] Encoded native video path to: "${finalUrl}"`);
         }
+        
         // On local dev, route through /video-stream for HTTP range (seek) support
         const isLocalDev = window.location.hostname === 'localhost'
                         || window.location.hostname === '127.0.0.1'
@@ -1646,17 +1681,75 @@ function openVid(url) {
         if (isLocalDev && !url.startsWith('http')) {
             let path = url.replace(/^\/+/, '');
             finalUrl = `/video-stream?path=${encodeURIComponent(path)}`;
+            console.log(`[Video Player] Local dev detected. Streaming video via: "${finalUrl}"`);
         }
         
         body.innerHTML = `<video src="${finalUrl}" controls playsinline style="width:100%; height:100%; object-fit:contain;" onclick="event.stopPropagation()"></video>`;
         const videoEl = body.querySelector('video');
         if (videoEl) {
-            videoEl.play().catch(err => {
-                console.log("Autoplay with sound was blocked by strict browser policy. User can click play manually.", err);
+            console.log("[Video Player] Created native <video> element. Setting up diagnostics event listeners...");
+            
+            videoEl.addEventListener('loadstart', () => {
+                console.log(`%c[Video Player] [Event: loadstart] Video is beginning to load: "${finalUrl}"`, "color: #3182ce;");
+            });
+            
+            videoEl.addEventListener('loadedmetadata', () => {
+                console.log(`%c[Video Player] [Event: loadedmetadata] Video metadata successfully loaded. Duration: ${videoEl.duration.toFixed(2)}s, Dimensions: ${videoEl.videoWidth}x${videoEl.videoHeight}`, "color: #2b6cb0; font-weight: bold;");
+            });
+            
+            videoEl.addEventListener('canplay', () => {
+                console.log("%c[Video Player] [Event: canplay] Enough data is buffered. Video is ready to start playing.", "color: #2f855a; font-weight: bold;");
+            });
+            
+            videoEl.addEventListener('playing', () => {
+                console.log("%c[Video Player] [Event: playing] Video playback has started or resumed successfully.", "color: green; font-weight: bold;");
+            });
+            
+            videoEl.addEventListener('waiting', () => {
+                console.warn("[Video Player] [Event: waiting] Video playback stopped due to buffering...");
+            });
+            
+            videoEl.addEventListener('error', (e) => {
+                const err = videoEl.error;
+                let errMsg = 'Unknown Media Error';
+                if (err) {
+                    switch (err.code) {
+                        case err.MEDIA_ERR_ABORTED:
+                            errMsg = 'Fetching process aborted by user.';
+                            break;
+                        case err.MEDIA_ERR_NETWORK:
+                            errMsg = 'A network error occurred while fetching the video. Please check your internet connection.';
+                            break;
+                        case err.MEDIA_ERR_DECODE:
+                            errMsg = 'An error occurred while decoding the video (corrupted file or unsupported codec format).';
+                            break;
+                        case err.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                            errMsg = 'The video file could not be loaded. Either the path/file is not found (404 Not Found), or your browser doesn\'t support this specific format/codec.';
+                            break;
+                    }
+                }
+                console.error(`%c[Video Player] [Event: error] FAILED to play video: ${errMsg}`, "color: red; font-weight: bold; font-size: 12px;", err);
+                
+                // Show interactive alert for user indicating the failure
+                Swal.fire({
+                    icon: 'error',
+                    title: 'فشل تشغيل الفيديو',
+                    text: `لا يمكن تحميل ملف الفيديو. السبب: ${errMsg}`,
+                    footer: `<span style="font-size: 11px; direction: ltr; color: #888;">URL: ${finalUrl}</span>`,
+                    confirmButtonText: 'حسناً'
+                });
+            });
+
+            console.log("[Video Player] Requesting browser to play video...");
+            videoEl.play().then(() => {
+                console.log("%c[Video Player] Video play request accepted by browser.", "color: green;");
+            }).catch(err => {
+                console.warn("%c[Video Player] Autoplay with sound blocked or interrupted. The user can press play manually.", "color: orange;", err.message);
             });
         }
     }
     modal.style.display = 'flex';
+    console.log("[Video Player] Modal display style changed to 'flex'.");
 }
 
 function closeVid() {

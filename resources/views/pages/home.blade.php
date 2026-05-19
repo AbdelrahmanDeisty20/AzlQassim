@@ -189,6 +189,56 @@
         </div>
     </section>
     
+    <!-- Video Testimonials Section -->
+    <section class="sec" style="background: #f8f9fa; padding: 60px 0; border-bottom: 1px solid rgba(15,36,65,0.06);">
+        <div class="con">
+            <div class="st">
+                <div class="tag"><i class="fas fa-video"></i>آراء مصورة</div>
+                <h2>ماذا يقول <em>عملائنا</em></h2>
+                <p>شاهد تجارب عملائنا الحقيقية وصوتهم في تقييم خدماتنا بالقصيم والمملكة</p>
+            </div>
+            
+            <div class="tests-g" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                @foreach($testimonials as $tst)
+                    @php
+                        $isVideo = !empty($tst->video) || $tst->svc === 'video' || $tst->svc === 'فيديو';
+                    @endphp
+                    @if($isVideo)
+                        @php
+                            $videoUrl = $tst->video;
+                            $ytId = '';
+                            if (Str::contains($videoUrl, 'youtube.com') || Str::contains($videoUrl, 'youtu.be')) {
+                                if (Str::contains($videoUrl, 'embed/')) {
+                                    $ytId = explode('?', explode('embed/', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'watch?v=')) {
+                                    $ytId = explode('&', explode('watch?v=', $videoUrl)[1])[0];
+                                } elseif (Str::contains($videoUrl, 'youtu.be/')) {
+                                    $ytId = explode('?', explode('youtu.be/', $videoUrl)[1])[0];
+                                }
+                            }
+                            $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
+                            // Encode path segments for Apache compatibility
+                            $encodedVideoUrl = $ytId ? $videoUrl : '/' . implode('/', array_map('rawurlencode', explode('/', ltrim($videoUrl, '/'))));
+                        @endphp
+                        {{-- Video card --}}
+                        <div class="tc home-test-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:block; padding:0; overflow:hidden; position:relative; min-height:260px; max-width:480px; margin: 0 auto; width: 100%; background:#080f1e; border-radius:var(--r2); box-shadow:var(--sh);">
+                            @if($ytId)
+                                <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+                            @else
+                                <video src="{{ $encodedVideoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; pointer-events:none;"></video>
+                            @endif
+                            <div style="position:absolute; inset:0; background:rgba(8,15,30,0.25); display:flex; align-items:center; justify-content:center;">
+                                <div style="width:64px; height:64px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 0 30px rgba(224,123,15,0.7); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fas fa-play" style="margin-left:-3px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <!-- Services Grid -->
     <section class="sec">
         <div class="con">
@@ -476,49 +526,15 @@
             <div class="st">
                 <div class="tag"><i class="fas fa-comments"></i>آراء العملاء</div>
                 <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>ماذا يقول <em>عملاؤنا</em></h2>
+                <h2>ما هي آراء <em>عملائنا</em></h2>
                 <p>أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل</p>
-            </div>
-            <div class="test-f" style="display:flex; justify-content:center; gap:8px; margin-bottom:28px;">
-                <button class="tf gf act" onclick="filterHomeTestimonials('text',this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">تقييمات</button>
-                <button class="tf gf" onclick="filterHomeTestimonials('video',this)">فيديوهات</button>
             </div>
             <div class="tests-g" id="tstEl">
                 @foreach($testimonials as $tst)
                     @php
                         $isVideo = !empty($tst->video) || $tst->svc === 'video' || $tst->svc === 'فيديو';
                     @endphp
-                    @if($isVideo)
-                        @php
-                            $videoUrl = $tst->video;
-                            $ytId = '';
-                            if (Str::contains($videoUrl, 'youtube.com') || Str::contains($videoUrl, 'youtu.be')) {
-                                if (Str::contains($videoUrl, 'embed/')) {
-                                    $ytId = explode('?', explode('embed/', $videoUrl)[1])[0];
-                                } elseif (Str::contains($videoUrl, 'watch?v=')) {
-                                    $ytId = explode('&', explode('watch?v=', $videoUrl)[1])[0];
-                                } elseif (Str::contains($videoUrl, 'youtu.be/')) {
-                                    $ytId = explode('?', explode('youtu.be/', $videoUrl)[1])[0];
-                                }
-                            }
-                            $thumb = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : "";
-                            // Encode path segments for Apache compatibility
-                            $encodedVideoUrl = $ytId ? $videoUrl : '/' . implode('/', array_map('rawurlencode', explode('/', ltrim($videoUrl, '/'))));
-                        @endphp
-                        {{-- Video-only card: no text, no rating, no name --}}
-                        <div class="tc home-test-video-item-el" onclick="openVid('{{ $videoUrl }}')" style="cursor:pointer; display:none; padding:0; overflow:hidden; position:relative; min-height:220px; background:#080f1e; border-radius:var(--r2); box-shadow:var(--sh);">
-                            @if($ytId)
-                                <img src="{{ $thumb }}" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
-                            @else
-                                <video src="{{ $encodedVideoUrl }}#t=0.5" preload="metadata" muted playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; pointer-events:none;"></video>
-                            @endif
-                            <div style="position:absolute; inset:0; background:rgba(8,15,30,0.2); display:flex; align-items:center; justify-content:center;">
-                                <div style="width:64px; height:64px; border-radius:50%; background:var(--am); display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 0 30px rgba(224,123,15,0.7); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
-                                    <i class="fas fa-play" style="margin-left:-3px;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    @else
+                    @if(!$isVideo)
                         <div class="tc home-test-text-item-el" style="display:block;">
                             <div class="tc-st">{{ str_repeat('⭐', $tst->rating ?? 5) }}</div>
                             <p>{{ $tst->text }}</p>

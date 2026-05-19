@@ -22,22 +22,6 @@
                         رونق قلب الخليج للعزل الأمريكي
                     </h2>
 
-                    <!-- Licensing and Classification Badge -->
-                    <div style="margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                        <span style="background: rgba(82, 183, 136, 0.22); border: 1.5px solid rgba(82, 183, 136, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(82, 183, 136, 0.1);">
-                            <i class="fas fa-check-circle" style="color: #74c69d; font-size: 15px;"></i>
-                            رخصة بلدية رقم: <strong style="font-size: 15.5px; color: #ffd700; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['lic_no'] ?? '441212615580' }}</strong>
-                        </span>
-                        <span style="background: rgba(78, 168, 222, 0.22); border: 1.5px solid rgba(78, 168, 222, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(78, 168, 222, 0.1);">
-                            <i class="fas fa-id-card" style="color: #70d6ff; font-size: 15px;"></i>
-                            عضوية هيئة المقاولين رقم: <strong style="font-size: 15.5px; color: #70d6ff; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['sca_no'] ?? '31109580340003' }}</strong>
-                        </span>
-                        <span style="background: rgba(230, 57, 70, 0.22); border: 1.5px solid rgba(230, 57, 70, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.1);">
-                            <i class="fas fa-award" style="color: #ff4d6d; font-size: 15px;"></i>
-                            شهادة تصنيف رقم: <strong style="font-size: 15.5px; color: #ffccd5; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['cls_no'] ?? '2024005835' }}</strong> فئة ممتازة
-                        </span>
-                    </div>
-
                     <!-- Organized Bullet List (filling page layout) -->
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 18px; border-radius: var(--r); backdrop-filter: blur(8px);">
                         
@@ -97,6 +81,22 @@
                             <span style="color: #fff; font-weight: 800; font-size: clamp(13.5px, 3.8vw, 15.5px);">اطلب الخبير للمعاينة المجانية علي مدار اليوم</span>
                         </div>
                         
+                    </div>
+
+                    <!-- Licensing and Classification Badge -->
+                    <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                        <span style="background: rgba(82, 183, 136, 0.22); border: 1.5px solid rgba(82, 183, 136, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(82, 183, 136, 0.1);">
+                            <i class="fas fa-check-circle" style="color: #74c69d; font-size: 15px;"></i>
+                            رخصة بلدية رقم: <strong style="font-size: 15.5px; color: #ffd700; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['lic_no'] ?? '441212615580' }}</strong>
+                        </span>
+                        <span style="background: rgba(78, 168, 222, 0.22); border: 1.5px solid rgba(78, 168, 222, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(78, 168, 222, 0.1);">
+                            <i class="fas fa-id-card" style="color: #70d6ff; font-size: 15px;"></i>
+                            عضوية هيئة المقاولين رقم: <strong style="font-size: 15.5px; color: #70d6ff; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['sca_no'] ?? '31109580340003' }}</strong>
+                        </span>
+                        <span style="background: rgba(230, 57, 70, 0.22); border: 1.5px solid rgba(230, 57, 70, 0.6); color: #ffffff; padding: 8px 18px; border-radius: var(--r); font-weight: 800; font-size: clamp(12px, 3.5vw, 14px); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.1);">
+                            <i class="fas fa-award" style="color: #ff4d6d; font-size: 15px;"></i>
+                            شهادة تصنيف رقم: <strong style="font-size: 15.5px; color: #ffccd5; font-weight: 900; letter-spacing: 0.5px; margin-right: 4px; direction: ltr; display: inline-block;">{{ $hdr['cls_no'] ?? '2024005835' }}</strong> فئة ممتازة
+                        </span>
                     </div>
 
                     <!-- Call & WhatsApp Action Buttons -->

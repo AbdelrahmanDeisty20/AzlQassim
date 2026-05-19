@@ -9,11 +9,8 @@
         <div class="con hw">
             <div class="hg">
                 <div>
-                    <!-- Keywords / Location -->
-                    <div class="hkw" style="margin-bottom: 12px; background: rgba(255,255,255,0.08); padding: 6px 14px; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #fff;">
-                        <i class="fas fa-map-marker-alt" style="color: var(--am);"></i>
-                        <span id="hKW">القصيم وكل مدن المملكة</span>
-                    </div>
+                    <!-- Hidden placeholder for JS compatibility -->
+                    <span id="hKW" style="display: none;">القصيم وكل مدن المملكة</span>
                     
                     <!-- Main Title -->
                     <h1 style="font-size: clamp(26px, 5.5vw, 44px); font-weight: 900; line-height: 1.25; color: #fff; margin-bottom: 8px;">
@@ -48,35 +45,56 @@
                             <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
                                 <i class="fas fa-flag-usa" style="color: #e63946;"></i>
                             </div>
-                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل فوم أمريكي أصلي من مصنع هانتسمان</span>
-                        </div>
-                        
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
-                                <i class="fas fa-globe" style="color: #4ea8de;"></i>
-                            </div>
-                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل مائي وحراري متكامل طبقاً للمواصفات العالمية</span>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل فوم أمريكي أصلي من مصنع هانتسمان الأمريكي</span>
                         </div>
                         
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; border: 1px solid #ffd700;">
                                 <i class="fas fa-shield-alt" style="color: #ffd700;"></i>
                             </div>
-                            <span style="color: #ffd700; font-weight: 800; font-size: clamp(13px, 3.5vw, 15px);">ضمان ذهبي معتمد موثق لمدة 15 عام</span>
+                            <span style="color: #ffd700; font-weight: 800; font-size: clamp(13px, 3.5vw, 15px);">ضمان ذهبي معتمد موثق لمدة ١٥ عام</span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-globe" style="color: #4ea8de;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">عزل مائي وحراري مزدوج متكامل طبقا للمواصفات العالمية والمواصفات القياسية السعودية</span>
                         </div>
                         
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
                                 <i class="fas fa-building" style="color: #52b788;"></i>
                             </div>
-                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">اعتماد شركات الكهرباء والمياه والغاز</span>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">اعتمادات شركات الكهرباء والمياة الوطنية والغاز</span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-users-cog" style="color: #e07b0f;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">فريق عمل احترافي متخصص ومدرب علي تنفيذ العزل الأمريكي</span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-headset" style="color: #ffd166;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">خدمة عملاء ٢٤ ساعة والمعاينة مجانية وفورية</span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background: rgba(255, 255, 255, 0.08); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">
+                                <i class="fas fa-percent" style="color: #ff4d6d;"></i>
+                            </div>
+                            <span style="color: #fff; font-weight: 700; font-size: clamp(13px, 3.5vw, 15px);">خصومات لكل مدن القصيم تصل ل ٢٥ ٪</span>
                         </div>
                         
                         <div style="display: flex; gap: 12px; align-items: center; grid-column: 1 / -1;">
                             <div style="background: #e63946; color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; box-shadow: 0 0 12px rgba(230, 57, 70, 0.5);">
                                 <i class="fas fa-star" style="color: #fff;"></i>
                             </div>
-                            <span style="color: #fff; font-weight: 800; font-size: clamp(13.5px, 3.8vw, 15.5px);">اطلب الخبير للمعاينة المجانية حالاً</span>
+                            <span style="color: #fff; font-weight: 800; font-size: clamp(13.5px, 3.8vw, 15.5px);">اطلب الخبير للمعاينة المجانية علي مدار اليوم</span>
                         </div>
                         
                     </div>

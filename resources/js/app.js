@@ -392,7 +392,7 @@ const INIT = {
         nm: 'عزل القصيم',
         sb: 'أفضل شركة عزل أسطح بالقصيم',
         wa: 'واتساب',
-        cta: 'احصل على عرض'
+        cta: 'اتصل الان'
     },
     ftr: {
         d: 'شركة متخصصة في عزل الأسطح مائياً وحرارياً في القصيم وبريدة وحائل. ضمان حقيقي حتى 10 سنوات.',
@@ -1341,7 +1341,7 @@ function apCS(cs) {
     sT('ctHr', cs.hr || '');
 
     ['hWa', 'hWaB', 'ctaWa', 'flWa', 'abtWa', 'svcWa', 'ftWa', 'tWa'].forEach(id => sH(id, wa));
-    ['flPh', 'ctaPh', 'svcPh', 'ftPh', 'tPh'].forEach(id => sH(id, ph));
+    ['flPh', 'ctaPh', 'svcPh', 'ftPh', 'tPh', 'hCta'].forEach(id => sH(id, ph));
 
     sH('ctP', ph);
     sH('ctWa2', wa);

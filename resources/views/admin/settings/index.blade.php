@@ -45,8 +45,8 @@
             </div>
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
-                    <label>نص زر طلب الخدمة (cta)</label>
-                    <input type="text" name="cta" value="{{ $hdr['cta'] ?? 'احصل على عرض' }}">
+                    <label>نص زر الاتصال بالهيدر (cta)</label>
+                    <input type="text" name="cta" value="{{ $hdr['cta'] ?? 'اتصل الان' }}">
                 </div>
                 <div class="afg" style="margin:0">
                     <label>نص زر الواتساب بالهيدر (wa)</label>

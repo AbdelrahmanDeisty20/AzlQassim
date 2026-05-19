@@ -25,9 +25,9 @@
                 <i class="fas fa-comment" style="font-size: 14px;"></i>
                 <span id="hWaT">{{ $hdr['wa'] ?? 'واتساب' }}</span>
             </a>
-            <a class="btn" id="hCta" onclick="openReq()" style="background: #e07b0f; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
-                <i class="fas fa-calendar-alt" style="font-size: 13px;"></i>
-                <span>{{ $hdr['cta'] ?? 'احصل على عرض' }}</span>
+            <a class="btn" id="hCta" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')" style="background: #e07b0f; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fas fa-phone-alt" style="font-size: 13px;"></i>
+                <span id="hCTA">اتصل الان</span>
             </a>
         </div>
         <button class="mob-tog" onclick="togMob()"><i class="fas fa-bars"></i></button>

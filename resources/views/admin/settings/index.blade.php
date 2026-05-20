@@ -9,6 +9,7 @@
         <button class="tab-btn active" onclick="showTab('tab-hdr', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--nv); cursor:pointer; border-radius:var(--r); transition:all .3s">الهيدر والهوية</button>
         <button class="tab-btn" onclick="showTab('tab-hero', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">البانر الرئيسي (Hero)</button>
         <button class="tab-btn" onclick="showTab('tab-about', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">من نحن (About)</button>
+        <button class="tab-btn" onclick="showTab('tab-why', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">لماذا تختارنا (Why Us)</button>
         <button class="tab-btn" onclick="showTab('tab-contact', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">بيانات التواصل</button>
         <button class="tab-btn" onclick="showTab('tab-colors', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">ألوان الموقع</button>
         <button class="tab-btn" onclick="showTab('tab-menu', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">قوائم المنيو</button>
@@ -216,6 +217,89 @@
             </div>
             <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ قسم من نحن</button>
         </form>
+    </div>
+    
+    <!-- Tab Why Choose Us: whyItems -->
+    <div id="tab-why" class="tab-content" style="display:none">
+        <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-award" style="color:var(--am)"></i> مميزات لماذا تختارنا (Why Choose Us)</h3>
+        
+        <!-- Add/Edit form -->
+        <form id="form-why-item" onsubmit="saveWhyItem(event)" style="background:var(--sl); border-radius:var(--r); padding:16px; margin-bottom:20px; border:1px solid #e1e3e5">
+            <h4 id="why-form-title" style="margin-bottom:12px; color:var(--nv)">إضافة ميزة جديدة</h4>
+            <input type="hidden" name="id" id="why-item-id" value="">
+            
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:12px">
+                <div class="afg" style="margin:0">
+                    <label>العنوان *</label>
+                    <input type="text" name="title" id="why-item-title" placeholder="مثال: ضمان 10 سنوات حقيقي" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الوصف / التفاصيل</label>
+                    <input type="text" name="desc" id="why-item-desc" placeholder="مثال: ضمان موثق رسمي مع متابعة مجانية دورية">
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px">
+                <div class="afg" style="margin:0">
+                    <label>الأيقونة (اسم كلاس FontAwesome) - سيتم استخدامها في حال عدم رفع صورة</label>
+                    <input type="text" name="icon" id="why-item-icon" placeholder="مثال: fa-shield-alt, fa-certificate, fa-tools, fa-leaf, fa-clock" value="fa-check">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>أو ارفع صورة (اختياري - سيحل محل الأيقونة إذا تم رفعه)</label>
+                    <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap">
+                        <input type="hidden" name="img" id="why-item-img-val" value="">
+                        <div style="width:40px; height:40px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                            <img id="why-item-img-preview" src="" style="width:100%; height:100%; object-fit:contain; display:none">
+                            <div id="why-item-img-placeholder" style="font-size:18px; color:var(--cc)"><i class="fas fa-image"></i></div>
+                        </div>
+                        <div style="display:flex; gap:8px; align-items:center">
+                            <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#why-item-img-val').val(url); $('#why-item-img-preview').attr('src', url).show(); $('#why-item-img-placeholder').hide(); })" style="font-size:11px; max-width:180px">
+                            <button type="button" onclick="clearWhyImage()" style="background:#ef9090; color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer"><i class="fas fa-times"></i> حذف الصورة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display:flex; gap:10px">
+                <button type="submit" class="btn btn-nv" style="height:41px; justify-content:center; padding:0 24px"><i class="fas fa-save"></i> حفظ الميزة</button>
+                <button type="button" id="why-btn-cancel" onclick="resetWhyForm()" class="btn" style="height:41px; justify-content:center; background:#eee; color:#666; display:none">إلغاء التعديل</button>
+            </div>
+        </form>
+
+        <!-- Why items table -->
+        <div style="overflow-x:auto">
+            <table class="tbl" style="width:100%; border-collapse:collapse; text-align:right; min-width:600px">
+                <thead>
+                    <tr style="background:var(--sl)">
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:60px">#</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:100px">الأيقونة / الصورة</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd">العنوان</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd">الوصف</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:120px">العمليات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($whyItems as $wi)
+                        <tr style="border-bottom:1px solid #eee" id="why-row-{{ $wi->id }}">
+                            <td style="padding:12px">{{ $loop->iteration }}</td>
+                            <td style="padding:12px">
+                                @if(!empty($wi->img))
+                                    <img src="{{ $wi->img }}" style="width:30px; height:30px; object-fit:contain; border-radius:4px">
+                                @else
+                                    <i class="fas {{ $wi->icon ?? 'fa-check' }}" style="font-size:20px; color:var(--am)"></i>
+                                @endif
+                            </td>
+                            <td style="padding:12px"><strong>{{ $wi->title }}</strong></td>
+                            <td style="padding:12px; font-size:12px; color:var(--cc)">{{ $wi->desc }}</td>
+                            <td style="padding:12px">
+                                <button class="ab gn" onclick="editWhyItem({{ json_encode($wi) }})" title="تعديل"><i class="fas fa-edit"></i></button>
+                                <button class="ab rd" onclick="deleteWhyItem({{ $wi->id }})" title="حذف"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Tab 4: Contact Information -->
@@ -459,6 +543,111 @@
                         Swal.close();
                         if (res.success) {
                             Swal.fire('تم الحذف!', 'تم حذف الرابط بنجاح.', 'success').then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // --- Why Choose Us (whyItems) management functions ---
+    function editWhyItem(item) {
+        $('#why-item-id').val(item.id);
+        $('#why-item-title').val(item.title);
+        $('#why-item-desc').val(item.desc || '');
+        $('#why-item-icon').val(item.icon || 'fa-check');
+        $('#why-item-img-val').val(item.img || '');
+        
+        if (item.img) {
+            $('#why-item-img-preview').attr('src', item.img).show();
+            $('#why-item-img-placeholder').hide();
+        } else {
+            $('#why-item-img-preview').hide().attr('src', '');
+            $('#why-item-img-placeholder').show();
+        }
+
+        $('#why-form-title').text('تعديل ميزة: ' + item.title);
+        $('#why-btn-cancel').show();
+        // scroll up to form
+        $('#form-why-item')[0].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetWhyForm() {
+        $('#why-item-id').val('');
+        $('#why-item-title').val('');
+        $('#why-item-desc').val('');
+        $('#why-item-icon').val('fa-check');
+        $('#why-item-img-val').val('');
+        $('#why-item-img-preview').hide().attr('src', '');
+        $('#why-item-img-placeholder').show();
+
+        $('#why-form-title').text('إضافة ميزة جديدة');
+        $('#why-btn-cancel').hide();
+    }
+
+    function clearWhyImage() {
+        $('#why-item-img-val').val('');
+        $('#why-item-img-preview').hide().attr('src', '');
+        $('#why-item-img-placeholder').show();
+    }
+
+    function saveWhyItem(e) {
+        e.preventDefault();
+        const id = $('#why-item-id').val();
+        const title = $('#why-item-title').val();
+        const desc = $('#why-item-desc').val();
+        const icon = $('#why-item-icon').val();
+        const img = $('#why-item-img-val').val();
+
+        Swal.showLoading();
+        $.ajax({
+            url: '/admin/content/whyItems',
+            type: 'POST',
+            data: {
+                id: id,
+                title: title,
+                desc: desc,
+                icon: icon,
+                img: img
+            },
+            success: function(res) {
+                Swal.close();
+                if (res.success) {
+                    Swal.fire('تم الحفظ!', 'تم حفظ الميزة بنجاح.', 'success').then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire('خطأ!', 'حدث خطأ أثناء الحفظ.', 'error');
+                }
+            },
+            error: function() {
+                Swal.close();
+                Swal.fire('خطأ!', 'فشل الاتصال بالخادم.', 'error');
+            }
+        });
+    }
+
+    function deleteWhyItem(id) {
+        Swal.fire({
+            title: 'هل أنت متأكد من حذف هذه الميزة؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'نعم، احذف',
+            cancelButtonText: 'إلغاء',
+            confirmButtonColor: '#ef9090',
+            cancelButtonColor: 'var(--nv)'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.showLoading();
+                $.ajax({
+                    url: '/admin/content/whyItems/' + id,
+                    type: 'DELETE',
+                    success: function(res) {
+                        Swal.close();
+                        if (res.success) {
+                            Swal.fire('تم الحذف!', 'تم حذف الميزة بنجاح.', 'success').then(() => {
                                 window.location.reload();
                             });
                         }

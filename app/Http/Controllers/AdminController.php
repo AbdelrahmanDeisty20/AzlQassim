@@ -99,9 +99,10 @@ class AdminController extends Controller
         $colors = $this->settingService->get('colors');
         $about = $this->settingService->get('about');
         $menus = \App\Models\Menu::orderBy('order')->get();
+        $whyItems = \App\Models\WhyItem::all();
 
         return view('admin.settings.index', compact(
-            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'menus'
+            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'menus', 'whyItems'
         ));
     }
 

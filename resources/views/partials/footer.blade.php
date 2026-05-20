@@ -16,8 +16,8 @@
                         <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
                     @endif
                     <div>
-                        <div class="logo-nm" id="ftNm">{{ $ftr['nm'] ?? 'عزل القصيم' }}</div>
-                        <div class="logo-sb" style="color:var(--am2); font-size:11px">{{ $ftr['sb'] ?? 'أفضل شركة عزل أسطح' }}</div>
+                        <div class="logo-nm" id="ftNm">{{ $hdr['nm'] ?? 'عزل القصيم' }}</div>
+                        <div class="logo-sb" style="color:var(--am2); font-size:11px">{{ $hdr['sb'] ?? 'أفضل شركة عزل أسطح بالقصيم' }}</div>
                     </div>
                 </div>
                 <p id="ftDs">{{ $ftr['d'] ?? 'شركة متخصصة في عزل الأسطح مائياً وحرارياً في القصيم وبريدة وحائل. ضمان حقيقي حتى 15 سنة.' }}</p>

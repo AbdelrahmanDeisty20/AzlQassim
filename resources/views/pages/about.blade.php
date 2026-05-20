@@ -86,7 +86,7 @@
             <div class="why-g" style="margin-bottom: 52px;">
                 <div>
                     <h2 style="font-size: clamp(20px, 3.5vw, 33px); font-weight: 900; color: var(--nv); margin-bottom: 18px; line-height: 1.4;">
-                        شركة <em style="color: var(--am); font-style: normal;">عزل القصيم</em><br>أكثر من 10 سنوات خبرة
+                        {!! str_replace('عزل القصيم', '<em style="color: var(--am); font-style: normal;">عزل القصيم</em>', e($about['exp_t1'] ?? 'شركة عزل القصيم')) !!}<br>{{ $about['exp_t2'] ?? 'أكثر من 10 سنوات خبرة' }}
                     </h2>
                     <p style="color: var(--cc); font-size: 15px; line-height: 2; margin-bottom: 14px;">
                         {{ $about['text3'] ?? 'نقدم ضماناً حقيقياً موثقاً يصل إلى 10 سنوات مع متابعة مجانية طوال فترة الضمان.' }}

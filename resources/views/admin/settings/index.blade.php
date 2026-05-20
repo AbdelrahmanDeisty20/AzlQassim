@@ -197,6 +197,17 @@
             
             <h4 style="margin:24px 0 10px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:6px">قسم الخبرة والإحصائيات</h4>
             
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>عنوان قسم الخبرة (السطر الأول)</label>
+                    <input type="text" name="exp_t1" id="abtexpt1" value="{{ $about['exp_t1'] ?? 'شركة عزل القصيم' }}" placeholder="مثال: شركة عزل القصيم">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>عنوان قسم الخبرة (السطر الثاني)</label>
+                    <input type="text" name="exp_t2" id="abtexpt2" value="{{ $about['exp_t2'] ?? 'أكثر من 10 سنوات خبرة' }}" placeholder="مثال: أكثر من 10 سنوات خبرة">
+                </div>
+            </div>
+
             <div class="afg">
                 <label>فقرة إضافية (1) في قسم الخبرة</label>
                 <textarea name="p1" id="abtp1" rows="2" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['p1'] ?? 'نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.' }}</textarea>

@@ -8,7 +8,7 @@
 <div class="mo" id="RQM">
     <div class="mb">
         <div class="mhd">
-            <h3><i class="fas fa-calendar-check"></i>طلب عرض سعر مجاني</h3>
+            <h3><i class="fas fa-calendar-check"></i>طلب عرض سعر</h3>
             <button class="mcl" onclick="closeReq()"><i class="fas fa-times"></i></button>
         </div>
         <div class="mbd">
@@ -23,7 +23,7 @@
             <div class="sp act" id="sp1">
                 <div class="rnote">
                     <i class="fas fa-info-circle"></i>
-                    <span>سنتواصل معك خلال ساعة لتحديد موعد المعاينة المجانية</span>
+                    <span>سنتواصل معك قريبا  </span>
                 </div>
                 <div class="fg-2">
                     <div class="fg">

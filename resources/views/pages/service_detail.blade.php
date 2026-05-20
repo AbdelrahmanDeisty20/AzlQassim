@@ -34,10 +34,10 @@
                         @endif
                     </div>
                     
-                    <h3>عن هذه الخدمة</h3>
+                    <h3>{{ $svc_page['about_title'] ?? 'عن هذه الخدمة' }}</h3>
                     <p id="svcDs" style="line-height:2;color:var(--cc);font-size:15px;margin-bottom:28px">{!! nl2br(e($service->desc ?? $service->short)) !!}</p>
                     
-                    <h3>مميزات الخدمة</h3>
+                    <h3>{{ $svc_page['feats_title'] ?? 'مميزات الخدمة' }}</h3>
                     <div class="sf-l" id="svcFt" style="margin-bottom:28px">
                         @foreach(explode("\n", $service->feats) as $f)
                             @if(trim($f))
@@ -50,8 +50,8 @@
                 <!-- Sidebar widgets -->
                 <div class="svc-side">
                     <div class="scta">
-                        <h4>احصل على عرض مجاني</h4>
-                        <p>معاينة مجانية لسطحك وعرض سعر شفاف</p>
+                        <h4>{{ $hero['c1'] ?? 'احصل على عرض مجاني' }}</h4>
+                        <p>{{ $svc_page['offer_desc'] ?? 'معاينة مجانية لسطحك وعرض سعر شفاف' }}</p>
                         <a class="btn btn-am" onclick="openReq()" style="display:flex;cursor:pointer">
                             <i class="fas fa-calendar-check"></i>احصل على عرض
                         </a>
@@ -64,7 +64,7 @@
                     </div>
                     
                     <div class="sc2">
-                        <h4>خدمات أخرى</h4>
+                        <h4>{{ $svc_page['other_title'] ?? 'خدمات أخرى' }}</h4>
                         <div id="relS">
                             @foreach($services as $rel)
                                 <a href="/services/{{ $rel->id }}" class="rs" style="text-decoration:none;color:inherit;cursor:pointer">

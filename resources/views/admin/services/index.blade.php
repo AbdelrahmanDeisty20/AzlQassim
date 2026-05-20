@@ -72,6 +72,11 @@
                 <textarea name="d" id="svc-d" rows="5" required style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit" placeholder="اكتب تفاصيل الخدمة والضمان ومميزاتها بالتفصيل..."></textarea>
             </div>
 
+            <div class="afg">
+                <label>المميزات (اكتب ميزة في كل سطر)</label>
+                <textarea name="feats" id="svc-feats" rows="4" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit" placeholder="توفير 40% في فاتورة الكهرباء&#10;مواد عاكسة للحرارة&#10;ضمان 15 سنوات"></textarea>
+            </div>
+
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
                 <div class="afg">
                     <label>الأيقونة</label>
@@ -120,6 +125,7 @@
             name: $('#svc-n').val(),
             short: $('#svc-sb').val(),
             desc: $('#svc-d').val(),
+            feats: $('#svc-feats').val(),
             icon: $('#svc-icon').val(),
             status: $('#svc-status').val(),
             img: $('#svc-img-val').val()
@@ -162,6 +168,7 @@
         $('#svc-n').val(svc.name);
         $('#svc-sb').val(svc.short);
         $('#svc-d').val(svc.desc);
+        $('#svc-feats').val(svc.feats || '');
         $('#svc-icon').val(svc.icon || 'fa-shield-alt');
         $('#svc-status').val(svc.status || 'active');
         $('#svc-img-val').val(svc.img || '');
@@ -183,6 +190,7 @@
         $('#svc-n').val('');
         $('#svc-sb').val('');
         $('#svc-d').val('');
+        $('#svc-feats').val('');
         $('#svc-icon').val('fa-shield-alt');
         $('#svc-status').val('active');
         $('#svc-img-val').val('');

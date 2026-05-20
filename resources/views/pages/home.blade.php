@@ -638,7 +638,7 @@
             <h2 id="ctaT">{{ $hero['ct'] ?? 'هل تعاني من تسربات المياه أو الحرارة الشديدة؟' }}</h2>
             <p id="ctaD">{{ $hero['cd'] ?? 'تواصل معنا الآن واحصل على معاينة مجانية وعرض سعر غير ملزم' }}</p>
             <div class="cta-acts">
-                <a class="btn btn-am" onclick="openReq()"><i class="fas fa-calendar-check"></i>احصل على عرض مجاني</a>
+                <a class="btn btn-am" onclick="openReq()"><i class="fas fa-calendar-check"></i>احصل على عرض</a>
                 <a class="btn btn-wa" id="ctaWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','cta')"><i class="fab fa-whatsapp"></i>واتساب</a>
                 <a class="btn btn-wh" id="ctaPh" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','cta')"><i class="fas fa-phone"></i>اتصل الآن</a>
             </div>

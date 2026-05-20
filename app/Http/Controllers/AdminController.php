@@ -98,11 +98,12 @@ class AdminController extends Controller
         $contact = $this->settingService->get('contact');
         $colors = $this->settingService->get('colors');
         $about = $this->settingService->get('about');
+        $svc_page = $this->settingService->get('svc_page');
         $menus = \App\Models\Menu::orderBy('order')->get();
         $whyItems = \App\Models\WhyItem::all();
 
         return view('admin.settings.index', compact(
-            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'menus', 'whyItems'
+            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'menus', 'whyItems'
         ));
     }
 

@@ -33,6 +33,8 @@ class HomeController extends Controller
         $settings = $this->settingService->getAllSettings();
         return [
             'hdr' => $settings['hdr'] ?? [],
+            'hero' => $settings['hero'] ?? [],
+            'svc_page' => $settings['svc_page'] ?? [],
             'ftr' => $settings['ftr'] ?? [],
             'contact' => $settings['contact'] ?? [],
             'colors' => $settings['colors'] ?? [],

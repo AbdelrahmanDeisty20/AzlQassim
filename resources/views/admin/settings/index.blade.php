@@ -13,6 +13,7 @@
         <button class="tab-btn" onclick="showTab('tab-contact', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">بيانات التواصل</button>
         <button class="tab-btn" onclick="showTab('tab-colors', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">ألوان الموقع</button>
         <button class="tab-btn" onclick="showTab('tab-menu', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">قوائم المنيو</button>
+        <button class="tab-btn" onclick="showTab('tab-svc', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">نصوص الخدمة</button>
     </div>
 
     <!-- Tab 1: Header Settings -->
@@ -216,6 +217,35 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ قسم من نحن</button>
+        </form>
+    </div>
+    
+    <!-- Tab: Service Page Texts -->
+    <div id="tab-svc" class="tab-content" style="display:none">
+        <form id="form-svc" onsubmit="saveSetting(event, 'svc_page')">
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-tools" style="color:var(--am)"></i> نصوص صفحة تفاصيل الخدمة</h3>
+            <p style="font-size:12px; color:var(--cc); margin-bottom:18px">تغيير العناوين الثابتة التي تظهر داخل صفحة أي خدمة (مثل: عن هذه الخدمة، مميزات الخدمة، خدمات أخرى).</p>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>عنوان قسم الوصف</label>
+                    <input type="text" name="about_title" value="{{ $svc_page['about_title'] ?? 'عن هذه الخدمة' }}" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>عنوان قسم المميزات</label>
+                    <input type="text" name="feats_title" value="{{ $svc_page['feats_title'] ?? 'مميزات الخدمة' }}" required>
+                </div>
+            </div>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>عنوان قسم الخدمات الأخرى (بالقائمة الجانبية)</label>
+                    <input type="text" name="other_title" value="{{ $svc_page['other_title'] ?? 'خدمات أخرى' }}" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>وصف تحت زر احصل على عرض</label>
+                    <input type="text" name="offer_desc" value="{{ $svc_page['offer_desc'] ?? 'معاينة مجانية لسطحك وعرض سعر شفاف' }}" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ النصوص</button>
         </form>
     </div>
     

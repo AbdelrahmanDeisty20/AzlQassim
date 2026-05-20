@@ -180,19 +180,48 @@
             <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-info-circle" style="color:var(--am)"></i> من نحن (About)</h3>
             <div class="afg">
                 <label>العنوان الرئيسي لقسم من نحن</label>
-                <input type="text" name="title" value="{{ $about['title'] ?? 'عزل القصيم .. خبرة 15 عاماً' }}" required>
+                <input type="text" id="abttitle" name="title" value="{{ $about['title'] ?? 'عزل القصيم .. خبرة 15 عاماً' }}" required>
             </div>
             <div class="afg">
                 <label>المحتوى النصي الأول (text1)</label>
-                <textarea name="text1" rows="3" required style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text1'] ?? '' }}</textarea>
+                <textarea name="text1" id="abtt1" rows="3" required style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text1'] ?? '' }}</textarea>
             </div>
             <div class="afg">
                 <label>المحتوى النصي الثاني (text2)</label>
-                <textarea name="text2" rows="3" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text2'] ?? '' }}</textarea>
+                <textarea name="text2" id="abtt2" rows="3" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text2'] ?? '' }}</textarea>
             </div>
             <div class="afg">
                 <label>المحتوى النصي الثالث (text3)</label>
-                <textarea name="text3" rows="3" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text3'] ?? '' }}</textarea>
+                <textarea name="text3" id="abtt3" rows="3" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['text3'] ?? '' }}</textarea>
+            </div>
+            
+            <h4 style="margin:24px 0 10px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:6px">قسم الخبرة والإحصائيات</h4>
+            
+            <div class="afg">
+                <label>فقرة إضافية (1) في قسم الخبرة</label>
+                <textarea name="p1" id="abtp1" rows="2" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['p1'] ?? 'نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.' }}</textarea>
+            </div>
+            <div class="afg">
+                <label>فقرة إضافية (2) في قسم الخبرة</label>
+                <textarea name="p2" id="abtp2" rows="2" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['p2'] ?? 'تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.' }}</textarea>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>الإحصائية 1</label>
+                    <input type="text" name="st1_n" id="abtst1n" value="{{ $about['st1_n'] ?? '+800' }}" placeholder="الرقم" style="margin-bottom:8px">
+                    <input type="text" name="st1_t" id="abtst1t" value="{{ $about['st1_t'] ?? 'مشروع منجز' }}" placeholder="النص">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الإحصائية 2</label>
+                    <input type="text" name="st2_n" id="abtst2n" value="{{ $about['st2_n'] ?? '10' }}" placeholder="الرقم" style="margin-bottom:8px">
+                    <input type="text" name="st2_t" id="abtst2t" value="{{ $about['st2_t'] ?? 'سنوات ضمان' }}" placeholder="النص">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الإحصائية 3</label>
+                    <input type="text" name="st3_n" id="abtst3n" value="{{ $about['st3_n'] ?? '3' }}" placeholder="الرقم" style="margin-bottom:8px">
+                    <input type="text" name="st3_t" id="abtst3t" value="{{ $about['st3_t'] ?? 'مناطق خدمة' }}" placeholder="النص">
+                </div>
             </div>
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">

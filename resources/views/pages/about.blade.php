@@ -92,23 +92,23 @@
                         {{ $about['text3'] ?? 'نقدم ضماناً حقيقياً موثقاً يصل إلى 10 سنوات مع متابعة مجانية طوال فترة الضمان.' }}
                     </p>
                     <p style="color: var(--cc); font-size: 15px; line-height: 2; margin-bottom: 14px;">
-                        نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.
+                        {{ $about['p1'] ?? 'نستخدم أحدث تقنيات العزل العالمية: الفوم البولي يوريثان، العزل الإسفلتي، السيليكون المائي، وأغشية البيتومين المعدنية. فريقنا مدرب ومعتمد.' }}
                     </p>
                     <p style="color: var(--cc); font-size: 15px; line-height: 2;">
-                        تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.
+                        {{ $about['p2'] ?? 'تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.' }}
                     </p>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 14px; margin-top: 26px;">
                         <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--nv);">+800</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">مشروع منجز</div>
+                            <div style="font-size: 26px; font-weight: 900; color: var(--nv);">{{ $about['st1_n'] ?? '+800' }}</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st1_t'] ?? 'مشروع منجز' }}</div>
                         </div>
                         <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--am);">10</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">سنوات ضمان</div>
+                            <div style="font-size: 26px; font-weight: 900; color: var(--am);">{{ $about['st2_n'] ?? '10' }}</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st2_t'] ?? 'سنوات ضمان' }}</div>
                         </div>
                         <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--gr);">3</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">مناطق خدمة</div>
+                            <div style="font-size: 26px; font-weight: 900; color: var(--gr);">{{ $about['st3_n'] ?? '3' }}</div>
+                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st3_t'] ?? 'مناطق خدمة' }}</div>
                         </div>
                     </div>
                 </div>

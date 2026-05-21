@@ -577,13 +577,9 @@
                                         <i class="fas {{ $gal->icon ?? 'fa-image' }}"></i>
                                     </div>
                                 @endif
-                                <span class="gtype {{ $gal->type === 'before' ? 'bf' : 'af' }}">{{ $gal->type === 'before' ? 'قبل' : 'بعد' }}</span>
                                 <div class="gi-ov">
                                     <i class="fas fa-search-plus"></i>
                                 </div>
-                            </div>
-                            <div class="gi-content">
-                                <h3 class="gi-title">{{ $gal->title }}</h3>
                             </div>
                         </div>
                     @endif

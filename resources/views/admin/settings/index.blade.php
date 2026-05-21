@@ -646,6 +646,96 @@
                     <input type="text" name="map" value="{{ $contact['map'] ?? '' }}">
                 </div>
             </div>
+
+            <!-- National Address Customizer -->
+            <h4 style="margin:28px 0 16px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:8px; font-weight:700;"><i class="fas fa-file-invoice" style="color:var(--am)"></i> بيانات وثيقة العنوان الوطني الرسمية</h4>
+            
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>الاسم بالكامل للمؤسسة (العنوان الوطني)</label>
+                    <input type="text" name="na_company_name" value="{{ $contact['na_company_name'] ?? 'مؤسسة رونق قلب الخليج للمقاولات العامة' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>العنوان المختصر (Short Address)</label>
+                    <input type="text" name="na_short_address" value="{{ $contact['na_short_address'] ?? 'QBPA3764' }}">
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>رقم الإثبات (Proof No.)</label>
+                    <input type="text" name="na_proof_no" value="{{ $contact['na_proof_no'] ?? '1036369457' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>رقم الحساب (Customer Acc.)</label>
+                    <input type="text" name="na_customer_acc" value="{{ $contact['na_customer_acc'] ?? '3132637196 2' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>تاريخ التسجيل (Reg. Date)</label>
+                    <input type="text" name="na_reg_date" value="{{ $contact['na_reg_date'] ?? '12/7/2023' }}">
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>تاريخ الإصدار (Issued)</label>
+                    <input type="text" name="na_issued_date" value="{{ $contact['na_issued_date'] ?? '12/7/2023' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>تاريخ الانتهاء (Expires)</label>
+                    <input type="text" name="na_expired_date" value="{{ $contact['na_expired_date'] ?? '1/8/2024' }}">
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>رقم المبنى (Building No.)</label>
+                    <input type="text" name="na_building_no" value="{{ $contact['na_building_no'] ?? '3764' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الشارع (Street)</label>
+                    <input type="text" name="na_street" value="{{ $contact['na_street'] ?? 'التغيرة' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الحي (District)</label>
+                    <input type="text" name="na_district" value="{{ $contact['na_district'] ?? 'التخصصي' }}">
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>الرمز البريدي (Postal Code)</label>
+                    <input type="text" name="na_postal_code" value="{{ $contact['na_postal_code'] ?? '52366' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الرقم الفرعي (Secondary No.)</label>
+                    <input type="text" name="na_secondary_no" value="{{ $contact['na_secondary_no'] ?? '7027' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>المدينة (City)</label>
+                    <input type="text" name="na_city" value="{{ $contact['na_city'] ?? 'بريدة · BURAIDAH' }}">
+                </div>
+            </div>
+
+            <div class="afg" style="margin-bottom:18px">
+                <label>رابط التحقق من العنوان الوطني (Verification Link)</label>
+                <input type="text" name="na_verify_link" value="{{ $contact['na_verify_link'] ?? 'https://proof.address.gov.sa/VerifyProofNA.aspx' }}" style="width:100%">
+            </div>
+
+            <div class="afg" style="margin-bottom:24px">
+                <label style="font-weight:700">صورة وثيقة العنوان الوطني (مستند الإثبات الرسمي)</label>
+                <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:8px">
+                    <input type="hidden" name="na_image" id="contact-na_image-val" value="{{ $contact['na_image'] ?? '' }}">
+                    <div style="width:140px; height:90px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="contact-na_image-preview" src="{{ !empty($contact['na_image']) ? $contact['na_image'] : '/images/national-address.jpeg' }}" style="width:100%; height:100%; object-fit:contain;">
+                    </div>
+                    <div>
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#contact-na_image-val').val(url); $('#contact-na_image-preview').attr('src', url); Swal.fire('تم رفع الوثيقة بنجاح!', 'تم رفع الصورة وحفظ رابط المسار، يرجى الضغط على حفظ في الأسفل لتأكيد الحفظ الدائم.', 'success'); })">
+                        <div style="font-size:11px; color:var(--cc); margin-top:4px">صيغ مدعومة: PNG, JPG, JPEG, WebP. الحجم الأقصى: 10MB</div>
+                    </div>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ بيانات التواصل</button>
         </form>
     </div>

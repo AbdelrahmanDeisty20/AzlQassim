@@ -413,7 +413,7 @@
                 </div>
 
                 <!-- Left Column: Creative Royal Seal (Accreditation Card) -->
-                <div class="accreditation-seal-card" style="background: @if(!empty($hdr['accreditation_logo'])) #fff @else linear-gradient(135deg, var(--nv) 0%, #173257 100%) @endif; border-radius: var(--r); padding: @if(!empty($hdr['accreditation_logo'])) 12px @else 35px 24px @endif; text-align: center; border: @if(!empty($hdr['accreditation_logo'])) 1px solid rgba(15,36,65,0.08) @else 2px solid var(--am) @endif; box-shadow: 0 15px 45px rgba(15,36,65,0.15); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+                <div class="accreditation-seal-card" style="align-self: start; background: @if(!empty($hdr['accreditation_logo'])) #fff @else linear-gradient(135deg, var(--nv) 0%, #173257 100%) @endif; border-radius: var(--r); padding: @if(!empty($hdr['accreditation_logo'])) 12px @else 35px 24px @endif; text-align: center; border: @if(!empty($hdr['accreditation_logo'])) 1px solid rgba(15,36,65,0.08) @else 2px solid var(--am) @endif; box-shadow: 0 15px 45px rgba(15,36,65,0.15); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
                     
                     @if(!empty($hdr['accreditation_logo']))
                         <!-- Custom Uploaded Full Image (Takes full space beautifully!) -->

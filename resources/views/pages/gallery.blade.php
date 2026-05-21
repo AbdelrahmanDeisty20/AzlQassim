@@ -109,8 +109,6 @@
     <button class="lb-nav lb-prev" onclick="lbPrev(event)"><i class="fas fa-chevron-right"></i></button>
     <button class="lb-nav lb-next" onclick="lbNext(event)"><i class="fas fa-chevron-left"></i></button>
     <img id="lbImg" src="" alt="">
-    <div id="lbTitle"></div>
-    <div id="lbCounter"></div>
 </div>
 
 <script>
@@ -144,8 +142,6 @@ function showLbItem() {
         lbImg.src = item.img;
         lbImg.style.transform = 'scale(1)';
     }, 80);
-    document.getElementById('lbTitle').textContent = item.title || '';
-    document.getElementById('lbCounter').textContent = lbItems.length > 1 ? (lbIdx + 1) + ' / ' + lbItems.length : '';
 }
 
 function lbPrev(e) { e.stopPropagation(); lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; showLbItem(); }

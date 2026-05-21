@@ -613,7 +613,75 @@
             document.querySelectorAll('.home-video-item-el').forEach(el => el.style.display = 'block');
         }
     }
+
+    // ===== Lightbox =====
+    let homeLbItems = [], homeLbIdx = 0;
+
+    function buildHomeLbItems() {
+        homeLbItems = [];
+        document.querySelectorAll('.home-photo-item-el[data-img]').forEach(el => {
+            const img = el.getAttribute('data-img');
+            if (img) homeLbItems.push({ img });
+        });
+    }
+
+    window.openLightbox = function(el) {
+        buildHomeLbItems();
+        const img = el.getAttribute('data-img');
+        homeLbIdx = homeLbItems.findIndex(i => i.img === img);
+        if (homeLbIdx < 0) homeLbIdx = 0;
+        showHomeLbItem();
+        document.getElementById('homeLbModal').classList.add('lb-open');
+        document.body.style.overflow = 'hidden';
+    };
+
+    function showHomeLbItem() {
+        const item = homeLbItems[homeLbIdx];
+        if (!item) return;
+        const img = document.getElementById('homeLbImg');
+        img.style.transform = 'scale(0.92)';
+        setTimeout(() => { img.src = item.img; img.style.transform = 'scale(1)'; }, 80);
+    }
+
+    function homeCloseLb() {
+        document.getElementById('homeLbModal').classList.remove('lb-open');
+        document.getElementById('homeLbModal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function homeCloseLbOutside(e) {
+        if (e.target === document.getElementById('homeLbModal')) homeCloseLb();
+    }
+
+    function homeLbPrev(e) { e.stopPropagation(); homeLbIdx = (homeLbIdx - 1 + homeLbItems.length) % homeLbItems.length; showHomeLbItem(); }
+    function homeLbNext(e) { e.stopPropagation(); homeLbIdx = (homeLbIdx + 1) % homeLbItems.length; showHomeLbItem(); }
+
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('homeLbModal');
+        if (!modal || !modal.classList.contains('lb-open')) return;
+        if (e.key === 'Escape') homeCloseLb();
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') homeLbPrev(e);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') homeLbNext(e);
+    });
     </script>
+
+    <!-- Home Lightbox Modal -->
+    <div id="homeLbModal" onclick="homeCloseLbOutside(event)" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; padding:20px;">
+        <style>
+            #homeLbModal.lb-open { display:flex !important; }
+            #homeLbImg { max-width:92vw; max-height:88vh; border-radius:10px; object-fit:contain; box-shadow:0 20px 60px rgba(0,0,0,0.7); transition:transform .25s; }
+            #homeLbModal .lb-close { position:fixed; top:18px; left:18px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.12); border:none; color:#fff; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+            #homeLbModal .lb-close:hover { background:rgba(255,255,255,0.25); }
+            #homeLbModal .lb-nav { position:fixed; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.12); border:none; color:#fff; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+            #homeLbModal .lb-nav:hover { background:rgba(197,168,128,0.5); }
+            #homeLbModal .lb-prev { right:18px; }
+            #homeLbModal .lb-next { left:18px; }
+        </style>
+        <button class="lb-close" onclick="homeCloseLb()"><i class="fas fa-times"></i></button>
+        <button class="lb-nav lb-prev" onclick="homeLbPrev(event)"><i class="fas fa-chevron-right"></i></button>
+        <button class="lb-nav lb-next" onclick="homeLbNext(event)"><i class="fas fa-chevron-left"></i></button>
+        <img id="homeLbImg" src="" alt="">
+    </div>
     
     <!-- Service Locations Grid -->
     <section class="sec sec-alt">

@@ -334,9 +334,9 @@
                     <div class="stc">
                         <div class="stn" style="display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:50%;width:60px;height:60px;background:rgba(197,168,128,0.1);border:2px solid var(--am);color:var(--am);font-weight:800;font-size:20px;margin:0 auto 20px">
                             @if(!empty($stp->img))
-                                <img src="{{ $stp->img }}" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='{{ $stp->num ?? "•" }}'">
+                                <img src="{{ $stp->img }}" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='{{ str_replace(['0','1','2','3','4','5','6','7','8','9'], ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'], $stp->num) }}'">
                             @else
-                                {{ $stp->num ?? '•' }}
+                                {{ str_replace(['0','1','2','3','4','5','6','7','8','9'], ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'], $stp->num) }}
                             @endif
                         </div>
                         <h3>{{ $stp->title }}</h3>

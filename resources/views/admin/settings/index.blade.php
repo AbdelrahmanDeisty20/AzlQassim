@@ -483,7 +483,7 @@
                 <tbody>
                     @foreach($steps as $stp)
                         <tr style="border-bottom:1px solid #eee" id="step-row-{{ $stp->id }}">
-                            <td style="padding:12px"><strong>{{ $stp->num }}</strong></td>
+                            <td style="padding:12px"><strong>{{ str_replace(['0','1','2','3','4','5','6','7','8','9'], ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'], $stp->num) }}</strong></td>
                             <td style="padding:12px">
                                 @if(!empty($stp->img))
                                     <img src="{{ $stp->img }}" style="width:30px; height:30px; object-fit:contain; border-radius:4px">

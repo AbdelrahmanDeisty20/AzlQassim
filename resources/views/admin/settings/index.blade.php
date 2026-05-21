@@ -16,6 +16,8 @@
         <button class="tab-btn" onclick="showTab('tab-menu', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">قوائم المنيو</button>
         <button class="tab-btn" onclick="showTab('tab-svc', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">نصوص الخدمة</button>
         <button class="tab-btn" onclick="showTab('tab-gallery-info', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">معرض أعمالنا (Gallery)</button>
+        <button class="tab-btn" onclick="showTab('tab-testimonials-info', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">آراء العملاء (Testimonials)</button>
+        <button class="tab-btn" onclick="showTab('tab-areas-info', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">مناطق الخدمة (Areas)</button>
     </div>
 
     <!-- Tab 1: Header Settings -->
@@ -327,6 +329,54 @@
                 <input type="text" name="p" value="{{ $gallery_info['p'] ?? 'صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
             </div>
             <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ نصوص معرض الأعمال</button>
+        </form>
+    </div>
+    
+    <!-- Tab 11: Testimonials Section Title & Subtitles -->
+    <div id="tab-testimonials-info" class="tab-content" style="display:none">
+        <form id="form-testimonials-info" onsubmit="saveSetting(event, 'testimonials_info')">
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-comments" style="color:var(--am)"></i> نصوص آراء العملاء (Testimonials)</h3>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوسم الصغير بالذهبي (Tag)</label>
+                <input type="text" name="tag" value="{{ $testimonials_info['tag'] ?? 'آراء العملاء' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الفرعي الطويل (h3)</label>
+                <input type="text" name="h3" value="{{ $testimonials_info['h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الرئيسي الملون (h2)</label>
+                <input type="text" name="h2" value="{{ $testimonials_info['h2'] ?? 'ما هي آراء عملائنا' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوصف السفلي (p)</label>
+                <input type="text" name="p" value="{{ $testimonials_info['p'] ?? 'أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ نصوص آراء العملاء</button>
+        </form>
+    </div>
+    
+    <!-- Tab 12: Service Areas Section Title & Subtitles -->
+    <div id="tab-areas-info" class="tab-content" style="display:none">
+        <form id="form-areas-info" onsubmit="saveSetting(event, 'areas_info')">
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-map-marker-alt" style="color:var(--am)"></i> نصوص مناطق الخدمة (Areas)</h3>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوسم الصغير بالذهبي (Tag)</label>
+                <input type="text" name="tag" value="{{ $areas_info['tag'] ?? 'مناطق الخدمة' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الفرعي الطويل (h3)</label>
+                <input type="text" name="h3" value="{{ $areas_info['h3'] ?? 'أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الرئيسي الملون (h2)</label>
+                <input type="text" name="h2" value="{{ $areas_info['h2'] ?? 'نخدم كل المنطقة' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوصف السفلي (p)</label>
+                <input type="text" name="p" value="{{ $areas_info['p'] ?? 'نغطي القصيم وبريدة وحائل وكل المناطق المجاورة' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ نصوص مناطق الخدمة</button>
         </form>
     </div>
     

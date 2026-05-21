@@ -617,10 +617,16 @@
     <section class="sec sec-alt">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-map-marker-alt"></i>مناطق الخدمة</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>نخدم <em>كل المنطقة</em></h2>
-                <p>نغطي القصيم وبريدة وحائل وكل المناطق المجاورة</p>
+                <div class="tag"><i class="fas fa-map-marker-alt"></i>{{ $areas_info['tag'] ?? 'مناطق الخدمة' }}</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">{{ $areas_info['h3'] ?? 'أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+                @php
+                    $h2Full = $areas_info['h2'] ?? 'نخدم كل المنطقة';
+                    $words = explode(' ', $h2Full);
+                    $firstWord = array_shift($words);
+                    $rest = implode(' ', $words);
+                @endphp
+                <h2>{{ $firstWord }} <em>{{ $rest }}</em></h2>
+                <p>{{ $areas_info['p'] ?? 'نغطي القصيم وبريدة وحائل وكل المناطق المجاورة' }}</p>
             </div>
             <div class="areas-g" id="arHm">
                 @foreach($areas as $ar)
@@ -639,10 +645,16 @@
     <section class="sec">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-comments"></i>آراء العملاء</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>ما هي آراء <em>عملائنا</em></h2>
-                <p>أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل</p>
+                <div class="tag"><i class="fas fa-comments"></i>{{ $testimonials_info['tag'] ?? 'آراء العملاء' }}</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">{{ $testimonials_info['h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+                @php
+                    $h2Full = $testimonials_info['h2'] ?? 'ما هي آراء عملائنا';
+                    $words = explode(' ', $h2Full);
+                    $firstWord = array_shift($words);
+                    $rest = implode(' ', $words);
+                @endphp
+                <h2>{{ $firstWord }} <em>{{ $rest }}</em></h2>
+                <p>{{ $testimonials_info['p'] ?? 'أكثر من 800 عميل راضٍ في القصيم وبريدة وحائل' }}</p>
             </div>
             <div class="tests-g" id="tstEl">
                 @foreach($testimonials as $tst)

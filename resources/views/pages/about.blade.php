@@ -185,6 +185,7 @@
             <div class="cta-acts">
                 <a class="btn btn-am" onclick="openReq()"><i class="fas fa-calendar-check"></i>طلب معاينة مجانية</a>
                 <a class="btn btn-wa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','about')"><i class="fab fa-whatsapp"></i>واتساب</a>
+                <a class="btn btn-wh" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','about')"><i class="fas fa-phone"></i>اتصل الآن</a>
             </div>
         </div>
     </div>

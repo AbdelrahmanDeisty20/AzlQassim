@@ -12,9 +12,9 @@
                 <i class="fas fa-chevron-left"></i>
                 <span>مناطق الخدمة</span>
             </div>
-            <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 8px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-            <h2>مناطق الخدمة</h2>
-            <p>نصل إليك في كل أنحاء القصيم وبريدة وحائل</p>
+            <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 8px;">{{ $areas_info['h3'] ?? 'أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+            <h2>{{ $areas_info['tag'] ?? 'مناطق الخدمة' }}</h2>
+            <p>{{ $areas_info['p'] ?? 'نصل إليك في كل أنحاء القصيم وبريدة وحائل' }}</p>
         </div>
     </div>
     

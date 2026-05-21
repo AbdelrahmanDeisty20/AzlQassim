@@ -616,6 +616,23 @@
     <div id="tab-contact" class="tab-content" style="display:none">
         <form id="form-contact" onsubmit="saveSetting(event, 'contact')">
             <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-address-book" style="color:var(--am)"></i> بيانات التواصل</h3>
+            <!-- New editable texts -->
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>عنوان القسم (h3)</label>
+                    <input type="text" name="contact_h3" value="{{ $contact['contact_h3'] ?? 'بيانات التواصل' }}" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>العنوان الفرعي (h2)</label>
+                    <input type="text" name="contact_h2" value="{{ $contact['contact_h2'] ?? 'تواصل معنا' }}" required>
+                </div>
+            </div>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>وصف مختصر</label>
+                    <input type="text" name="contact_desc" value="{{ $contact['contact_desc'] ?? 'نحن هنا لخدمتك على مدار الساعة' }}" required>
+                </div>
+            </div>
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>رقم الهاتف للاتصال</label>

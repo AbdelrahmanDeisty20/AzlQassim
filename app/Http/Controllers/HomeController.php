@@ -40,6 +40,12 @@ class HomeController extends Controller
             'ftr' => $settings['ftr'] ?? [],
             'contact' => $settings['contact'] ?? [],
             'colors' => $settings['colors'] ?? [],
+            'gallery_info' => $settings['gallery_info'] ?? [
+                'tag' => 'أعمالنا',
+                'h3' => 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام',
+                'h2' => 'أعمالنا تتحدث عنا',
+                'p' => 'صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل'
+            ],
             'menus' => Menu::where('v', true)->orderBy('order')->get()
         ];
     }

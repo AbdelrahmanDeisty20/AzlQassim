@@ -101,12 +101,13 @@ class AdminController extends Controller
         $svc_page = $this->settingService->get('svc_page');
         $why_us = $this->settingService->get('why_us');
         $how_we_work = $this->settingService->get('how_we_work');
+        $gallery_info = $this->settingService->get('gallery_info');
         $menus = \App\Models\Menu::orderBy('order')->get();
         $whyItems = \App\Models\WhyItem::all();
         $steps = \App\Models\Step::orderBy('num')->get();
 
         return view('admin.settings.index', compact(
-            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us', 'how_we_work', 'menus', 'whyItems', 'steps'
+            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us', 'how_we_work', 'gallery_info', 'menus', 'whyItems', 'steps'
         ));
     }
 

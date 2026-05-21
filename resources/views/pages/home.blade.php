@@ -510,10 +510,16 @@
     <section class="sec">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-images"></i>أعمالنا</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>أعمالنا <em>تتحدث عنا</em></h2>
-                <p>صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل</p>
+                <div class="tag"><i class="fas fa-images"></i>{{ $gallery_info['tag'] ?? 'أعمالنا' }}</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">{{ $gallery_info['h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+                @php
+                    $h2Full = $gallery_info['h2'] ?? 'أعمالنا تتحدث عنا';
+                    $words = explode(' ', $h2Full);
+                    $firstWord = array_shift($words);
+                    $rest = implode(' ', $words);
+                @endphp
+                <h2>{{ $firstWord }} <em>{{ $rest }}</em></h2>
+                <p>{{ $gallery_info['p'] ?? 'صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل' }}</p>
             </div>
             <div class="gal-f">
                 <button class="gf act" onclick="filterHomeGallery('photos', this)" style="background: rgba(224, 123, 15, 0.06); color: var(--am); border-color: var(--am);">معرض الصور</button>

@@ -15,6 +15,7 @@
         <button class="tab-btn" onclick="showTab('tab-colors', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">ألوان الموقع</button>
         <button class="tab-btn" onclick="showTab('tab-menu', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">قوائم المنيو</button>
         <button class="tab-btn" onclick="showTab('tab-svc', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">نصوص الخدمة</button>
+        <button class="tab-btn" onclick="showTab('tab-gallery-info', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">معرض أعمالنا (Gallery)</button>
     </div>
 
     <!-- Tab 1: Header Settings -->
@@ -302,6 +303,30 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ النصوص</button>
+        </form>
+    </div>
+    
+    <!-- Tab 10: Gallery Section Title & Subtitles -->
+    <div id="tab-gallery-info" class="tab-content" style="display:none">
+        <form id="form-gallery-info" onsubmit="saveSetting(event, 'gallery_info')">
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-images" style="color:var(--am)"></i> نصوص معرض الأعمال (Gallery)</h3>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوسم الصغير بالذهبي (Tag)</label>
+                <input type="text" name="tag" value="{{ $gallery_info['tag'] ?? 'أعمالنا' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الفرعي الطويل (h3)</label>
+                <input type="text" name="h3" value="{{ $gallery_info['h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الرئيسي الملون (h2)</label>
+                <input type="text" name="h2" value="{{ $gallery_info['h2'] ?? 'أعمالنا تتحدث عنا' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوصف السفلي (p)</label>
+                <input type="text" name="p" value="{{ $gallery_info['p'] ?? 'صور حقيقية من مشاريع نفذناها في القصيم وبريدة وحائل' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+            </div>
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ نصوص معرض الأعمال</button>
         </form>
     </div>
     

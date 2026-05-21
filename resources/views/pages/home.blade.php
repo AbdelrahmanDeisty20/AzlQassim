@@ -384,13 +384,21 @@
                         </div>
 
                         <!-- Column 2: Technical Specs -->
-                        <div class="portfolio-col col-2" style="background: rgba(197,168,128,0.04); padding: 16px 20px; border-radius: var(--r); border-right: 4px solid var(--am); display: flex; align-items: flex-start; gap: 12px;">
-                            <i class="fas fa-shield-alt" style="color: var(--am); font-size: 18px; margin-top: 3px; flex-shrink: 0;"></i>
-                            <p style="font-size: 14.5px; color: #333; line-height: 1.6; margin: 0; font-weight: 600;">{{ $proj->feats }}</p>
+                        <div class="portfolio-col col-2" style="background: rgba(197,168,128,0.04); padding: 16px 20px; border-radius: var(--r); border-right: 4px solid var(--am); display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                            <div class="mobile-col-header" style="font-size: 11px; color: var(--cc); font-weight: 800; display: none; align-items: center; gap: 6px;">
+                                <i class="fas fa-cogs" style="color: var(--am);"></i> التوصيف التقني الدقيق وطريقة التنفيذ
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
+                                <i class="fas fa-shield-alt" style="color: var(--am); font-size: 18px; margin-top: 3px; flex-shrink: 0;"></i>
+                                <p style="font-size: 14.5px; color: #333; line-height: 1.6; margin: 0; font-weight: 600;">{{ $proj->feats }}</p>
+                            </div>
                         </div>
 
                         <!-- Column 3: Status & Accreditation -->
                         <div class="portfolio-col col-3" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                            <div class="mobile-col-header" style="font-size: 11px; color: var(--cc); font-weight: 800; display: none; align-items: center; gap: 6px; margin-bottom: 2px;">
+                                <i class="fas fa-clipboard-check" style="color: var(--am);"></i> حالة المشروع والاعتماد
+                            </div>
                             <div style="background: rgba(26, 122, 69, 0.08); color: var(--gr); padding: 8px 16px; border-radius: 50px; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(26, 122, 69, 0.15);">
                                 <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--gr); display: inline-block; animation: pulse-green 1.5s infinite;"></span>
                                 {{ $proj->newP ?: 'تم التنفيذ والتسليم بنجاح' }}
@@ -458,12 +466,21 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(26, 122, 69, 0); }
         }
         @media (max-width: 991px) {
+            .mobile-col-header {
+                display: flex !important;
+            }
             .portfolio-grid-wrapper {
                 grid-template-columns: 1fr !important;
-                gap: 24px !important;
+                gap: 28px !important;
             }
             .accreditation-seal-card {
-                padding: 30px 20px !important;
+                order: 1 !important;
+                padding: 12px !important;
+                max-width: 300px !important;
+                margin: 0 auto !important;
+            }
+            .portfolio-container {
+                order: 2 !important;
             }
             .portfolio-header-row {
                 display: none !important;

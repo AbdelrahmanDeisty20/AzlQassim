@@ -568,7 +568,9 @@
                         @php
                             $hasImg = !empty($gal->img);
                         @endphp
-                        <div class="gi home-photo-item-el" style="display:block;">
+                        <div class="gi home-photo-item-el" style="display:block; cursor:{{ $hasImg ? 'zoom-in' : 'default' }};"
+                             onclick="{{ $hasImg ? 'openLightbox(this)' : '' }}"
+                             data-img="{{ $gal->img ?? '' }}" data-title="{{ $gal->title ?? '' }}">
                             <div class="gi-img-wrap" style="{{ $hasImg ? '' : 'background:' . ($gal->color ?? '#0f2441') }}">
                                 @if($hasImg)
                                     <img src="{{ $gal->img }}" onerror="this.style.display='none'">

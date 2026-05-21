@@ -24,6 +24,10 @@
             document.addEventListener('app:ready', function() { window.openVid(url); }, { once: true });
         };
         window.closeVid = function() {};
+        // Lightbox stub - will be overridden by page script
+        window.openLightbox = function(el) {
+            document.addEventListener('app:ready', function() { window.openLightbox(el); }, { once: true });
+        };
     </script>
 
     <!-- Laravel Vite Styles and Scripts -->

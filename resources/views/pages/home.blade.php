@@ -243,10 +243,10 @@
     <section class="sec">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-tools"></i>خدماتنا</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>خدمات <em>العزل الاحترافية</em></h2>
-                <p>أشمل حلول العزل للمنازل والفلل والمباني في القصيم وبريدة وحائل</p>
+                <div class="tag"><i class="fas fa-tools"></i>{{ $svc_page['services_tag'] ?? 'خدماتنا' }}</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">{{ $svc_page['services_h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+                <h2>{{ $svc_page['services_h2_plain'] ?? 'خدمات' }} <em>{{ $svc_page['services_h2_em'] ?? 'العزل الاحترافية' }}</em></h2>
+                <p>{{ $svc_page['services_p'] ?? 'أشمل حلول العزل للمنازل والفلل والمباني في القصيم وبريدة وحائل' }}</p>
             </div>
             <div class="svcs-g" id="svcsG">
                 @foreach($services as $svc)

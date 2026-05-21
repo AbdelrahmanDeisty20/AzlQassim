@@ -298,8 +298,47 @@
     <!-- Tab: Service Page Texts -->
     <div id="tab-svc" class="tab-content" style="display:none">
         <form id="form-svc" onsubmit="saveSetting(event, 'svc_page')">
-            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-tools" style="color:var(--am)"></i> نصوص صفحة تفاصيل الخدمة</h3>
-            <p style="font-size:12px; color:var(--cc); margin-bottom:18px">تغيير العناوين الثابتة التي تظهر داخل صفحة أي خدمة (مثل: عن هذه الخدمة، مميزات الخدمة، خدمات أخرى).</p>
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-tools" style="color:var(--am)"></i> نصوص الخدمة</h3>
+
+            <!-- ====== قسم عنوان الخدمات بالصفحة الرئيسية ====== -->
+            <h4 style="margin:0 0 14px; color:var(--nv); border-bottom:2px solid var(--am); padding-bottom:7px; font-weight:700;">
+                <i class="fas fa-home" style="color:var(--am)"></i> عناوين قسم الخدمات بالصفحة الرئيسية
+            </h4>
+            <p style="font-size:12px; color:var(--cc); margin-bottom:14px">النصوص التي تظهر فوق كروت الخدمات في الصفحة الرئيسية (التاج، العنوان الكبير، الوصف).</p>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>التاج الصغير (Tag) - مثال: خدماتنا</label>
+                    <input type="text" name="services_tag" value="{{ $svc_page['services_tag'] ?? 'خدماتنا' }}">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>العنوان الفرعي الطويل (h3 - النص الأعلى)</label>
+                    <input type="text" name="services_h3" value="{{ $svc_page['services_h3'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}">
+                </div>
+            </div>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>العنوان الرئيسي (h2 - الجزء العادي)</label>
+                    <input type="text" name="services_h2_plain" value="{{ $svc_page['services_h2_plain'] ?? 'خدمات' }}" placeholder="مثال: خدمات">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>العنوان الرئيسي (h2 - الجزء الملون بالذهبي)</label>
+                    <input type="text" name="services_h2_em" value="{{ $svc_page['services_h2_em'] ?? 'العزل الاحترافية' }}" placeholder="مثال: العزل الاحترافية">
+                </div>
+            </div>
+            <div class="afg" style="margin-bottom:24px">
+                <label>الوصف السفلي (p) - الجملة تحت العنوان الكبير</label>
+                <input type="text" name="services_p" value="{{ $svc_page['services_p'] ?? 'أشمل حلول العزل للمنازل والفلل والمباني في القصيم وبريدة وحائل' }}" style="width:100%">
+            </div>
+
+            <hr style="border:none; border-top:1px solid #eee; margin:24px 0 20px">
+
+            <!-- ====== نصوص صفحة تفاصيل الخدمة ====== -->
+            <h4 style="margin:0 0 14px; color:var(--nv); border-bottom:2px solid #eee; padding-bottom:7px; font-weight:700;">
+                <i class="fas fa-file-alt" style="color:var(--am)"></i> نصوص صفحة تفاصيل الخدمة
+            </h4>
+            <p style="font-size:12px; color:var(--cc); margin-bottom:14px">العناوين الثابتة التي تظهر داخل صفحة أي خدمة (مثل: عن هذه الخدمة، مميزات الخدمة، خدمات أخرى).</p>
+
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>عنوان قسم الوصف</label>
@@ -320,7 +359,8 @@
                     <input type="text" name="offer_desc" value="{{ $svc_page['offer_desc'] ?? 'معاينة مجانية لسطحك وعرض سعر شفاف' }}" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ النصوص</button>
+
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ جميع النصوص</button>
         </form>
     </div>
     

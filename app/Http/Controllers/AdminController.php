@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\AdminService;
-use App\Services\SettingService;
 use App\Services\ContentService;
+use App\Services\SettingService;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -100,11 +100,13 @@ class AdminController extends Controller
         $about = $this->settingService->get('about');
         $svc_page = $this->settingService->get('svc_page');
         $why_us = $this->settingService->get('why_us');
+        $how_we_work = $this->settingService->get('how_we_work');
         $menus = \App\Models\Menu::orderBy('order')->get();
         $whyItems = \App\Models\WhyItem::all();
+        $steps = \App\Models\Step::orderBy('num')->get();
 
         return view('admin.settings.index', compact(
-            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us', 'menus', 'whyItems'
+            'hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us', 'how_we_work', 'menus', 'whyItems', 'steps'
         ));
     }
 

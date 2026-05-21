@@ -19,7 +19,7 @@ class SettingService
 
     public function getAllSettings(): array
     {
-        $keys = ['hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us'];
+        $keys = ['hero', 'hdr', 'ftr', 'contact', 'colors', 'about', 'svc_page', 'why_us', 'how_we_work'];
         $settings = [];
         foreach ($keys as $key) {
             $settings[$key] = $this->get($key);

@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\SettingService;
-use App\Services\ContentService;
-use App\Models\Setting;
-use App\Models\Service;
-use App\Models\Offer;
-use App\Models\Testimonial;
-use App\Models\Gallery;
-use App\Models\Faq;
-use App\Models\WhyItem;
-use App\Models\Step;
 use App\Models\Area;
 use App\Models\Blog;
+use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\Menu;
+use App\Models\Offer;
+use App\Models\Service;
+use App\Models\Setting;
+use App\Models\Step;
+use App\Models\Testimonial;
+use App\Models\WhyItem;
+use App\Services\ContentService;
+use App\Services\SettingService;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -36,6 +36,7 @@ class HomeController extends Controller
             'hero' => $settings['hero'] ?? [],
             'svc_page' => $settings['svc_page'] ?? [],
             'why_us' => $settings['why_us'] ?? [],
+            'how_we_work' => $settings['how_we_work'] ?? [],
             'ftr' => $settings['ftr'] ?? [],
             'contact' => $settings['contact'] ?? [],
             'colors' => $settings['colors'] ?? [],
@@ -47,7 +48,7 @@ class HomeController extends Controller
     {
         $common = $this->getCommonData();
         $settings = $this->settingService->getAllSettings();
-        
+
         $hero = $settings['hero'] ?? [];
         $about = $settings['about'] ?? [
             'img' => '',
@@ -69,7 +70,7 @@ class HomeController extends Controller
         $blogs = Blog::where('status', 'published')->get();
 
         return view('pages.home', array_merge($common, compact(
-            'hero', 'about', 'services', 'offers', 'testimonials', 
+            'hero', 'about', 'services', 'offers', 'testimonials',
             'gallery', 'faqs', 'whyItems', 'steps', 'areas', 'blogs'
         )));
     }
@@ -138,13 +139,13 @@ class HomeController extends Controller
         // Sanitize path to prevent directory traversal
         $path = str_replace(['..', '\\'], ['', '/'], $path);
         $path = ltrim($path, '/');
-        
+
         $fullPath = public_path($path);
-        
+
         if (empty($path) || !file_exists($fullPath) || is_dir($fullPath)) {
             abort(404);
         }
-        
+
         $response = new \Symfony\Component\HttpFoundation\BinaryFileResponse($fullPath);
         \Symfony\Component\HttpFoundation\BinaryFileResponse::trustXSendfileTypeHeader();
         return $response;

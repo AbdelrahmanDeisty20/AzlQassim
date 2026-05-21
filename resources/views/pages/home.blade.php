@@ -324,10 +324,10 @@
     <section class="sec">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-list-ol"></i>آلية العمل</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>كيف <em>نعمل؟</em></h2>
-                <p>خطوات واضحة وشفافة للحصول على خدمة عزل احترافية</p>
+                <div class="tag"><i class="fas fa-list-ol"></i>{{ $how_we_work['tag'] ?? 'آلية العمل' }}</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">{{ $how_we_work['subtitle'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}</h3>
+                <h2>{!! $how_we_work['title'] ?? 'كيف <em>نعمل؟</em>' !!}</h2>
+                <p>{{ $how_we_work['desc'] ?? 'خطوات واضحة وشفافة للحصول على خدمة عزل احترافية' }}</p>
             </div>
             <div class="steps-g" id="stpsEl">
                 @foreach($steps as $stp)

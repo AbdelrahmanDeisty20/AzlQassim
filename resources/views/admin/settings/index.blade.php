@@ -10,6 +10,7 @@
         <button class="tab-btn" onclick="showTab('tab-hero', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">البانر الرئيسي (Hero)</button>
         <button class="tab-btn" onclick="showTab('tab-about', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">من نحن (About)</button>
         <button class="tab-btn" onclick="showTab('tab-why', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">لماذا تختارنا (Why Us)</button>
+        <button class="tab-btn" onclick="showTab('tab-how-we-work', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">آلية العمل (Steps)</button>
         <button class="tab-btn" onclick="showTab('tab-contact', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">بيانات التواصل</button>
         <button class="tab-btn" onclick="showTab('tab-colors', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">ألوان الموقع</button>
         <button class="tab-btn" onclick="showTab('tab-menu', this)" style="background:none; border:none; padding:8px 16px; font-weight:700; font-family:inherit; color:var(--cc); cursor:pointer; border-radius:var(--r); transition:all .3s">قوائم المنيو</button>
@@ -389,6 +390,122 @@
         </div>
     </div>
 
+    <!-- Tab How We Work: how_we_work -->
+    <div id="tab-how-we-work" class="tab-content" style="display:none">
+        <form id="form-how-we-work" onsubmit="saveSetting(event, 'how_we_work')">
+            <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-list-ol" style="color:var(--am)"></i> إعدادات آلية العمل (كيف نعمل)</h3>
+            
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
+                <div class="afg" style="margin:0">
+                    <label>الوسم الصغير بالذهبي (Tag)</label>
+                    <input type="text" name="tag" value="{{ $how_we_work['tag'] ?? 'آلية العمل' }}" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>العنوان الرئيسي (يمكنك استخدام وسم &lt;em&gt; للنص الملون بالذهبي)</label>
+                    <input type="text" name="title" value="{{ $how_we_work['title'] ?? 'كيف <em>نعمل؟</em>' }}" required>
+                </div>
+            </div>
+
+            <div class="afg" style="margin-bottom:18px">
+                <label>العنوان الفرعي الطويل (H3)</label>
+                <input type="text" name="subtitle" value="{{ $how_we_work['subtitle'] ?? 'أفضل شركة عزل أسطح بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام' }}" required>
+            </div>
+
+            <div class="afg" style="margin-bottom:18px">
+                <label>الوصف / التفاصيل الفرعية (Description)</label>
+                <textarea name="desc" rows="3" required style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $how_we_work['desc'] ?? 'خطوات واضحة وشفافة للحصول على خدمة عزل احترافية' }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ إعدادات نصوص آلية العمل</button>
+        </form>
+
+        <h4 style="margin:26px 0 10px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:6px"><i class="fas fa-list-ol" style="color:var(--am)"></i> قائمة خطوات العمل المضافة</h4>
+        
+        <!-- Add/Edit Step form -->
+        <form id="form-step" onsubmit="saveStep(event)" style="background:var(--sl); border-radius:var(--r); padding:16px; margin-bottom:20px; border:1px solid #e1e3e5">
+            <h4 id="step-form-title" style="margin-bottom:12px; color:var(--nv)">إضافة خطوة عمل جديدة</h4>
+            <input type="hidden" name="id" id="step-id" value="">
+            
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:100px 1fr 1fr; gap:16px; margin-bottom:12px">
+                <div class="afg" style="margin:0">
+                    <label>رقم الخطوة *</label>
+                    <input type="number" name="num" id="step-num" placeholder="مثال: 1" required min="1">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>عنوان الخطوة *</label>
+                    <input type="text" name="title" id="step-title" placeholder="مثال: تواصل معنا" required>
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الوصف / التفاصيل *</label>
+                    <input type="text" name="desc" id="step-desc" placeholder="مثال: اتصل أو أرسل واتساب" required>
+                </div>
+            </div>
+
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px">
+                <div class="afg" style="margin:0">
+                    <label>الأيقونة (FontAwesome) - اختياري</label>
+                    <input type="text" name="icon" id="step-icon" placeholder="مثال: fa-phone, fa-calendar-check" value="">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>أو ارفع صورة (اختياري - سيحل محل رقم الخطوة إذا تم رفعه)</label>
+                    <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap">
+                        <input type="hidden" name="img" id="step-img-val" value="">
+                        <div style="width:40px; height:40px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                            <img id="step-img-preview" src="" style="width:100%; height:100%; object-fit:contain; display:none">
+                            <div id="step-img-placeholder" style="font-size:18px; color:var(--cc)"><i class="fas fa-image"></i></div>
+                        </div>
+                        <div style="display:flex; gap:8px; align-items:center">
+                            <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#step-img-val').val(url); $('#step-img-preview').attr('src', url).show(); $('#step-img-placeholder').hide(); })" style="font-size:11px; max-width:180px">
+                            <button type="button" onclick="clearStepImage()" style="background:#ef9090; color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer"><i class="fas fa-times"></i> حذف الصورة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display:flex; gap:10px">
+                <button type="submit" class="btn btn-nv" style="height:41px; justify-content:center; padding:0 24px"><i class="fas fa-save"></i> حفظ الخطوة</button>
+                <button type="button" id="step-btn-cancel" onclick="resetStepForm()" class="btn" style="height:41px; justify-content:center; background:#eee; color:#666; display:none">إلغاء التعديل</button>
+            </div>
+        </form>
+
+        <!-- Steps table -->
+        <div style="overflow-x:auto">
+            <table class="tbl" style="width:100%; border-collapse:collapse; text-align:right; min-width:600px">
+                <thead>
+                    <tr style="background:var(--sl)">
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:100px">رقم الخطوة</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:100px">صورة / أيقونة</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd">عنوان الخطوة</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd">الوصف</th>
+                        <th style="padding:12px; border-bottom:2px solid #ddd; width:120px">العمليات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($steps as $stp)
+                        <tr style="border-bottom:1px solid #eee" id="step-row-{{ $stp->id }}">
+                            <td style="padding:12px"><strong>{{ $stp->num }}</strong></td>
+                            <td style="padding:12px">
+                                @if(!empty($stp->img))
+                                    <img src="{{ $stp->img }}" style="width:30px; height:30px; object-fit:contain; border-radius:4px">
+                                @elseif(!empty($stp->icon))
+                                    <i class="fas {{ $stp->icon }}" style="font-size:20px; color:var(--am)"></i>
+                                @else
+                                    <span style="color:var(--cc); font-size:12px">لا يوجد (رقم فقط)</span>
+                                @endif
+                            </td>
+                            <td style="padding:12px"><strong>{{ $stp->title }}</strong></td>
+                            <td style="padding:12px; font-size:12px; color:var(--cc)">{{ $stp->desc }}</td>
+                            <td style="padding:12px">
+                                <button class="ab gn" onclick="editStep({{ json_encode($stp) }})" title="تعديل"><i class="fas fa-edit"></i></button>
+                                <button class="ab rd" onclick="deleteStep({{ $stp->id }})" title="حذف"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- Tab 4: Contact Information -->
     <div id="tab-contact" class="tab-content" style="display:none">
         <form id="form-contact" onsubmit="saveSetting(event, 'contact')">
@@ -735,6 +852,115 @@
                         Swal.close();
                         if (res.success) {
                             Swal.fire('تم الحذف!', 'تم حذف الميزة بنجاح.', 'success').then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // --- Work Steps (steps) management functions ---
+    function editStep(item) {
+        $('#step-id').val(item.id);
+        $('#step-num').val(item.num);
+        $('#step-title').val(item.title);
+        $('#step-desc').val(item.desc || '');
+        $('#step-icon').val(item.icon || '');
+        $('#step-img-val').val(item.img || '');
+        
+        if (item.img) {
+            $('#step-img-preview').attr('src', item.img).show();
+            $('#step-img-placeholder').hide();
+        } else {
+            $('#step-img-preview').hide().attr('src', '');
+            $('#step-img-placeholder').show();
+        }
+
+        $('#step-form-title').text('تعديل خطوة العمل رقم: ' + item.num);
+        $('#step-btn-cancel').show();
+        // scroll up to form
+        $('#form-step')[0].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetStepForm() {
+        $('#step-id').val('');
+        $('#step-num').val('');
+        $('#step-title').val('');
+        $('#step-desc').val('');
+        $('#step-icon').val('');
+        $('#step-img-val').val('');
+        $('#step-img-preview').hide().attr('src', '');
+        $('#step-img-placeholder').show();
+
+        $('#step-form-title').text('إضافة خطوة عمل جديدة');
+        $('#step-btn-cancel').hide();
+    }
+
+    function clearStepImage() {
+        $('#step-img-val').val('');
+        $('#step-img-preview').hide().attr('src', '');
+        $('#step-img-placeholder').show();
+    }
+
+    function saveStep(e) {
+        e.preventDefault();
+        const id = $('#step-id').val();
+        const num = $('#step-num').val();
+        const title = $('#step-title').val();
+        const desc = $('#step-desc').val();
+        const icon = $('#step-icon').val();
+        const img = $('#step-img-val').val();
+
+        Swal.showLoading();
+        $.ajax({
+            url: '/admin/content/steps',
+            type: 'POST',
+            data: {
+                id: id,
+                num: num,
+                title: title,
+                desc: desc,
+                icon: icon,
+                img: img
+            },
+            success: function(res) {
+                Swal.close();
+                if (res.success) {
+                    Swal.fire('تم الحفظ!', 'تم حفظ خطوة العمل بنجاح.', 'success').then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire('خطأ!', 'حدث خطأ أثناء الحفظ.', 'error');
+                }
+            },
+            error: function() {
+                Swal.close();
+                Swal.fire('خطأ!', 'فشل الاتصال بالخادم.', 'error');
+            }
+        });
+    }
+
+    function deleteStep(id) {
+        Swal.fire({
+            title: 'هل أنت متأكد من حذف هذه الخطوة؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'نعم، احذف',
+            cancelButtonText: 'إلغاء',
+            confirmButtonColor: '#ef9090',
+            cancelButtonColor: 'var(--nv)'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.showLoading();
+                $.ajax({
+                    url: '/admin/content/steps/' + id,
+                    type: 'DELETE',
+                    success: function(res) {
+                        Swal.close();
+                        if (res.success) {
+                            Swal.fire('تم الحذف!', 'تم حذف خطوة العمل بنجاح.', 'success').then(() => {
                                 window.location.reload();
                             });
                         }

@@ -347,55 +347,147 @@
         </div>
     </section>
     
-    <!-- Offers & Packages Section -->
-    <section class="sec sec-alt">
+    <!-- Portfolio (سابقة أعمالنا) Section -->
+    <section class="sec sec-alt" id="portfolio">
         <div class="con">
             <div class="st">
-                <div class="tag"><i class="fas fa-percent"></i>عروضنا</div>
-                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">أفضل شركة عزل فوم بالقصيم رونق قلب الخليج للعزل الأمريكي بضمان موثق معتمد ١٥ عام</h3>
-                <h2>باقات <em>مميزة</em></h2>
-                <p>اختر الباقة الأنسب واحصل على أفضل خدمة عزل بأفضل سعر</p>
+                <div class="tag"><i class="fas fa-history"></i>سابقة أعمالنا</div>
+                <h3 style="font-size: clamp(14px, 3.5vw, 17px); font-weight: 700; color: var(--nv); margin-bottom: 6px; letter-spacing: 0.3px;">مشاريع كبرى تم تنفيذها بأعلى جودة مطابقة لكود البناء السعودي</h3>
+                <h2>سابقة <em>أعمال متميزة</em></h2>
+                <p>نفخر بثقة عملائنا في تنفيذ كبرى مشاريع العزل المائي والحراري بمنطقة القصيم</p>
             </div>
-            <div class="offers-g" id="offEl">
-                @foreach($offers as $off)
-                    <div class="ofc {{ $off->feat ? 'hot' : '' }}">
-                        @if($off->feat)
-                            <span class="ofbg">الأكثر طلباً</span>
-                        @endif
-                        <div class="ofhd">
-                            <h3>{{ $off->name }}</h3>
-                            <div class="sub">ضمان حتى {{ $hero['s2'] ?? '10' }} {{ $hero['s2l'] ?? 'سنوات' }}</div>
-                            @if(!empty($off->newP))
-                                <div class="ofpr">
-                                    @if(!empty($off->oldP))
-                                        <span class="old">{{ $off->oldP }} ر.س</span>
-                                    @endif
-                                    <span class="nw">{{ $off->newP }}</span>
-                                    <span class="u">ر.س</span>
-                                </div>
-                            @else
-                                <div class="ofpr" style="margin-top:6px;">
-                                    <span class="nw" style="font-size:15px; color:var(--am3); background:rgba(255,255,255,0.08); padding:4px 10px; border-radius:50px; display:inline-block; font-weight:700;"><i class="fas fa-tags" style="font-size:12px; margin-left:4px;"></i> سعر خاص عند التواصل</span>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="ofbd">
-                            <ul class="offl">
-                                @foreach(explode("\n", $off->feats) as $f)
-                                    @if(trim($f))
-                                        <li><i class="fas fa-check-circle"></i>{{ trim($f) }}</li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                            <a class="btn btn-am" onclick="openReq()" style="display:flex;justify-content:center">
-                                <i class="fas fa-calendar-check"></i>اطلب الباقة
-                            </a>
-                        </div>
+            
+            <div class="portfolio-grid-wrapper" style="display: grid; grid-template-columns: 1fr 270px; gap: 30px; margin-top: 40px; align-items: stretch;">
+                
+                <!-- Right Column: Portfolio Container -->
+                <div class="portfolio-container" style="display: flex; flex-direction: column;">
+                    <!-- Header (Hidden on Mobile) -->
+                    <div class="portfolio-header-row" style="display: grid; grid-template-columns: 1fr 1.8fr 1fr; gap: 20px; background: var(--nv); color: #fff; padding: 18px 24px; border-radius: var(--r) var(--r) 0 0; font-weight: 700; text-align: right; box-shadow: var(--sh);">
+                        <div style="font-size: 16px;"><i class="fas fa-building" style="margin-left: 8px; color: var(--am);"></i> اسم المشروع والجهة المستفيدة</div>
+                        <div style="font-size: 16px;"><i class="fas fa-cogs" style="margin-left: 8px; color: var(--am);"></i> التوصيف التقني الدقيق وطريقة التنفيذ الحديثة بمواد العزل الأمريكية</div>
+                        <div style="font-size: 16px;"><i class="fas fa-clipboard-check" style="margin-left: 8px; color: var(--am);"></i> حالة المشروع والاعتماد</div>
                     </div>
-                @endforeach
+
+                    <!-- Portfolio Item Rows -->
+                    @foreach($offers as $index => $proj)
+                    <div class="portfolio-item-row" style="display: grid; grid-template-columns: 1fr 1.8fr 1fr; gap: 20px; background: #fff; padding: 24px; border: 1px solid rgba(15,36,65,0.08); border-top: none; @if($index === count($offers) - 1) border-radius: 0 0 var(--r) var(--r); @endif box-shadow: var(--sh); transition: transform 0.3s, box-shadow 0.3s; align-items: center; margin-bottom: 0;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 30px rgba(15,36,65,0.1)';" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--sh)';">
+                        
+                        <!-- Column 1: Project & Beneficiary -->
+                        <div class="portfolio-col col-1" style="display: flex; align-items: center; gap: 14px;">
+                            <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(197,168,128,0.1); color: var(--am); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(197,168,128,0.15);">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--cc); font-weight: 800; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">المشروع المعتمد</div>
+                                <h4 style="font-size: 16px; font-weight: 800; color: var(--nv); margin: 0; line-height: 1.4;">{{ $proj->name }}</h4>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Technical Specs -->
+                        <div class="portfolio-col col-2" style="background: rgba(197,168,128,0.04); padding: 16px 20px; border-radius: var(--r); border-right: 4px solid var(--am); display: flex; align-items: flex-start; gap: 12px;">
+                            <i class="fas fa-shield-alt" style="color: var(--am); font-size: 18px; margin-top: 3px; flex-shrink: 0;"></i>
+                            <p style="font-size: 14.5px; color: #333; line-height: 1.6; margin: 0; font-weight: 600;">{{ $proj->feats }}</p>
+                        </div>
+
+                        <!-- Column 3: Status & Accreditation -->
+                        <div class="portfolio-col col-3" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                            <div style="background: rgba(26, 122, 69, 0.08); color: var(--gr); padding: 8px 16px; border-radius: 50px; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(26, 122, 69, 0.15);">
+                                <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--gr); display: inline-block; animation: pulse-green 1.5s infinite;"></span>
+                                {{ $proj->newP ?: 'تم التنفيذ والتسليم بنجاح' }}
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--cc); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-award" style="color: var(--am);"></i> مطابق لكود البناء السعودي (SBC)
+                            </div>
+                        </div>
+
+                    </div>
+                    @endforeach
+                </div>
+
+                <!-- Left Column: Creative Royal Seal (Accreditation Card) -->
+                <div class="accreditation-seal-card" style="background: @if(!empty($hdr['accreditation_logo'])) #fff @else linear-gradient(135deg, var(--nv) 0%, #173257 100%) @endif; border-radius: var(--r); padding: @if(!empty($hdr['accreditation_logo'])) 12px @else 35px 24px @endif; text-align: center; border: @if(!empty($hdr['accreditation_logo'])) 1px solid rgba(15,36,65,0.08) @else 2px solid var(--am) @endif; box-shadow: 0 15px 45px rgba(15,36,65,0.15); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+                    
+                    @if(!empty($hdr['accreditation_logo']))
+                        <!-- Custom Uploaded Full Image (Takes full space beautifully!) -->
+                        <img src="{{ $hdr['accreditation_logo'] }}" style="width: 100%; height: auto; max-height: 100%; object-fit: contain; border-radius: calc(var(--r) - 4px); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.06));" alt="شعار وثيقة الاعتماد">
+                    @else
+                        <!-- Royal Saudi Crest fallback if empty -->
+                        <!-- Glowing background light effect -->
+                        <div style="position: absolute; top: -50px; left: -50px; width: 150px; height: 150px; background: rgba(197, 168, 128, 0.18); filter: blur(50px); border-radius: 50%;"></div>
+                        
+                        <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 50%; border: 1.5px dashed rgba(197,168,128,0.4); display: inline-flex; align-items: center; justify-content: center; width: 130px; height: 130px; box-shadow: inset 0 0 20px rgba(0,0,0,0.3); overflow: hidden;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="width: 100px; height: 100px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));">
+                                <!-- Palm Tree -->
+                                <path d="M50,40 C50,22 35,18 25,28 C35,32 45,32 50,40 Z" fill="#e07b0f"/>
+                                <path d="M50,40 C50,22 65,18 75,28 C65,32 55,32 50,40 Z" fill="#e07b0f"/>
+                                <path d="M50,43 C50,28 30,22 20,36 C32,38 45,38 50,43 Z" fill="#c5a880"/>
+                                <path d="M50,43 C50,28 70,22 80,36 C68,38 55,38 50,43 Z" fill="#c5a880"/>
+                                <path d="M50,35 C50,20 40,15 30,25 C40,28 47,28 50,35 Z" fill="#ffb85c"/>
+                                <path d="M50,35 C50,20 60,15 70,25 C60,28 53,28 50,35 Z" fill="#ffb85c"/>
+                                <!-- Trunk -->
+                                <path d="M48,40 L52,40 L53,70 L47,70 Z" fill="#8c6d45"/>
+                                <path d="M45,70 L55,70 L56,74 L44,74 Z" fill="#705330"/>
+                                <!-- Crossed Swords -->
+                                <path d="M22,73 L78,73" stroke="#ffb85c" stroke-width="3" stroke-linecap="round" fill="none" transform="rotate(-30 50 73)"/>
+                                <path d="M22,73 L78,73" stroke="#ffb85c" stroke-width="3" stroke-linecap="round" fill="none" transform="rotate(30 50 73)"/>
+                                <circle cx="36.5" cy="65" r="3" fill="#ffb85c"/>
+                                <circle cx="63.5" cy="65" r="3" fill="#ffb85c"/>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h4 style="color: #fff; font-size: 21px; font-weight: 800; margin: 0 0 6px 0; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">اعتماد رسمي معتمد</h4>
+                            <span style="color: var(--am); font-size: 13.5px; font-weight: 800; background: rgba(197,168,128,0.12); padding: 5px 14px; border-radius: 50px; display: inline-block; border: 1px solid rgba(197,168,128,0.25);">إمارة منطقة القصيم</span>
+                        </div>
+                        
+                        <p style="color: rgba(255,255,255,0.8); font-size: 14.5px; line-height: 1.6; margin: 0; font-weight: 500;">فخورون بثقة إمارة القصيم والجهات الحكومية في اعتماد خدماتنا المتميزة لعزل الأسطح والمباني.</p>
+                        
+                        <div style="width: 100%; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 18px; display: flex; justify-content: center; gap: 18px; color: #fff; font-size: 12.5px; font-weight: 700;">
+                            <span><i class="fas fa-shield-alt" style="color: var(--am); margin-left: 5px;"></i> ضمان 15 عام</span>
+                            <span><i class="fas fa-certificate" style="color: var(--am); margin-left: 5px;"></i> كود البناء السعودي</span>
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <!-- Custom CSS Styles and Media Queries -->
+    <style>
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(26, 122, 69, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(26, 122, 69, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(26, 122, 69, 0); }
+        }
+        @media (max-width: 991px) {
+            .portfolio-grid-wrapper {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+            .accreditation-seal-card {
+                padding: 30px 20px !important;
+            }
+            .portfolio-header-row {
+                display: none !important;
+            }
+            .portfolio-item-row {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+                padding: 20px !important;
+                border: 1px solid rgba(15,36,65,0.1) !important;
+                border-radius: var(--r) !important;
+            }
+            .portfolio-col {
+                text-align: right !important;
+                align-items: flex-start !important;
+            }
+            .portfolio-col.col-3 {
+                align-items: flex-start !important;
+                text-align: right !important;
+                padding-top: 10px;
+                border-top: 1px dashed rgba(0,0,0,0.1);
+                width: 100%;
+            }
+        }
+    </style>
     
     <!-- Gallery Section -->
     <section class="sec">

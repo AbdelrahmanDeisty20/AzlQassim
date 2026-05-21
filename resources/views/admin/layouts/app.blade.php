@@ -142,7 +142,7 @@
                 
                 <div class="ans">إدارة المحتوى</div>
                 <a href="/admin/services" class="{{ Request::is('admin/services') ? 'act' : '' }}"><i class="fas fa-tools"></i>الخدمات</a>
-                <a href="/admin/offers" class="{{ Request::is('admin/offers') ? 'act' : '' }}"><i class="fas fa-percent"></i>العروض</a>
+                <a href="/admin/offers" class="{{ Request::is('admin/offers') ? 'act' : '' }}"><i class="fas fa-history"></i>سابقة الأعمال</a>
                 <a href="/admin/areas" class="{{ Request::is('admin/areas') ? 'act' : '' }}"><i class="fas fa-map-marker-alt"></i>مناطق الخدمة</a>
                 <a href="/admin/testimonials" class="{{ Request::is('admin/testimonials') ? 'act' : '' }}"><i class="fas fa-star"></i>آراء العملاء</a>
                 <a href="/admin/faqs" class="{{ Request::is('admin/faqs') ? 'act' : '' }}"><i class="fas fa-question-circle"></i>الأسئلة الشائعة</a>

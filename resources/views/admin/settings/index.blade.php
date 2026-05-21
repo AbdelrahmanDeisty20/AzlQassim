@@ -46,6 +46,21 @@
                     </div>
                 </div>
             </div>
+
+            <div class="afg" style="margin-bottom:22px">
+                <label style="font-weight:700">شعار أو ختم وثيقة الاعتماد (سابقة الأعمال) - اختياري (سيظهر في كارت الاعتماد بالصفحة الرئيسية بدلاً من ختم المملكة الافتراضي)</label>
+                <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:8px">
+                    <input type="hidden" name="accreditation_logo" id="hdr-accreditation_logo-val" value="{{ $hdr['accreditation_logo'] ?? '' }}">
+                    <div style="width:120px; height:120px; border-radius:var(--r); border:1px solid #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+                        <img id="hdr-accreditation_logo-preview" src="{{ !empty($hdr['accreditation_logo']) ? $hdr['accreditation_logo'] : '' }}" style="max-width:100%; max-height:100%; object-fit:contain; {{ empty($hdr['accreditation_logo']) ? 'display:none' : '' }}">
+                        <div id="hdr-accreditation_logo-placeholder" style="font-size:36px; color:var(--cc); {{ !empty($hdr['accreditation_logo']) ? 'display:none' : '' }}"><i class="fas fa-award" style="color:var(--am)"></i></div>
+                    </div>
+                    <div>
+                        <input type="file" accept="image/*" onchange="uploadImageInput(this, url => { $('#hdr-accreditation_logo-val').val(url); $('#hdr-accreditation_logo-preview').attr('src', url).show(); $('#hdr-accreditation_logo-placeholder').hide(); Swal.fire('تم رفع شعار الاعتماد!', 'تم رفع وتحديد شعار وثيقة الاعتماد بنجاح. تذكر النقر على حفظ في الأسفل لتأكيد الحفظ.', 'success'); })">
+                        <div style="font-size:11px; color:var(--cc); margin-top:4px">صيغ مدعومة: PNG, JPG, WebP, SVG. الحجم الأقصى: 5MB</div>
+                    </div>
+                </div>
+            </div>
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>نص زر الاتصال بالهيدر (cta)</label>

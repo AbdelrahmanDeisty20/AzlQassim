@@ -275,7 +275,7 @@
                     <p id="whyDsc">{{ $why_us['desc'] ?? 'نحن الخيار الأول لأهالي القصيم وبريدة وحائل. نجمع بين الخبرة الطويلة والتقنيات الحديثة لنضمن لك منزلاً محمياً من التسربات والحرارة.' }}</p>
                     <div class="why-list" id="whyL">
                         @foreach($whyItems as $wi)
-                            <div class="wi">
+                            <div class="wi" style="display: flex; align-items: {{ empty($wi->desc) ? 'center' : 'flex-start' }}; gap: 14px; margin-bottom: 20px;">
                                 <div class="ic" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:rgba(197,168,128,0.1);color:var(--am);font-size:20px;flex-shrink:0">
                                     @if(!empty($wi->img))
                                         <img src="{{ $wi->img }}" style="width:28px;height:28px;object-fit:contain;border-radius:4px" onerror="this.outerHTML='<i class=\'fas {{ $wi->icon ?? "fa-check" }}\'></i>'">
@@ -283,9 +283,13 @@
                                         <i class="fas {{ $wi->icon ?? 'fa-check' }}"></i>
                                     @endif
                                 </div>
-                                <div>
-                                    <h4>{{ $wi->title }}</h4>
-                                    <p>{{ $wi->desc }}</p>
+                                <div style="display: flex; flex-direction: column; justify-content: center;">
+                                    @if(empty($wi->desc))
+                                        <h4 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--nv); line-height: 1.4;">{{ $wi->title }}</h4>
+                                    @else
+                                        <h4 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 700; color: var(--nv); line-height: 1.4;">{{ $wi->title }}</h4>
+                                        <p style="margin: 0; font-size: 14px; color: var(--cc); line-height: 1.5;">{{ $wi->desc }}</p>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

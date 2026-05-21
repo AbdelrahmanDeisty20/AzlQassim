@@ -13,15 +13,19 @@
             <table class="tbl" style="width:100%; border-collapse:collapse; text-align:right; min-width:600px">
                 <thead>
                     <tr style="background:var(--sl)">
+                        <th style="padding:10px; border:1px solid #ddd; width:80px">أيقونة</th>
                         <th style="padding:10px; border:1px solid #ddd">المنطقة / المدينة</th>
+                        <th style="padding:10px; border:1px solid #ddd">الوصف</th>
                         <th style="padding:10px; border:1px solid #ddd">حالة التغطية</th>
-                        <th style="padding:10px; border:1px solid #ddd">العمليات</th>
+                        <th style="padding:10px; border:1px solid #ddd; width:120px">العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($areas as $ar)
                         <tr style="border-bottom:1px solid #eee">
+                            <td data-label="أيقونة" style="padding:10px; text-align:center; font-size:24px">{{ $ar->emoji ?? '📍' }}</td>
                             <td data-label="المنطقة / المدينة" style="padding:10px"><strong>{{ $ar->name }}</strong></td>
+                            <td data-label="الوصف" style="padding:10px; font-size:13px; color:#666">{{ $ar->desc }}</td>
                             <td data-label="حالة التغطية" style="padding:10px">
                                 <span class="atag" style="background:rgba(74,222,128,.15);color:var(--gr)">مغطاة بالكامل</span>
                             </td>
@@ -43,12 +47,22 @@
         <form id="form-ar" onsubmit="saveAreaForm(event)">
             <input type="hidden" name="id" id="ar-id">
             
-            <div class="afg">
+            <div class="afg" style="margin-bottom:14px">
                 <label>اسم المدينة / المحافظة</label>
                 <input type="text" name="n" id="ar-n" required placeholder="مثال: بريدة، عنيزة، الرس، حائل">
             </div>
 
-            <div style="display:flex; gap:10px; margin-top:12px">
+            <div class="afg" style="margin-bottom:14px">
+                <label>رمز التعبير / الأيقونة (Emoji)</label>
+                <input type="text" name="emoji" id="ar-emoji" value="📍" placeholder="مثال: 📍, 🏢, 🏡">
+            </div>
+
+            <div class="afg" style="margin-bottom:14px">
+                <label>وصف التغطية والخدمات بالمدينة</label>
+                <textarea name="desc" id="ar-desc" rows="3" placeholder="اكتب وصفاً مختصراً للخدمات المقدمة في هذه المدينة..." style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit; resize:vertical"></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:18px">
                 <button type="submit" class="btn btn-nv" style="flex:1; justify-content:center"><i class="fas fa-save"></i> حفظ المدينة</button>
                 <button type="button" id="btn-cancel" class="btn" style="display:none; background:#f1f3f5; color:#555; border:1px solid #ddd" onclick="resetArForm()"><i class="fas fa-times"></i> إلغاء</button>
             </div>
@@ -65,7 +79,9 @@
         const id = $('#ar-id').val();
         
         const data = {
-            name: $('#ar-n').val()
+            name: $('#ar-n').val(),
+            emoji: $('#ar-emoji').val(),
+            desc: $('#ar-desc').val()
         };
 
         if (id) {
@@ -98,6 +114,8 @@
         $('#form-title').html('<i class="fas fa-edit" style="color:var(--am)"></i> تعديل مدينة: ' + ar.name);
         $('#ar-id').val(ar.id);
         $('#ar-n').val(ar.name);
+        $('#ar-emoji').val(ar.emoji || '📍');
+        $('#ar-desc').val(ar.desc || '');
         
         $('#btn-cancel').show();
     }
@@ -107,6 +125,8 @@
         $('#form-title').html('<i class="fas fa-plus-circle" style="color:var(--am)"></i> إضافة مدينة تغطية');
         $('#ar-id').val('');
         $('#ar-n').val('');
+        $('#ar-emoji').val('📍');
+        $('#ar-desc').val('');
         
         $('#btn-cancel').hide();
     }

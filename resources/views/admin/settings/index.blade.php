@@ -292,7 +292,24 @@
     <!-- Tab Why Choose Us: whyItems -->
     <div id="tab-why" class="tab-content" style="display:none">
         <h3 style="margin-bottom:18px; color:var(--nv)"><i class="fas fa-award" style="color:var(--am)"></i> مميزات لماذا تختارنا (Why Choose Us)</h3>
+
+        <!-- General Why Us settings form -->
+        <form id="form-why-us" onsubmit="saveSetting(event, 'why_us')" style="background:var(--sl); border-radius:var(--r); padding:20px; margin-bottom:24px; border:1px solid #e1e3e5">
+            <h4 style="margin-bottom:14px; color:var(--nv)"><i class="fas fa-edit" style="color:var(--am)"></i> العناوين الرئيسية لقسم "لماذا تختارنا"</h4>
+            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr; gap:16px; margin-bottom:16px">
+                <div class="afg" style="margin:0">
+                    <label>العنوان الرئيسي لقسم لماذا تختارنا (يمكنك استخدام وسم &lt;em&gt; للنص الملون بالذهبي)</label>
+                    <input type="text" name="title" value="{{ $why_us['title'] ?? 'لماذا تختار <em>عزل القصيم؟</em>' }}" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:var(--r); font-family:inherit">
+                </div>
+                <div class="afg" style="margin:0">
+                    <label>الوصف / التفاصيل</label>
+                    <textarea name="desc" rows="2" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit" required>{{ $why_us['desc'] ?? 'نحن الخيار الأول لأهالي القصيم وبريدة وحائل. نجمع بين الخبرة الطويلة والتقنيات الحديثة لنضمن لك منزلاً محمياً من التسربات والحرارة.' }}</textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-nv"><i class="fas fa-save"></i> حفظ العناوين الرئيسية</button>
+        </form>
         
+        <h4 style="margin:18px 0 10px; color:var(--nv); border-bottom:1px solid #eee; padding-bottom:6px"><i class="fas fa-list" style="color:var(--am)"></i> قائمة المميزات المضافة</h4>
         <!-- Add/Edit form -->
         <form id="form-why-item" onsubmit="saveWhyItem(event)" style="background:var(--sl); border-radius:var(--r); padding:16px; margin-bottom:20px; border:1px solid #e1e3e5">
             <h4 id="why-form-title" style="margin-bottom:12px; color:var(--nv)">إضافة ميزة جديدة</h4>

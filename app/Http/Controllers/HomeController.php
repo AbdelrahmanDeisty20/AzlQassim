@@ -35,6 +35,7 @@ class HomeController extends Controller
             'hdr' => $settings['hdr'] ?? [],
             'hero' => $settings['hero'] ?? [],
             'svc_page' => $settings['svc_page'] ?? [],
+            'why_us' => $settings['why_us'] ?? [],
             'ftr' => $settings['ftr'] ?? [],
             'contact' => $settings['contact'] ?? [],
             'colors' => $settings['colors'] ?? [],

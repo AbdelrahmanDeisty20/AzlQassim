@@ -236,23 +236,39 @@
                 <textarea name="p2" id="abtp2" rows="2" style="width:100%; border:1px solid #ddd; border-radius:var(--r); padding:10px; font-family:inherit">{{ $about['p2'] ?? 'تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.' }}</textarea>
             </div>
 
-            <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:18px">
-                <div class="afg" style="margin:0">
-                    <label>الإحصائية 1</label>
-                    <input type="text" name="st1_n" id="abtst1n" value="{{ $about['st1_n'] ?? '+800' }}" placeholder="الرقم" style="margin-bottom:8px">
-                    <input type="text" name="st1_t" id="abtst1t" value="{{ $about['st1_t'] ?? 'مشروع منجز' }}" placeholder="النص">
-                </div>
-                <div class="afg" style="margin:0">
-                    <label>الإحصائية 2</label>
-                    <input type="text" name="st2_n" id="abtst2n" value="{{ $about['st2_n'] ?? '10' }}" placeholder="الرقم" style="margin-bottom:8px">
-                    <input type="text" name="st2_t" id="abtst2t" value="{{ $about['st2_t'] ?? 'سنوات ضمان' }}" placeholder="النص">
-                </div>
-                <div class="afg" style="margin:0">
-                    <label>الإحصائية 3</label>
-                    <input type="text" name="st3_n" id="abtst3n" value="{{ $about['st3_n'] ?? '3' }}" placeholder="الرقم" style="margin-bottom:8px">
-                    <input type="text" name="st3_t" id="abtst3t" value="{{ $about['st3_t'] ?? 'مناطق خدمة' }}" placeholder="النص">
-                </div>
+            <h4 style="margin:24px 0 10px; color:var(--nv); padding-bottom:6px">إحصائيات الشركة العدادية</h4>
+            <div id="stats-container" style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px">
+                @php
+                    $aboutStats = $about['stats'] ?? [
+                        ['num' => '+800', 'lbl' => 'مشروع منجز', 'color' => 'var(--nv)'],
+                        ['num' => '15', 'lbl' => 'سنوات ضمان', 'color' => 'var(--am)'],
+                        ['num' => '3', 'lbl' => 'مناطق خدمة', 'color' => 'var(--gr)']
+                    ];
+                @endphp
+                @foreach($aboutStats as $index => $stat)
+                    <div class="stat-row" style="display:flex; gap:10px; align-items:center; background:#f8f9fa; padding:10px; border-radius:var(--r); border:1px solid #e2e8f0">
+                        <div style="flex:1">
+                            <label style="font-size:11px; color:#666">الرقم / القيمة (مثال: +800)</label>
+                            <input type="text" name="stats[{{ $index }}][num]" value="{{ $stat['num'] }}" required style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px">
+                        </div>
+                        <div style="flex:2">
+                            <label style="font-size:11px; color:#666">العلامة / الوصف (مثال: مشروع منجز)</label>
+                            <input type="text" name="stats[{{ $index }}][lbl]" value="{{ $stat['lbl'] }}" required style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px">
+                        </div>
+                        <div style="width:140px">
+                            <label style="font-size:11px; color:#666">لون النص</label>
+                            <select name="stats[{{ $index }}][color]" style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px; font-family:inherit">
+                                <option value="var(--nv)" {{ ($stat['color'] ?? '') === 'var(--nv)' ? 'selected' : '' }}>أزرق غامق</option>
+                                <option value="var(--am)" {{ ($stat['color'] ?? '') === 'var(--am)' ? 'selected' : '' }}>ذهبي</option>
+                                <option value="var(--gr)" {{ ($stat['color'] ?? '') === 'var(--gr)' ? 'selected' : '' }}>أخضر</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn rd" onclick="$(this).parent().remove(); reindexStats();" style="margin-top:16px; padding:6px 10px; height:34px"><i class="fas fa-trash"></i></button>
+                    </div>
+                @endforeach
             </div>
+            <button type="button" class="btn btn-am" onclick="addStatRow()" style="margin-bottom:24px"><i class="fas fa-plus"></i> إضافة إحصائية جديدة</button>
+
             <div class="admin-grid-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px">
                 <div class="afg" style="margin:0">
                     <label>أيقونة القسم (في حال عدم اختيار صورة)</label>
@@ -731,10 +747,25 @@
         e.preventDefault();
         const form = $(e.target);
         
-        // Serialize form to object
+        // Serialize form to object with nested array parsing
         const data = {};
         form.serializeArray().forEach(item => {
-            data[item.name] = item.value;
+            const match = item.name.match(/^(.+)\[(\d+)\]\[(.+)\]$/);
+            if (match) {
+                const arrayName = match[1];
+                const index = parseInt(match[2]);
+                const fieldName = match[3];
+                
+                if (!data[arrayName]) {
+                    data[arrayName] = [];
+                }
+                if (!data[arrayName][index]) {
+                    data[arrayName][index] = {};
+                }
+                data[arrayName][index][fieldName] = item.value;
+            } else {
+                data[item.name] = item.value;
+            }
         });
 
         Swal.showLoading();
@@ -1057,6 +1088,46 @@
                     }
                 });
             }
+        });
+    }
+
+    // --- Dynamic Stats management inside About Us ---
+    function addStatRow() {
+        const container = $('#stats-container');
+        const index = container.find('.stat-row').length;
+        const rowHtml = `
+            <div class="stat-row" style="display:flex; gap:10px; align-items:center; background:#f8f9fa; padding:10px; border-radius:var(--r); border:1px solid #e2e8f0">
+                <div style="flex:1">
+                    <label style="font-size:11px; color:#666">الرقم / القيمة (مثال: +800)</label>
+                    <input type="text" name="stats[\${index}][num]" value="" required style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px">
+                </div>
+                <div style="flex:2">
+                    <label style="font-size:11px; color:#666">العلامة / الوصف (مثال: مشروع منجز)</label>
+                    <input type="text" name="stats[\${index}][lbl]" value="" required style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px">
+                </div>
+                <div style="width:140px">
+                    <label style="font-size:11px; color:#666">لون النص</label>
+                    <select name="stats[\${index}][color]" style="width:100%; padding:6px; border:1px solid #ddd; border-radius:4px; font-family:inherit">
+                        <option value="var(--nv)">أزرق غامق</option>
+                        <option value="var(--am)">ذهبي</option>
+                        <option value="var(--gr)">أخضر</option>
+                    </select>
+                </div>
+                <button type="button" class="btn rd" onclick="$(this).parent().remove(); reindexStats();" style="margin-top:16px; padding:6px 10px; height:34px"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+        container.append(rowHtml);
+    }
+
+    function reindexStats() {
+        $('#stats-container .stat-row').each(function(index) {
+            $(this).find('input, select').each(function() {
+                const name = $(this).attr('name');
+                if (name) {
+                    const newName = name.replace(/stats\\[\\d+\\]/, `stats[\${index}]`);
+                    $(this).attr('name', newName);
+                }
+            });
         });
     }
 </script>

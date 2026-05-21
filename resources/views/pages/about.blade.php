@@ -98,18 +98,27 @@
                         {{ $about['p2'] ?? 'تأسست شركة عزل القصيم لتكون الشريك الأمين لأصحاب المنازل في منطقة القصيم وبريدة وحائل في مجال العزل المائي والحراري للأسطح والخزانات والحمامات.' }}
                     </p>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 14px; margin-top: 26px;">
-                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--nv);">{{ $about['st1_n'] ?? '+800' }}</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st1_t'] ?? 'مشروع منجز' }}</div>
-                        </div>
-                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--am);">{{ $about['st2_n'] ?? '10' }}</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st2_t'] ?? 'سنوات ضمان' }}</div>
-                        </div>
-                        <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-                            <div style="font-size: 26px; font-weight: 900; color: var(--gr);">{{ $about['st3_n'] ?? '3' }}</div>
-                            <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st3_t'] ?? 'مناطق خدمة' }}</div>
-                        </div>
+                        @if(!empty($about['stats']))
+                            @foreach($about['stats'] as $stat)
+                                <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                                    <div style="font-size: 26px; font-weight: 900; color: {{ $stat['color'] ?? 'var(--nv)' }};">{{ $stat['num'] }}</div>
+                                    <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $stat['lbl'] }}</div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--nv);">{{ $about['st1_n'] ?? '+800' }}</div>
+                                <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st1_t'] ?? 'مشروع منجز' }}</div>
+                            </div>
+                            <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--am);">{{ $about['st2_n'] ?? '10' }}</div>
+                                <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st2_t'] ?? 'سنوات ضمان' }}</div>
+                            </div>
+                            <div style="text-align: center; background: #ffffff; border: 1.5px solid rgba(15,36,65,0.08); border-radius: var(--r); padding: 16px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--gr);">{{ $about['st3_n'] ?? '3' }}</div>
+                                <div style="font-size: 12px; color: var(--cc); font-weight: 700;">{{ $about['st3_t'] ?? 'مناطق خدمة' }}</div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div style="display:block">

@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
             if (\Illuminate\Support\Facades\Schema::hasTable('services')) {
                 $view->with('globalServices', \App\Models\Service::where('status', 'active')->get());
             }
+            if (\Illuminate\Support\Facades\Schema::hasTable('areas')) {
+                $view->with('globalAreas', \App\Models\Area::all());
+            }
             if (\Illuminate\Support\Facades\Schema::hasTable('menus')) {
                 $view->with('menus', \App\Models\Menu::where('v', true)->orderBy('order')->get());
             }

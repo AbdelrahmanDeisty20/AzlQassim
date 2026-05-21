@@ -40,14 +40,11 @@
                         <label>المدينة *</label>
                         <select id="r3">
                             <option value="">اختر المدينة</option>
-                            <option>بريدة</option>
-                            <option>عنيزة</option>
-                            <option>الرس</option>
-                            <option>البكيرية</option>
-                            <option>المذنب</option>
-                            <option>رياض الخبراء</option>
-                            <option>حائل</option>
-                            <option>البدائع</option>
+                            @if(isset($globalAreas))
+                                @foreach($globalAreas as $area)
+                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                @endforeach
+                            @endif
                             <option>غيرها</option>
                         </select>
                     </div>

@@ -1,33 +1,35 @@
 <style>
-    /* Force header and navigation to stay on a single line */
-    .hdr {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 10px !important;
-        max-width: 1420px !important;
-        padding-right: 10px !important;
-        padding-left: 10px !important;
-        margin: 0 auto !important;
-    }
-    nav {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        align-items: center !important;
-        gap: 4px !important;
-    }
-    nav a {
-        white-space: nowrap !important;
-        font-size: 13px !important;
-        padding: 8px 10px !important;
-    }
-    
-    /* Make the SEO links look like normal navigation links */
-    .seo-nav-link {
-        font-size: 11px !important;
-        padding: 8px 6px !important;
-        white-space: nowrap !important;
+    /* Desktop only header styling (769px and above) */
+    @media (min-width: 769px) {
+        .hdr {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            gap: 10px !important;
+            max-width: 1420px !important;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            margin: 0 auto !important;
+        }
+        nav {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            gap: 4px !important;
+        }
+        nav a {
+            white-space: nowrap !important;
+            font-size: 13px !important;
+            padding: 8px 10px !important;
+        }
+        
+        /* Make the SEO links look like normal navigation links */
+        .seo-nav-link {
+            font-size: 11px !important;
+            padding: 8px 6px !important;
+            white-space: nowrap !important;
+        }
     }
 
     /* Tablet and small desktop optimizations (769px to 1300px) */

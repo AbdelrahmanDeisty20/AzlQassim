@@ -19,6 +19,8 @@
                 @endphp
                 <a href="{{ $url }}" class="{{ $isAct ? 'act' : '' }}">{{ $m->name }}</a>
             @endforeach
+            <a href="/" style="font-size: 11px; padding: 8px 6px; white-space: nowrap;">أفضل شركة عزل فوم أسطح بالقصيم</a>
+            <a href="/" style="font-size: 11px; padding: 8px 6px; white-space: nowrap;">foam-roof-insulation-qassim</a>
         </nav>
         <div class="hdr-cta" style="display: flex; gap: 8px; align-items: center;">
             <a class="btn" id="hCta" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')" style="background: #e07b0f; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
@@ -40,5 +42,7 @@
             @endphp
             <a href="{{ $url }}" onclick="togMob(false)" class="{{ $isAct ? 'act' : '' }}">{{ $m->name }}</a>
         @endforeach
+        <a href="/" onclick="togMob(false)">أفضل شركة عزل فوم أسطح بالقصيم</a>
+        <a href="/" onclick="togMob(false)">foam-roof-insulation-qassim</a>
     </div>
 </header>

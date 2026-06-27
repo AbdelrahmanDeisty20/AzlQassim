@@ -283,6 +283,7 @@ nav a {
     font-size: 13.5px;
     transition: var(--tr);
     cursor: pointer;
+    white-space: nowrap;
 }
 
 nav a:hover,
@@ -2895,6 +2896,22 @@ table.at {
     border-radius: 6px;
     cursor: pointer;
     padding: 2px;
+}
+
+@media (max-width: 1220px) and (min-width: 769px) {
+    .logo-sb {
+        display: none !important;
+    }
+    nav a {
+        font-size: 11px !important;
+        padding: 6px 4px !important;
+    }
+    nav {
+        gap: 2px !important;
+    }
+    .hdr-cta .btn span {
+        display: none !important;
+    }
 }
 
 /* Media Queries & Responsive Layouts */

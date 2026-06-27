@@ -6,6 +6,10 @@
         justify-content: space-between !important;
         align-items: center !important;
         gap: 10px !important;
+        max-width: 1420px !important;
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin: 0 auto !important;
     }
     nav {
         display: flex !important;
@@ -53,7 +57,7 @@
 
 <header id="HDR">
     <div class="hdr">
-        <a class="logo" href="/" style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:12px">
+        <a class="logo" href="/" style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:8px">
             @if(!empty($hdr['logo']))
                 <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img" style="max-height: 48px; max-width: 180px; object-fit: contain; display: block;">
             @else

@@ -56,7 +56,7 @@
 
 <header id="HDR">
     <div class="hdr">
-        <a class="logo" href="https://rawnkelkhaleeg.com/" target="_blank"
+        <a class="logo" href="/"
             style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:8px">
             @if(!empty($hdr['logo']))
                 <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img"

@@ -16,12 +16,12 @@
             display: flex !important;
             flex-wrap: nowrap !important;
             align-items: center !important;
-            gap: 6px !important;
+            gap: 4px !important;
         }
         nav a {
             white-space: nowrap !important;
             font-size: 13px !important;
-            padding: 8px 12px !important;
+            padding: 8px 7px !important;
         }
     }
 

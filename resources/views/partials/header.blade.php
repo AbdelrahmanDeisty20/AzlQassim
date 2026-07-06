@@ -6,10 +6,10 @@
             flex-wrap: nowrap !important;
             justify-content: space-between !important;
             align-items: center !important;
-            gap: 15px !important;
-            max-width: 100% !important;
-            padding-right: 24px !important;
-            padding-left: 24px !important;
+            gap: 10px !important;
+            max-width: 1420px !important;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
             margin: 0 auto !important;
         }
 
@@ -17,14 +17,16 @@
             display: flex !important;
             flex-wrap: nowrap !important;
             align-items: center !important;
-            gap: 6px !important;
+            gap: 4px !important;
         }
 
         nav a {
             white-space: nowrap !important;
             font-size: 13px !important;
-            padding: 8px 12px !important;
+            padding: 8px 10px !important;
         }
+
+
     }
 
     /* Tablet and small desktop optimizations (769px to 1300px) */
@@ -34,16 +36,12 @@
         }
 
         .logo-nm {
-            font-size: 13px !important;
+            font-size: 14.5px !important;
         }
 
         nav a {
-            font-size: 11px !important;
-            padding: 6px 4px !important;
-        }
-
-        nav {
-            gap: 2px !important;
+            font-size: 11.5px !important;
+            padding: 6px 5px !important;
         }
 
         .hdr-cta .btn span {
@@ -51,30 +49,8 @@
         }
 
         .hdr-cta .btn {
-            padding: 6px 8px !important;
+            padding: 8px 10px !important;
         }
-    }
-
-    /* Hide SEO links on smaller screens to prevent overflow/wrap */
-    @media (max-width: 1250px) {
-        .seo-link {
-            display: none !important;
-        }
-    }
-
-    /* External Link Styling */
-    .ext-link {
-        color: #e07b0f !important;
-        font-weight: 800 !important;
-        border-bottom: 2px dashed #e07b0f;
-        padding-bottom: 2px;
-        transition: all 0.3s ease !important;
-    }
-
-    .ext-link:hover {
-        color: #0f2441 !important;
-        border-bottom-color: #0f2441 !important;
-        transform: translateY(-1px);
     }
 </style>
 
@@ -101,21 +77,20 @@
                 @endphp
                 <a href="{{ $url }}" class="{{ $isAct ? 'act' : '' }}">{{ $m->name }}</a>
             @endforeach
-            <a href="/" class="seo-link">أفضل شركة عزل فوم أسطح بالقصيم</a>
-            <a href="/" class="seo-link">foam-roof-insulation-qassim</a>
-            <a href="https://rawnkelkhaleeg.com/" target="_blank" class="ext-link">مؤسسة رونق قلب الخليج</a>
+            <a href="/">أفضل شركة عزل فوم أسطح بالقصيم</a>
+            <a href="/">foam-roof-insulation-qassim</a>
         </nav>
         <div class="hdr-cta" style="display: flex; gap: 8px; align-items: center;">
             <a class="btn" id="hCta" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')"
                 style="background: #e07b0f; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
                 <i class="fas fa-phone-alt" style="font-size: 13px;"></i>
-                <span id="hCTA">تواصل</span>
+                <span id="hCTA">اتصل الان</span>
             </a>
             <a class="btn" id="hWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank"
                 onclick="tC('whatsapp','header')"
                 style="background: #10b981; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
-                <i class="fab fa-whatsapp" style="font-size: 14px;"></i>
-                <span id="hWaT">واتساب</span>
+                <i class="fas fa-comment" style="font-size: 14px;"></i>
+                <span id="hWaT">{{ $hdr['wa'] ?? 'واتساب' }}</span>
             </a>
         </div>
         <button class="mob-tog" onclick="togMob()"><i class="fas fa-bars"></i></button>
@@ -130,7 +105,5 @@
         @endforeach
         <a href="/" onclick="togMob(false)">أفضل شركة عزل فوم أسطح بالقصيم</a>
         <a href="/" onclick="togMob(false)">foam-roof-insulation-qassim</a>
-        <a href="https://rawnkelkhaleeg.com/" target="_blank" onclick="togMob(false)"
-            style="color: #e07b0f !important; font-weight: 800 !important;">مؤسسة رونق قلب الخليج</a>
     </div>
 </header>

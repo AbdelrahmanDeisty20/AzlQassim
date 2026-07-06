@@ -12,16 +12,18 @@
             padding-left: 24px !important;
             margin: 0 auto !important;
         }
+
         nav {
             display: flex !important;
             flex-wrap: nowrap !important;
             align-items: center !important;
-            gap: 4px !important;
+            gap: 6px !important;
         }
+
         nav a {
             white-space: nowrap !important;
             font-size: 13px !important;
-            padding: 8px 7px !important;
+            padding: 8px 12px !important;
         }
     }
 
@@ -30,19 +32,24 @@
         .logo-sb {
             display: none !important;
         }
+
         .logo-nm {
             font-size: 13px !important;
         }
+
         nav a {
             font-size: 11px !important;
             padding: 6px 4px !important;
         }
+
         nav {
             gap: 2px !important;
         }
+
         .hdr-cta .btn span {
             display: none !important;
         }
+
         .hdr-cta .btn {
             padding: 6px 8px !important;
         }
@@ -63,6 +70,7 @@
         padding-bottom: 2px;
         transition: all 0.3s ease !important;
     }
+
     .ext-link:hover {
         color: #0f2441 !important;
         border-bottom-color: #0f2441 !important;
@@ -72,9 +80,11 @@
 
 <header id="HDR">
     <div class="hdr">
-        <a class="logo" href="/" style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:8px">
+        <a class="logo" href="/"
+            style="text-decoration:none;color:inherit;cursor:pointer;display:flex;align-items:center;gap:8px">
             @if(!empty($hdr['logo']))
-                <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img" style="max-height: 48px; max-width: 180px; object-fit: contain; display: block;">
+                <img src="{{ $hdr['logo'] }}" alt="{{ $hdr['nm'] ?? 'عزل القصيم' }}" class="logo-img"
+                    style="max-height: 48px; max-width: 180px; object-fit: contain; display: block;">
             @else
                 <div class="logo-ic"><i class="fas fa-layer-group"></i></div>
             @endif
@@ -93,15 +103,18 @@
             @endforeach
             <a href="/" class="seo-link">أفضل شركة عزل فوم أسطح بالقصيم</a>
             <a href="/" class="seo-link">foam-roof-insulation-qassim</a>
-            <a href="https://azlqassim.com/" target="_blank" class="ext-link">مؤسسة رونق قلب الخليج</a>
+            <a href="https://rawnkelkhaleeg.com/" target="_blank" class="ext-link">مؤسسة رونق قلب الخليج</a>
         </nav>
         <div class="hdr-cta" style="display: flex; gap: 8px; align-items: center;">
-            <a class="btn" id="hCta" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')" style="background: #e07b0f; color: #fff; padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
-                <i class="fas fa-phone-alt" style="font-size: 11px;"></i>
+            <a class="btn" id="hCta" href="tel:{{ $contact['ph'] ?? '966500000000' }}" onclick="tC('phone','header')"
+                style="background: #e07b0f; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fas fa-phone-alt" style="font-size: 13px;"></i>
                 <span id="hCTA">تواصل</span>
             </a>
-            <a class="btn" id="hWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank" onclick="tC('whatsapp','header')" style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
-                <i class="fab fa-whatsapp" style="font-size: 13px;"></i>
+            <a class="btn" id="hWa" href="https://wa.me/{{ $contact['wa'] ?? '966500000000' }}" target="_blank"
+                onclick="tC('whatsapp','header')"
+                style="background: #10b981; color: #fff; padding: 7px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fab fa-whatsapp" style="font-size: 14px;"></i>
                 <span id="hWaT">واتساب</span>
             </a>
         </div>
@@ -117,6 +130,7 @@
         @endforeach
         <a href="/" onclick="togMob(false)">أفضل شركة عزل فوم أسطح بالقصيم</a>
         <a href="/" onclick="togMob(false)">foam-roof-insulation-qassim</a>
-        <a href="https://azlqassim.com/" target="_blank" onclick="togMob(false)" style="color: #e07b0f !important; font-weight: 800 !important;">مؤسسة رونق قلب الخليج</a>
+        <a href="https://rawnkelkhaleeg.com/" target="_blank" onclick="togMob(false)"
+            style="color: #e07b0f !important; font-weight: 800 !important;">مؤسسة رونق قلب الخليج</a>
     </div>
 </header>
